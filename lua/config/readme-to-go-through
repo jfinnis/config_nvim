@@ -1,0 +1,34 @@
+*Text Objects*
+* ia/aa - arguments
+* ic/ac - gitgutter hunk objects (working index changes)
+
+*Active Plugins*
+* Abolish            (:S major substitute, abbreviations, coercion: cr/c camel, m mixed, _ snake, u upper, - dash, . dot, &lt;space&gt; space, t title)
+* Argumentative      ([/]a to traverse arguments, &lt;/&gt;a to switch, text objects)
+* Emmet              (<tab>, autocompletes emmet language shortcuts)
+* Exchange           (cx{motion} exchange motion with another (repeat), cxx current line, X visual, can use . to repeat)
+* Gitgutter          (signs for git changes, [c/]c for navigating between hunks, ;ca/;cu/;cp for git add/revert/preview)
+* Fugitive           (;g a add curfile, b blame, c commit -a, d diff, l log, m move, p push, r read (like checkout without writing), s status, w github; status commands: C-N/C-P next/prev file, CR edit, - stage, ca commit --amend, cc commit, D diff, = toggle inline diff, ds/v hor/vert diff, P patch, q quit, R reload, X git checkout; blame: ACD resize, q close, o open commit, - reblame; ;gd in merge conflict file opens 3 way merge can dp from target/merge branch; )
+* Jfmt               (;J to format json files)
+* NERDCommenter      (;c c comment, i invert, m multipart, s sexy, $ to end of line, A append, u uncomment, b block, y yank then comment)
+* NERDTree           (o expand dir/open file, O recurs. open dir, i/s open in horiz/vert split, gi/gs same but leave cursor in nerdtree, x close parent folder, P/p jump to root/parent, K/J top/bottom current level, &lt;C-J/K&gt; prev/next sibling, C set root to dir, r refresh, m modify files, I toggle hidden files, q close)
+* Signature          (mx/dmx add delete mark; m,/. to use/toggle next available; m&lt;space&gt; remove all from buffer; ['/]' jump to next mark; m/ location list; m[0-9] repeated special marks; m&lt;s-[0-9]&gt; remove special; m? special mark location list; m&lt;del&gt; remove markers)
+* Skybison           (command line autosuggestion, K buffer search)
+* Speeddating        (extends &lt;C-A&gt;&lt;C-X&gt; to datetimes, d&lt;C-A&gt;/d&lt;C-X&gt; inserts current utc/local timestamp)
+* Vim-Plug           (fast plugin manager, ;Pi/u/s/d PlugInstall/Update/Status/Diff)
+* Vimux              (;! run command in tmux window, ! repeat last command, @ close other windows)
+
+*Passive Plugins*
+* DelimitMate        (automatic matching pairs of quotes and symbols)
+* Fubitive           (bitbucket support for git-browse)
+* Indent-Guides      (indent level color indication)
+* Javascript         (syntax/indent/conceal improvements)
+* Javascript-Library (syntax highlighting for js libraries)
+* Json               (syntax highlighting, folding, concealing quotes)
+* Jsx                (syntax highlighting for jsx files)
+* Matchup            (enhances % for more languages, highlights % matches)
+* Rhubarb            (github support for git-browse)
+* Sleuth             (auto-detect indent width for tabs)
+* Tagalong           (changing opening html tag will change the closing)
+* Typescript-Vim     (syntax highlighting for ts files)
+* Vim-Jsx-Typescript (syntax highlighting for tsx files)

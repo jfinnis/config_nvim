@@ -1,0 +1,73 @@
+--
+-- settings.lua
+--
+vim.g.mapleader = ';'
+
+vim.opt.number = true
+vim.opt.numberwidth = 2
+vim.opt.scrolloff = 4 -- lines above/below cursor while scrolling
+vim.opt.shortmess = 'filmnxtTIoOF' -- experiment with I above, hides intro (try with alpha-nvim)
+vim.opt.timeoutlen = 500 -- shorter timeout for mappings (milliseconds)
+vim.opt.title = true -- terminal window shows name of file - doesn't work in tmux?
+vim.opt.termguicolors = true -- advanced colors required for hexokinase plugin
+vim.opt.updatetime = 1000 -- write swapfile to disk after these milliseconds
+vim.opt.undofile = true
+vim.opt.wildmode = 'longest:full' -- command completion to longest substring, then show popup menu of completions
+
+-- display stuff
+vim.opt.colorcolumn = '80,120' -- highlight these columns in different color
+vim.opt.cursorcolumn = false
+vim.opt.cursorline = false
+-- cursor line displays only in active window
+local cursorGroup = vim.api.nvim_create_augroup('CursorLine', {clear = true})
+vim.api.nvim_create_autocmd(
+    {'InsertLeave', 'WinEnter'},
+    {pattern = '*', command = 'set cursorline cursorcolumn', group = cursorGroup}
+)
+vim.api.nvim_create_autocmd(
+    {'InsertEnter', 'WinLeave'},
+    {pattern = '*', command = 'set nocursorline nocursorcolumn', group = cursorGroup}
+)
+
+-- search
+vim.opt.hlsearch = true -- hightlight every match, clear with <C-l>
+vim.opt.ignorecase = true -- ignore case when searching
+vim.opt.smartcase = true -- ... unless capitals are included
+
+-- text formatting
+vim.opt.expandtab = true -- convert tab presses to spaces
+vim.opt.formatoptions = 'cro/q1jl'
+vim.opt.linebreak = true -- don't wrap in middle of words
+vim.opt.textwidth = 120
+vim.opt.virtualedit = 'block' -- position cursor where there is no char in block mode
+
+vim.opt.shiftwidth = 0 -- spaces used during (auto)indent, >>, and <<
+                       -- set to 0 to default to tabstop setting
+vim.opt.tabstop = 4 -- tabs are 4 spaces, can be overridden per filetype
+
+vim.opt.showmatch = true -- when inserting bracket/paren, highlight matching one
+vim.opt.matchtime = 3 -- tenths of a second
+
+-- allow closing windows with 'q' that normally require ':q'
+vim.api.nvim_create_autocmd(
+    'FileType',
+    {
+        pattern = {'help', 'qf', 'lspinfo'},
+        command = [[nnoremap <buffer><silent> q :close<cr>]]
+    }
+)
+
+-----------------------
+--       utils       --
+-----------------------
+-- util for creating :ex command aliases for common typos
+vim.cmd([[
+function! SetupCommandAlias(from, to)
+  exec 'cnoreabbrev <expr> '.a:from
+    \ .' ((getcmdtype() is# ":" && getcmdline() is# "'.a:from.'")'
+    \ .'? ("'.a:to.'") : ("'.a:from.'"))'
+endfunction
+-]])
+vim.cmd('call SetupCommandAlias("Vs", "vs")')
+vim.cmd('call SetupCommandAlias("Qa", "qa")')
+vim.cmd('call SetupCommandAlias("Qa!", "qa!")')

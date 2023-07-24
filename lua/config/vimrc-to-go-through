@@ -1,0 +1,208 @@
+" plugin loading ---------------------------------------------------------- {{{2
+call plug#begin('~/.vim/plugged')
+  Plug 'airblade/vim-gitgutter'
+  Plug 'AndrewRadev/tagalong.vim'
+  Plug 'andymass/vim-matchup'
+  Plug 'bcicen/vim-jfmt'
+  Plug 'benmills/vimux'
+  Plug 'elzr/vim-json'
+  Plug 'jceb/vim-textobj-uri'
+  Plug 'kshenoy/vim-signature'
+  Plug 'leafgarland/typescript-vim'
+  Plug 'peitalin/vim-jsx-typescript'
+  Plug 'mattn/emmet-vim'
+  Plug 'mxw/vim-jsx'
+  Plug 'nathanaelkane/vim-indent-guides'
+  Plug 'othree/javascript-libraries-syntax.vim'
+  Plug 'pangloss/vim-javascript'
+  Plug 'paradigm/SkyBison'
+  Plug 'PeterRincker/vim-argumentative'
+  Plug 'Raimondi/delimitMate'
+  Plug 'scrooloose/nerdcommenter'
+  Plug 'scrooloose/nerdtree', {'on': 'NERDTreeToggle'}
+  Plug 'stephenway/postcss.vim'
+  Plug 'tommcdo/vim-exchange'
+  Plug 'tommcdo/vim-fubitive'
+  Plug 'tpope/vim-abolish'
+  Plug 'tpope/vim-fugitive'
+  Plug 'tpope/vim-rhubarb'
+  Plug 'tpope/vim-sleuth'
+  Plug 'tpope/vim-speeddating'
+call plug#end()
+
+" center screen for searches, foldcloses ---------------------------------- {{{2
+" hold off on
+nnoremap n nzz
+nnoremap N Nzz
+nnoremap zc zczz
+nnoremap zo zozz
+nnoremap zn zR
+" ... and marks (thanks to bairui)
+:for m in map(map(range(10), 'nr2char(48+v:val)'), '"nnoremap ''".v:val." ''".v:val."zz"') | exe m | endfor
+:for m in map(map(range(26), 'nr2char(65+v:val)'), '"nnoremap ''".v:val." ''".v:val."zz"') | exe m | endfor
+:for m in map(map(range(26), 'nr2char(97+v:val)'), '"nnoremap ''".v:val." ''".v:val."zz"') | exe m | endfor
+
+" Argumentative settings -------------------------------------------------- {{{2
+nmap [a <Plug>Argumentative_Prev
+nmap ]a <Plug>Argumentative_Next
+xmap [a <Plug>Argumentative_XPrev
+xmap ]a <Plug>Argumentative_XNext
+nmap <a <Plug>Argumentative_MoveLeft
+nmap >a <Plug>Argumentative_MoveRight
+xmap ia <Plug>Argumentative_InnerTextObject
+xmap aa <Plug>Argumentative_OuterTextObject
+omap ia <Plug>Argumentative_OpPendingInnerTextObject
+omap aa <Plug>Argumentative_OpPendingOuterTextObject
+
+" delimitmate ------------------------------------------------------------- {{{2
+let delimitMate_expand_cr=1
+let delimitMate_expand_space=1
+
+" emmet ------------------------------------------------------------------- {{{2
+let g:user_emmet_leader_key='<tab>'
+let g:user_emmet_install_global=1
+let g:user_emmet_expandabbr_key = '<tab>,'
+let g:user_emmet_update_tag = '<tab>u'         " has conflict
+let g:user_emmet_balancetaginward_key = '<tab>['    " select outer block
+let g:user_emmet_balancetagoutward_key = '<tab>]'   " select inner block
+let g:user_emmet_togglecomment_key = '<tab>/'
+let g:user_emmet_next_key = '<C-y>.'                " insert at next point
+autocmd FileType jsx EmmetInstall
+autocmd FileType tsx EmmetInstall
+let g:user_emmet_settings = {
+\  'variables': {'lang': 'en'},
+\  'indentation': '  ',
+\  'html': {
+\    'aliases': {
+\      'in': 'input',
+\      'bu': 'button',
+\      'bq': 'blockquote2'
+\    },
+\    'default_attributes': {
+\      'option': {'value': v:null},
+\      'textarea': {'id': v:null, 'name': v:null, 'cols': 10, 'rows': 10},
+\    },
+\    'snippets': {
+\      'html:5': "<!DOCTYPE html>\n"
+\              ."<html lang=\"${lang}\">\n"
+\              ."<head>\n"
+\              ."\t<meta charset=\"${charset}\">\n"
+\              ."\t<title></title>\n"
+\              ."\t<meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n"
+\              ."</head>\n"
+\              ."<body>\n\t${child}|\n</body>\n"
+\              ."</html>",
+\    },
+\  },
+\}
+
+" fugitive git wrapping --------------------------------------------------- {{{2
+map <Leader>ga :Git add %<cr>
+map <Leader>gb :Git blame<cr>
+map <Leader>gc :Git commit<cr>
+map <Leader>gd :Gdiff<cr>
+map <silent> <Leader>gl :Gllog<cr><cr>:lopen<cr>
+map <Leader>gm :Gmerge<cr>
+map <Leader>gp :Gpush<cr>
+map <Leader>gr :Gread<cr>
+map <Leader>gs :Gstatus<cr>
+map <Leader>gv :Gmove 
+map <Leader>gw :GBrowse<cr>
+autocmd BufReadPost fugitive://* set bufhidden=delete
+
+" fix Gbrowse open web page
+augroup ft_fugitive
+  au!
+  au User Fugitive let g:netrw_browsex_viewer = "git web--browse"
+  au BufNewFile,BufRead .git/index setlocal nolist
+augroup END
+
+" gitgutter git changes in signs ------------------------------------------ {{{2
+nmap <leader>ca <Plug>(GitGutterStageHunk)
+nmap <leader>cr <Plug>(GitGutterUndoHunk)
+nmap <leader>cp <Plug>(GitGutterPreviewHunk)
+
+" indent-guides ----------------------------------------------------------- {{{2
+let g:indent_guides_enable_on_vim_startup=1
+let g:indent_guides_default_mapping=0
+let g:indent_guides_auto_colors=0
+let g:indent_guides_guide_size=1
+let g:indent_guides_start_level=2
+autocmd VimEnter,Colorscheme * :hi IndentGuidesEven ctermbg=236
+autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd ctermbg=236
+
+" javascript better defaults ---------------------------------------------- {{{2
+augroup javascript_folding
+    au!
+    au FileType javascript setlocal foldmethod=syntax
+augroup END
+
+syntax match jsOperator "!==" conceal cchar=≠
+syntax match jsOperator "===" conceal cchar=〓
+syntax match jsOperator ">=" conceal cchar=≥
+syntax match jsOperator "<=" conceal cchar=≤
+hi! link jsOperator Operator
+
+set conceallevel=1
+let g:javascript_conceal_function             = "λ"
+let g:javascript_conceal_null                 = "∅"
+let g:javascript_conceal_this                 = "の"
+let g:javascript_conceal_return               = "←"
+let g:javascript_conceal_arrow_function       = "→"
+let g:javascript_conceal_undefined            = "¿"
+let g:javascript_conceal_NaN                  = "ℕ"
+let g:javascript_conceal_prototype            = "¶"
+let g:javascript_conceal_static               = "•"
+let g:javascript_conceal_super                = "Ω"
+
+" javascript library syntax ----------------------------------------------- {{{2
+let g:used_javascript_libs = 'underscore,backbone,jquery,react,jasmine,chai'
+
+" jfmt json formatting ---------------------------------------------------- {{{2
+let g:jfmt_on_save = 0
+nnoremap <Leader>J :Jfmt<cr>
+
+" nerdcommenter ----------------------------------------------------------- {{{2
+let NERDRemoveExtraSpaces=1
+let NERDSpaceDelims=1
+let NERDTrimTrailingWhitespace=1
+
+" nerdtree bindings and settings ------------------------------------------ {{{2
+map <silent> <Leader>N :NERDTreeToggle<cr>
+let NERDChDirMode=2
+let NERDTreeAutoDeleteBuffer=1
+let NERDTreeMinimalUI=1
+let NERDTreeIgnore=['\~$', '\.aux$', '\.blg$', '\.bbl$', '\.log$', '\.dvi$', '\.gif$', '\.jpg$', '\.doc$', '\.bmp$']
+
+" close vim if NERDTree is last window open
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+
+" relops additional compatibility ----------------------------------------- {{{2
+let g:relops_mappings=['R', 'ys']
+
+
+" signature mark settings ------------------------------------------------- {{{2
+let g:SignatureMarkTextHLDynamic=1
+let g:SignatureMarkerTextHLDynamic=1
+
+" skybison mappings ------------------------------------------------------- {{{2
+nnoremap <leader>: :<c-u>call SkyBison("")<cr>
+nnoremap K :<c-u>call SkyBison("b ")<cr>
+let g:skybison_fuzz=1                "substring match
+
+" Vim-Plug settings ------------------------------------------------------- {{{2
+nnoremap <leader>Pi :PlugInstall<cr>
+nnoremap <leader>PI :PlugInstall<cr>
+nnoremap <leader>Pu :PlugUpdate<cr>
+nnoremap <leader>PU :PlugUpdate<cr>
+nnoremap <leader>Ps :PlugStatus<cr>
+nnoremap <leader>PS :PlugStatus<cr>
+nnoremap <leader>Pd :PlugDiff<cr>
+nnoremap <leader>Pd :PlugDiff<cr>
+nnoremap <leader>PD :PlugDiff<cr>
+
+" vimux commands ---------------------------------------------------------- {{{2
+map <leader>! :call VimuxPromptCommand()<cr>
+map ! :call VimuxRunLastCommand()<cr>
+map <leader>@ :CloseVimTmuxPanes<cr>
+let g:VimuxUseNearest=0
