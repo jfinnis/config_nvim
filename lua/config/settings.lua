@@ -18,6 +18,7 @@ vim.opt.wildmode = 'longest:full' -- command completion to longest substring, th
 vim.opt.colorcolumn = '80,120' -- highlight these columns in different color
 vim.opt.cursorcolumn = false
 vim.opt.cursorline = false
+
 -- cursor line displays only in active window
 local cursorGroup = vim.api.nvim_create_augroup('CursorLine', {clear = true})
 vim.api.nvim_create_autocmd(
@@ -28,6 +29,15 @@ vim.api.nvim_create_autocmd(
     {'InsertEnter', 'WinLeave'},
     {pattern = '*', command = 'set nocursorline nocursorcolumn', group = cursorGroup}
 )
+
+-- highlight yanked text briefly
+vim.api.nvim_create_augroup('YankHighlight', {clear = true})
+vim.api.nvim_create_autocmd('TextYankPost', {
+    group = 'YankHighlight',
+    callback = function()
+        vim.highlight.on_yank({higroup = 'IncSearch', timeout = '200'})
+    end
+})
 
 -- search
 vim.opt.hlsearch = true -- hightlight every match, clear with <C-l>

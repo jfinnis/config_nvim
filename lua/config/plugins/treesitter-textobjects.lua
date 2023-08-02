@@ -20,6 +20,7 @@ require'nvim-treesitter.configs'.setup {
                 ['if'] = '@function.inner',
                 ['am'] = '@class.outer',
                 ['im'] = '@class.inner',
+                ['an'] = '@number.inner',
                 ['in'] = '@number.inner',
                 ['ax'] = '@assignment.lhs',
                 ['ix'] = '@assignment.rhs',
@@ -30,11 +31,12 @@ require'nvim-treesitter.configs'.setup {
             -- Can also be a function which gets passed a table with the keys
             -- * query_string: eg '@function.inner'
             -- * method: eg 'v' or 'o'
-            -- and should return the mode ('v', 'V', or '<c-v>') or a table
-            -- mapping query_strings to modes.
+            -- and should return the mode ('v' charwise, 'V' linewise, or
+            -- '<c-v>' blockwise) or a table mapping query_strings to modes.
             selection_modes = {
                 ['@parameter.outer'] = 'v', -- charwise
                 ['@function.outer'] = 'V', -- linewise
+                ['@function.inner'] = 'V',
                 ['@class.outer'] = '<c-v>', -- blockwise
             },
 
@@ -47,16 +49,59 @@ require'nvim-treesitter.configs'.setup {
             -- * query_string: eg '@function.inner'
             -- * selection_mode: eg 'v'
             -- and should return true of false
-            include_surrounding_whitespace = true
+            include_surrounding_whitespace = function(keys)
+                local query_string = keys.query_string
+                --local selection_mode = keys.selection_mode
+                if (query_string == '@parameter.inner'
+                    or query_string == '@comment.outer'
+                    or query_string == '@number.inner'
+                    or query_string == '@assignment.rhs'
+                    or query_string == '@assignment.lhs') then
+                    return false
+                end
+                return true
+            end
         },
 
         swap = {
             enable = true,
             swap_next = {
                 ['>a'] = '@parameter.inner',
+                ['>f'] = '@function.outer',
+                ['>m'] = '@class.outer',
+                ['>n'] = '@number.inner'
             },
             swap_previous = {
                 ['<a'] = '@parameter.inner',
+                ['<f'] = '@function.outer',
+                ['<m'] = '@class.outer',
+                ['<n'] = '@number.inner'
+            }
+        },
+
+        move = {
+            enable = true,
+            set_jumps = true,
+            goto_next_start = {
+                [']a'] = '@parameter.inner',
+                [']f'] = '@function.outer',
+                [']m'] = '@class.outer'
+            },
+            goto_previous_start = {
+                ['[a'] = '@parameter.inner',
+                ['[f'] = '@function.outer',
+                ['[m'] = '@class.outer'
+            },
+        },
+
+        lsp_interop = {
+            enable = true,
+            floating_preview_opts = {
+                border = 'double'
+            },
+            peek_definition_code = {
+                ["gp"] = "@function.outer",
+                ["gP"] = "@class.outer",
             }
         }
     }
@@ -68,15 +113,17 @@ vim.api.nvim_create_autocmd('BufEnter', {
     callback = function()
         local textobj = vim.bo.filetype == 'html' and 'attribute' or 'parameter'
 
-        -- select textobject
+        -- override select
         local select_outer = '@'..textobj..'.outer'
         local select_inner = '@'..textobj..'.inner'
         vim.keymap.set({'o', 'v'}, 'aa', ":lua require'nvim-treesitter.textobjects.select'.select_textobject('"..select_outer.."', 'textobjects', {'o', 'v'})<CR>", {silent = true})
         vim.keymap.set({'o', 'v'}, 'ia', ":lua require'nvim-treesitter.textobjects.select'.select_textobject('"..select_inner.."', 'textobjects', {'o', 'v'})<CR>", {silent = true})
 
         -- override swap
-        local swap_textobj = '@'..textobj..'.outer'
-        vim.keymap.set('n', '>a', ":lua require'nvim-treesitter.textobjects.swap'.swap_next('"..swap_textobj.."', 'textobjects')<cr>")
-        vim.keymap.set('n', '<a', ":lua require'nvim-treesitter.textobjects.swap'.swap_previous('"..swap_textobj.."', 'textobjects')<cr>")
+        --   future fix: cant get working now - not too important to be able to reorder 
+        --   html attributes in tags
+        --local swap_textobj = '@'..textobj..'.outer'
+        --vim.keymap.set('n', '>a', ":lua require'nvim-treesitter.textobjects.swap'.swap_next('"..swap_textobj.."', 'textobjects')<CR>")
+        --vim.keymap.set('n', '<a', ":lua require'nvim-treesitter.textobjects.swap'.swap_previous('"..swap_textobj.."', 'textobjects')<CR>")
     end
 })

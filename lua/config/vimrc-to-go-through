@@ -1,8 +1,5 @@
 " plugin loading ---------------------------------------------------------- {{{2
 call plug#begin('~/.vim/plugged')
-  Plug 'airblade/vim-gitgutter'
-  Plug 'AndrewRadev/tagalong.vim'
-  Plug 'andymass/vim-matchup'
   Plug 'bcicen/vim-jfmt'
   Plug 'benmills/vimux'
   Plug 'elzr/vim-json'
@@ -16,8 +13,6 @@ call plug#begin('~/.vim/plugged')
   Plug 'othree/javascript-libraries-syntax.vim'
   Plug 'pangloss/vim-javascript'
   Plug 'paradigm/SkyBison'
-  Plug 'PeterRincker/vim-argumentative'
-  Plug 'Raimondi/delimitMate'
   Plug 'scrooloose/nerdcommenter'
   Plug 'scrooloose/nerdtree', {'on': 'NERDTreeToggle'}
   Plug 'stephenway/postcss.vim'
@@ -26,7 +21,6 @@ call plug#begin('~/.vim/plugged')
   Plug 'tpope/vim-abolish'
   Plug 'tpope/vim-fugitive'
   Plug 'tpope/vim-rhubarb'
-  Plug 'tpope/vim-sleuth'
   Plug 'tpope/vim-speeddating'
 call plug#end()
 
@@ -41,22 +35,6 @@ nnoremap zn zR
 :for m in map(map(range(10), 'nr2char(48+v:val)'), '"nnoremap ''".v:val." ''".v:val."zz"') | exe m | endfor
 :for m in map(map(range(26), 'nr2char(65+v:val)'), '"nnoremap ''".v:val." ''".v:val."zz"') | exe m | endfor
 :for m in map(map(range(26), 'nr2char(97+v:val)'), '"nnoremap ''".v:val." ''".v:val."zz"') | exe m | endfor
-
-" Argumentative settings -------------------------------------------------- {{{2
-nmap [a <Plug>Argumentative_Prev
-nmap ]a <Plug>Argumentative_Next
-xmap [a <Plug>Argumentative_XPrev
-xmap ]a <Plug>Argumentative_XNext
-nmap <a <Plug>Argumentative_MoveLeft
-nmap >a <Plug>Argumentative_MoveRight
-xmap ia <Plug>Argumentative_InnerTextObject
-xmap aa <Plug>Argumentative_OuterTextObject
-omap ia <Plug>Argumentative_OpPendingInnerTextObject
-omap aa <Plug>Argumentative_OpPendingOuterTextObject
-
-" delimitmate ------------------------------------------------------------- {{{2
-let delimitMate_expand_cr=1
-let delimitMate_expand_space=1
 
 " emmet ------------------------------------------------------------------- {{{2
 let g:user_emmet_leader_key='<tab>'
@@ -116,11 +94,6 @@ augroup ft_fugitive
   au User Fugitive let g:netrw_browsex_viewer = "git web--browse"
   au BufNewFile,BufRead .git/index setlocal nolist
 augroup END
-
-" gitgutter git changes in signs ------------------------------------------ {{{2
-nmap <leader>ca <Plug>(GitGutterStageHunk)
-nmap <leader>cr <Plug>(GitGutterUndoHunk)
-nmap <leader>cp <Plug>(GitGutterPreviewHunk)
 
 " indent-guides ----------------------------------------------------------- {{{2
 let g:indent_guides_enable_on_vim_startup=1

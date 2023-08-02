@@ -15,12 +15,15 @@ function ToggleColorScheme()
     vim.cmd.colorscheme(color)
 end
 ToggleColorScheme()
-vim.keymap.set('n', '<leader>c', ToggleColorScheme)
+vim.keymap.set('n', '<leader>c', ToggleColorScheme, {desc = 'Toggle light/dark colorscheme'})
 
 
 -----------------------
 --   misc functions  --
 -----------------------
+-- fold all folds recursively
+vim.keymap.set('n', 'zn', 'zR')
+
 -- indent the just pasted text
 vim.keymap.set('n', '<leader>>', "g'[>']")
 vim.keymap.set('n', '<leader><', "g'[<']")

@@ -43,6 +43,17 @@ return require('packer').startup(function(use)
     }
     use 'EdenEast/nightfox.nvim'
 
+    -- delimitMate - automatically close brackets
+    use {
+        'Raimondi/delimitMate',
+        config = function() require('config.plugins.delimitmate') end
+    }
+
+    use {
+        'lewis6991/gitsigns.nvim',
+        config = function() require('config.plugins.gitsigns') end
+    }
+
     -- hexokinase - color indicator for html/css/etc
     use {
         'RRethy/vim-hexokinase',
@@ -102,6 +113,9 @@ return require('packer').startup(function(use)
         config = function() require('config.plugins.lualine') end
     }
 
+    -- matchup - advanced matching pairs with %
+    -- use 'andymass/vim-matchup' TODO
+
     -- operator-replace - R{motion} replaces with current register
     use {
       'kana/vim-operator-replace',
@@ -118,6 +132,9 @@ return require('packer').startup(function(use)
     -- repeat - extend '.' repetition to plugins like surround
     use 'tpope/vim-repeat'
 
+    -- sleuth - detect shift/tabwidth based upon the current file
+    use 'tpope/vim-sleuth'
+
     -- surround - control surrounding quotes, brackets, html tags, etc
     use 'tpope/vim-surround'
 
@@ -127,9 +144,13 @@ return require('packer').startup(function(use)
         config = function() require('config.plugins.switch') end
     }
 
+    -- tagalong - match open/ending html tags when changing with 'c'
+    use 'AndrewRadev/tagalong.vim'
+
     -- telescope - fuzzy finder
     use {
-        'nvim-telescope/telescope.nvim', tag = '0.1.2',
+        'nvim-telescope/telescope.nvim',
+        tag = '0.1.2',
         requires = { {'nvim-lua/plenary.nvim'} },
         config = function() require('config.plugins.telescope') end
     }
@@ -171,12 +192,6 @@ return require('packer').startup(function(use)
         'tpope/vim-unimpaired',
         config = function() require('config.plugins.unimpaired') end
     }
-
-    -- fancier status bar
-    --use {
-      --'nvim-lualine/lualine.nvim',
-      --config = function() require('eric.plugins.lualine') end,
-  --}
 
   --use {
       --'vimwiki/vimwiki',
