@@ -7,6 +7,7 @@ vim.opt.number = true
 vim.opt.numberwidth = 2
 vim.opt.scrolloff = 4 -- lines above/below cursor while scrolling
 vim.opt.shortmess = 'filmnxtTIoOF' -- experiment with I above, hides intro (try with alpha-nvim)
+vim.opt.signcolumn = 'auto' -- only display when there's a sign to display
 vim.opt.timeoutlen = 500 -- shorter timeout for mappings (milliseconds)
 vim.opt.title = true -- terminal window shows name of file - doesn't work in tmux?
 vim.opt.termguicolors = true -- advanced colors required for hexokinase plugin

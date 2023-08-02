@@ -47,17 +47,18 @@ require('gitsigns').setup {
         map('n', '<leader>gR', gs.reset_buffer_index, {desc='Reset whole file'})
         map('n', '<leader>gb', function() gs.blame_line{full=true} end, {desc='Show git blame in popup window'})
         map('n', '<leader>gB', gs.toggle_current_line_blame, {desc='Toggle git blame on current line'})
+        map('n', '<leader>gd', gs.diffthis)
+        map('n', '<leader>gs', function() gs.setqflist('all') end, {desc='Git status - Show all changes in repo'})
         map('n', '<leader>gg', function()
             gs.toggle_deleted()
             gs.toggle_linehl()
             gs.toggle_word_diff()
         end, {desc='Toggle all git changes'})
 
-        map('n', '<leader>gd', gs.diffthis)
-
         -- TODO: custom function to prompt for revision and git diff it
         --map('n', '<leader>gD', function() gs.diffthis('~') end)
         -- ;gs could also do show(revision)
+        -- Enter revision of file to show:
 
         -- visual mode mappings
         map('v', '<leader>ga', function() gs.stage_hunk {vim.fn.line('.'), vim.fn.line('v')} end, {desc='Add change to staged'})

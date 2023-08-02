@@ -113,8 +113,14 @@ return require('packer').startup(function(use)
         config = function() require('config.plugins.lualine') end
     }
 
+    -- marks - show marks in sign column
+    use {
+        'chentoast/marks.nvim',
+        config = function() require('config.plugins.marks') end
+    }
+
     -- matchup - advanced matching pairs with %
-    -- use 'andymass/vim-matchup' TODO
+    use 'andymass/vim-matchup'
 
     -- operator-replace - R{motion} replaces with current register
     use {
@@ -188,10 +194,7 @@ return require('packer').startup(function(use)
     }
 
     -- unimpaired - navigation functions for the ] and [ keys
-    use {
-        'tpope/vim-unimpaired',
-        config = function() require('config.plugins.unimpaired') end
-    }
+    use 'jfinnis/vim-unimpaired'
 
   --use {
       --'vimwiki/vimwiki',
