@@ -138,6 +138,9 @@ return require('packer').startup(function(use)
     -- repeat - extend '.' repetition to plugins like surround
     use 'tpope/vim-repeat'
 
+    -- schemastore - catalog of json schemas to check against
+    use 'b0o/schemastore.nvim'
+
     -- sleuth - detect shift/tabwidth based upon the current file
     use 'tpope/vim-sleuth'
 
@@ -179,6 +182,7 @@ return require('packer').startup(function(use)
     }
     -- treesitter - view AST of file
     use 'nvim-treesitter/playground'
+
     -- treesitter - text objects
     use {
         'nvim-treesitter/nvim-treesitter-textobjects',
@@ -194,6 +198,7 @@ return require('packer').startup(function(use)
     }
 
     -- unimpaired - navigation functions for the ] and [ keys
+    -- forked repo to override some mappings
     use 'jfinnis/vim-unimpaired'
 
   --use {

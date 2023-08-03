@@ -11,7 +11,7 @@ require'marks'.setup {
     bookmark_1 = {
         sign = '🧊',
         annotate = true
-  }
+    }
     --   with keys: sign (emoji?)
     --              virt_text (description)
     --              annotate - prompt user for annotation
