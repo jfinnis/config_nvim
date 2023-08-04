@@ -49,6 +49,18 @@ return require('packer').startup(function(use)
         config = function() require('config.plugins.delimitmate') end
     }
 
+    -- fidget - eye candy for nvim-lsp language progress
+    -- pinned to legacy while it is being rewritten
+    use {
+        'j-hui/fidget.nvim',
+        tag = 'legacy',
+        config = function()
+            require('fidget').setup {
+                -- options
+            }
+        end
+    }
+
     use {
         'lewis6991/gitsigns.nvim',
         config = function() require('config.plugins.gitsigns') end
@@ -63,9 +75,15 @@ return require('packer').startup(function(use)
 
     -- hop - easymotion replacement
     use {
-      'phaazon/hop.nvim',
-      branch = 'v2', -- optional but strongly recommended
-      config = function() require('config.plugins.hop') end
+        'phaazon/hop.nvim',
+        branch = 'v2', -- optional but strongly recommended
+        config = function() require('config.plugins.hop') end
+    }
+
+    -- indent-blankline - show fancy indent guidelines
+    use {
+        'lukas-reineke/indent-blankline.nvim',
+        config = function() require('config.plugins.indent-blankline') end
     }
 
     -- lsp-zero - good setup for lsp
@@ -89,18 +107,6 @@ return require('packer').startup(function(use)
         {'L3MON4D3/LuaSnip'},     -- Required
       },
       config = function() require('config.plugins.lsp-zero') end
-    }
-
-    -- fidget - eye candy for nvim-lsp language progress
-    -- pinned to legacy while it is being rewritten
-    use {
-        'j-hui/fidget.nvim',
-        tag = 'legacy',
-        config = function()
-            require('fidget').setup {
-                -- options
-            }
-        end
     }
 
     -- lualine - fancy statusline

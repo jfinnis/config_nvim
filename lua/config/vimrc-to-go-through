@@ -4,7 +4,6 @@
   Plug 'peitalin/vim-jsx-typescript'
   Plug 'mattn/emmet-vim'
   Plug 'mxw/vim-jsx'
-  Plug 'nathanaelkane/vim-indent-guides'
   Plug 'othree/javascript-libraries-syntax.vim'
   Plug 'pangloss/vim-javascript'
   Plug 'scrooloose/nerdcommenter'
@@ -85,15 +84,6 @@ augroup ft_fugitive
   au User Fugitive let g:netrw_browsex_viewer = "git web--browse"
   au BufNewFile,BufRead .git/index setlocal nolist
 augroup END
-
-" indent-guides ----------------------------------------------------------- {{{2
-let g:indent_guides_enable_on_vim_startup=1
-let g:indent_guides_default_mapping=0
-let g:indent_guides_auto_colors=0
-let g:indent_guides_guide_size=1
-let g:indent_guides_start_level=2
-autocmd VimEnter,Colorscheme * :hi IndentGuidesEven ctermbg=236
-autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd ctermbg=236
 
 " javascript better defaults ---------------------------------------------- {{{2
 augroup javascript_folding
