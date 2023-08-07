@@ -37,6 +37,15 @@ require('nvim-treesitter.configs').setup {
     }
 }
 
+-- link the custom treesitter highlights created in ../../after/queries/{ft}/highlights.scm
+-- to the highlight group they should be colored alongside
+vim.api.nvim_set_hl(0, "@prototype", {link = "@property"})
+vim.api.nvim_set_hl(0, "@null", {link = "@constant.builtin"})
+vim.api.nvim_set_hl(0, "@NaN", {link = "@number"})
+vim.api.nvim_set_hl(0, "@this", {link = "@constant.builtin"})
+vim.api.nvim_set_hl(0, "@undefined", {link = "@constant.builtin"})
+vim.api.nvim_set_hl(0, "@return_statement", {link = "@keyword"})
+
 -- need to set here to override vim's visual => visual-line mode
 vim.keymap.set('v', 'V', ":lua require'nvim-treesitter.incremental_selection'.node_decremental()<cr>")
 
