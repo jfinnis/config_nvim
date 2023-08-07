@@ -6,6 +6,7 @@
 require('config.plugins')
 require('config.settings')
 require('config.keybinds')
+require('config.abbreviations')
 
 
 --- reload the neovim configuration
