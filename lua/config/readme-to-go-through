@@ -1,5 +1,4 @@
 *Active Plugins*
-* Exchange           (cx{motion} exchange motion with another (repeat), cxx current line, X visual, can use . to repeat)
 * Fugitive           (;g a add curfile, b blame, c commit -a, d diff, l log, m move, p push, r read (like checkout without writing), s status, w github; status commands: C-N/C-P next/prev file, CR edit, - stage, ca commit --amend, cc commit, D diff, = toggle inline diff, ds/v hor/vert diff, P patch, q quit, R reload, X git checkout; blame: ACD resize, q close, o open commit, - reblame; ;gd in merge conflict file opens 3 way merge can dp from target/merge branch; )
 * NERDCommenter      (;c c comment, i invert, m multipart, s sexy, $ to end of line, A append, u uncomment, b block, y yank then comment)
 * NERDTree           (o expand dir/open file, O recurs. open dir, i/s open in horiz/vert split, gi/gs same but leave cursor in nerdtree, x close parent folder, P/p jump to root/parent, K/J top/bottom current level, &lt;C-J/K&gt; prev/next sibling, C set root to dir, r refresh, m modify files, I toggle hidden files, q close)
@@ -8,6 +7,4 @@
 
 *Passive Plugins*
 * Fubitive           (bitbucket support for git-browse)
-* Jsx                (syntax highlighting for jsx files)
 * Rhubarb            (github support for git-browse)
-* Vim-Jsx-Typescript (syntax highlighting for tsx files)

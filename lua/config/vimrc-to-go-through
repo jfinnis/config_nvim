@@ -10,18 +10,6 @@
   Plug 'tpope/vim-fugitive'
   Plug 'tpope/vim-rhubarb'
 
-" center screen for searches, foldcloses ---------------------------------- {{{2
-" hold off on
-nnoremap n nzz
-nnoremap N Nzz
-nnoremap zc zczz
-nnoremap zo zozz
-nnoremap zn zR
-" ... and marks (thanks to bairui)
-:for m in map(map(range(10), 'nr2char(48+v:val)'), '"nnoremap ''".v:val." ''".v:val."zz"') | exe m | endfor
-:for m in map(map(range(26), 'nr2char(65+v:val)'), '"nnoremap ''".v:val." ''".v:val."zz"') | exe m | endfor
-:for m in map(map(range(26), 'nr2char(97+v:val)'), '"nnoremap ''".v:val." ''".v:val."zz"') | exe m | endfor
-
 " fugitive git wrapping --------------------------------------------------- {{{2
 map <Leader>ga :Git add %<cr>
 map <Leader>gb :Git blame<cr>

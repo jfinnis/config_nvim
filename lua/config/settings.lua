@@ -71,6 +71,21 @@ vim.api.nvim_create_autocmd(
     }
 )
 
+-- center screen when searching, folding, and navigating to marks
+vim.keymap.set('n', 'n', 'nzz')
+vim.keymap.set('n', 'N', 'Nzz')
+vim.keymap.set('n', 'zc', 'zczz')
+vim.keymap.set('n', 'zo', 'zozz')
+vim.cmd[[
+  :for m in map(map(range(10), 'nr2char(48+v:val)'), '"nnoremap ''".v:val." ''".v:val."zz"') | exe m | endfor
+]]
+vim.cmd[[
+  :for m in map(map(range(26), 'nr2char(65+v:val)'), '"nnoremap ''".v:val." ''".v:val."zz"') | exe m | endfor
+]]
+vim.cmd[[
+  :for m in map(map(range(26), 'nr2char(97+v:val)'), '"nnoremap ''".v:val." ''".v:val."zz"') | exe m | endfor
+]]
+
 -----------------------
 --       utils       --
 -----------------------
