@@ -34,6 +34,10 @@ require('nvim-treesitter.configs').setup {
 
     indent = {
         enable = true
+    },
+
+    matchup = {
+        enable = true
     }
 }
 
@@ -45,6 +49,8 @@ vim.api.nvim_set_hl(0, "@NaN", {link = "@number"})
 vim.api.nvim_set_hl(0, "@this", {link = "@constant.builtin"})
 vim.api.nvim_set_hl(0, "@undefined", {link = "@constant.builtin"})
 vim.api.nvim_set_hl(0, "@return_statement", {link = "@keyword"})
+-- link the matchup plugin treesitter integration background highlight
+vim.api.nvim_set_hl(0, "MatchupVirtualText", {link = "@constant.builtin"})
 
 -- need to set here to override vim's visual => visual-line mode
 vim.keymap.set('v', 'V', ":lua require'nvim-treesitter.incremental_selection'.node_decremental()<cr>")
