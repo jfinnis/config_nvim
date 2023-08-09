@@ -13,7 +13,7 @@ local lspconfig = require('lspconfig')
 
 lspconfig.lua_ls.setup(lsp.nvim_lua_ls())
 
-lspconfig.jsonls.setup{
+lspconfig.jsonls.setup {
     settings = {
         json = {
             schemas = require('schemastore').json.schemas(),
@@ -23,19 +23,44 @@ lspconfig.jsonls.setup{
 }
 
 lspconfig.yamlls.setup {
-  settings = {
-    yaml = {
-      schemaStore = {
-        -- You must disable built-in schemaStore support if you want to use
-        -- this plugin and its advanced options like `ignore`.
-        enable = false,
-        -- Avoid TypeError: Cannot read properties of undefined (reading 'length')
-        url = "",
-      },
-      schemas = require('schemastore').yaml.schemas()
+    settings = {
+        yaml = {
+            schemaStore = {
+                -- You must disable built-in schemaStore support if you want to use
+                -- this plugin and its advanced options like `ignore`.
+                enable = false,
+                -- Avoid TypeError: Cannot read properties of undefined (reading 'length')
+                url = "",
+            },
+            schemas = require('schemastore').yaml.schemas()
+        }
     }
-  }
 }
+
+local capabilities = vim.lsp.protocol.make_client_capabilities()
+capabilities.textDocument.completion.completionItem.snippetSupport = true
+
+lspconfig.emmet_ls.setup({
+    -- on_attach = on_attach,
+    capabilities = capabilities,
+    filetypes = {'css', 'html', 'javascript', 'javascriptreact', 'scss', 'typescriptreact'},
+    init_options = {
+        html = {
+            options = {
+                -- For possible options, see: https://github.com/emmetio/emmet/blob/master/src/config.ts#L79-L267
+                ['output.selfClosingStyle'] = 'xhtml',
+                ['bem.enabled'] = true,
+            },
+        },
+        jsx = {
+            options = {
+                -- For possible options, see: https://github.com/emmetio/emmet/blob/master/src/config.ts#L79-L267
+                ['output.selfClosingStyle'] = 'xhtml',
+                ['bem.enabled'] = true,
+            },
+        },
+    }
+})
 
 lsp.setup()
 

@@ -49,6 +49,9 @@ return require('packer').startup(function(use)
         config = function() require('config.plugins.delimitmate') end
     }
 
+    -- emmet - emmet completion in html-like files
+    use 'aca/emmet-ls'
+
     -- fidget - eye candy for nvim-lsp language progress
     -- pinned to legacy while it is being rewritten
     use {
