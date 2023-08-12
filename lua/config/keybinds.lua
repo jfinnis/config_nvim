@@ -15,7 +15,7 @@ function ToggleColorScheme()
     vim.cmd.colorscheme(color)
 end
 ToggleColorScheme()
-vim.keymap.set('n', '<leader>c', ToggleColorScheme, {desc = 'Toggle light/dark colorscheme'})
+vim.keymap.set('n', '<leader>cc', ToggleColorScheme, {desc = '[;cc] Toggle light/dark colorscheme'})
 
 
 -----------------------

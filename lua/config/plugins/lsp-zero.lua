@@ -3,7 +3,7 @@
 --
 
 local lsp = require('lsp-zero').preset({})
-lsp.on_attach(function(client, bufnr)
+lsp.on_attach(function(_, bufnr)
     lsp.default_keymaps({ buffer = bufnr })
     -- TODO:    :help lsp-zero-keybindings to make this work
     -- TODO: make todo stand out in bold
