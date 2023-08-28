@@ -5,7 +5,7 @@ vim.g.mapleader = ';'
 
 vim.opt.conceallevel = 2 -- use replacement character for concealed text
 vim.opt.list = true -- show chars for end of line
-vim.opt.listchars:append 'eol:↴'
+--vim.opt.listchars:append 'eol:↴'
 vim.opt.number = true
 vim.opt.numberwidth = 2
 vim.opt.scrolloff = 4 -- lines above/below cursor while scrolling

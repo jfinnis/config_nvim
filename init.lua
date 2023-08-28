@@ -21,6 +21,7 @@ function reload_config()
   require('config.plugins')
   require('config.settings')
   require('config.keybinds')
+  require('config.abbreviations')
 
   -- Reload after/ directory
   local glob = vim.fn.stdpath('config') .. '/after/**/*.lua'

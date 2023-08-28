@@ -31,6 +31,7 @@ require('lualine').setup{
             {
                 'diagnostics',
                 sections = {'error', 'warn', 'info', 'hint'},
+                symbols = {error = '✘ ', warn = '▲ ', hint = '⚑ ', info = '» '},
                 always_visible = false
             }
         },

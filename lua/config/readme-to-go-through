@@ -2,6 +2,9 @@ JAVA LANGUAGE SERVER SETUP - need admin to install
 TODO: telescope
 lsp - how to comment
 lspconfig
+- spotify playlist in statusline - not super important
+go through fugitive - commits
+
 
 *Active Plugins*
 * Fugitive           (;g a add curfile, b blame, c commit -a, d diff, l log, m move, p push, r read (like checkout without writing), s status, w github; status commands: C-N/C-P next/prev file, CR edit, - stage, ca commit --amend, cc commit, D diff, = toggle inline diff, ds/v hor/vert diff, P patch, q quit, R reload, X git checkout; blame: ACD resize, q close, o open commit, - reblame; ;gd in merge conflict file opens 3 way merge can dp from target/merge branch; )

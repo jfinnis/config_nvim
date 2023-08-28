@@ -64,6 +64,7 @@ return require('packer').startup(function(use)
         end
     }
 
+    -- gitsigns - git file status in the signs, show/hide diffs
     use {
         'lewis6991/gitsigns.nvim',
         config = function() require('config.plugins.gitsigns') end
@@ -94,20 +95,21 @@ return require('packer').startup(function(use)
       'VonHeikemen/lsp-zero.nvim',
       branch = 'v2.x',
       requires = {
-        -- LSP Support
-        {'neovim/nvim-lspconfig'},             -- Required
-        {                                      -- Optional
-          'williamboman/mason.nvim',
+        'neovim/nvim-lspconfig',
+        {'williamboman/mason.nvim',
           run = function()
             pcall(vim.cmd, 'MasonUpdate')
           end,
         },
-        {'williamboman/mason-lspconfig.nvim'}, -- Optional
+        'williamboman/mason-lspconfig.nvim',
 
-        -- Autocompletion
-        {'hrsh7th/nvim-cmp'},     -- Required
-        {'hrsh7th/cmp-nvim-lsp'}, -- Required
-        {'L3MON4D3/LuaSnip'},     -- Required
+        'hrsh7th/nvim-cmp',     -- base autocomplete plugin
+        'hrsh7th/cmp-nvim-lsp', --   source: language server data
+        'hrsh7th/cmp-path',     --   source: file system completion
+        {'hrsh7th/cmp-buffer',    --   source: buffer completions
+            --config = function() require('config.plugins.cmp-buffer') end
+        },
+        'L3MON4D3/LuaSnip',     --   source - snippets
       },
       config = function() require('config.plugins.lsp-zero') end
     }
@@ -191,7 +193,11 @@ return require('packer').startup(function(use)
     }
     -- treesitter - view AST of file
     use 'nvim-treesitter/playground'
-
+    -- treesitter - always show function context as top line
+    use {
+        'nvim-treesitter/nvim-treesitter-context',
+        config = function() require('config.plugins.treesitter-context') end
+    }
     -- treesitter - text objects
     use {
         'nvim-treesitter/nvim-treesitter-textobjects',
@@ -210,42 +216,42 @@ return require('packer').startup(function(use)
     -- forked repo to override some mappings
     use 'jfinnis/vim-unimpaired'
 
-  --use {
-      --'vimwiki/vimwiki',
-      --config = function() require('eric.plugins.vimwiki') end,
-  --}
+  ----use {
+    --  --'vimwiki/vimwiki',
+    --  --config = function() require('eric.plugins.vimwiki') end,
+  ----}
 
-  -- startup screen
-  --use {
-      --'goolord/alpha-nvim',
-      --config = function() require('eric.plugins.alpha') end,
-  --}
+  ---- startup screen
+  ----use {
+    --  --'goolord/alpha-nvim',
+    --  --config = function() require('eric.plugins.alpha') end,
+  ----}
 
-  -- distraction-free writing mode
-  --use {
-      --'folke/zen-mode.nvim',
-      --opt = true,
-      --cmd = { 'ZenMode' },
-      --config = function() require('eric.plugins.zen-mode') end
-  --}
+  ---- distraction-free writing mode
+  ----use {
+    --  --'folke/zen-mode.nvim',
+    --  --opt = true,
+    --  --cmd = { 'ZenMode' },
+    --  --config = function() require('eric.plugins.zen-mode') end
+  ----}
 
-          ---- autocompletion
-          --{ 'hrsh7th/nvim-cmp' },
-          --{ 'hrsh7th/cmp-buffer' },
-          --{ 'hrsh7th/cmp-path' },
-          --{ 'saadparwaiz1/cmp_luasnip' },
-          --{ 'hrsh7th/cmp-nvim-lsp' },
-          --{ 'hrsh7th/cmp-nvim-lua' },
+    --      ---- autocompletion
+    --      --{ 'hrsh7th/nvim-cmp' },
+    --      --{ 'hrsh7th/cmp-buffer' },
+    --      --{ 'hrsh7th/cmp-path' },
+    --      --{ 'saadparwaiz1/cmp_luasnip' },
+    --      --{ 'hrsh7th/cmp-nvim-lsp' },
+    --      --{ 'hrsh7th/cmp-nvim-lua' },
 
-          ---- snippets
-          --{ 'L3MON4D3/LuaSnip' },
-          --{ 'rafamadriz/friendly-snippets' },
-      --},
-      --config = function() require('eric.plugins.lsp') end
-  --}
+    --      ---- snippets
+    --      --{ 'L3MON4D3/LuaSnip' },
+    --      --{ 'rafamadriz/friendly-snippets' },
+    --  --},
+    --  --config = function() require('eric.plugins.lsp') end
+  ----}
 
-    -- automatically set up the configuration after cloning packer.nvim
-    if packer_bootstrap then
-        require('packer').sync()
-    end
+    ---- automatically set up the configuration after cloning packer.nvim
+    --if packer_bootstrap then
+    --    require('packer').sync()
+    --end
 end)
