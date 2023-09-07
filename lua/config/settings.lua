@@ -71,6 +71,15 @@ vim.api.nvim_create_autocmd(
     }
 )
 
+-- show line numbers for help files
+vim.api.nvim_create_autocmd(
+    'FileType',
+    {
+        pattern = {'help'},
+        command = 'set number'
+    }
+)
+
 -- center screen when searching, folding, and navigating to marks
 vim.keymap.set('n', 'n', 'nzz')
 vim.keymap.set('n', 'N', 'Nzz')

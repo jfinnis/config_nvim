@@ -7,8 +7,8 @@ require('rose-pine').setup({
     TelescopePromptNormal = { bg = "base" },
     TelescopeResultsNormal = { fg = "subtle", bg = "none" },
     TelescopeSelection = { fg = "text", bg = "base" },
-    TelescopeSelectionCaret = { fg = "rose", bg = "rose" },
+    TelescopeSelectionCaret = { fg = "rose", bg = "none" },
   }
 })
-vim.cmd('colorscheme rose-pine')
+--vim.cmd('colorscheme rose-pine')
 

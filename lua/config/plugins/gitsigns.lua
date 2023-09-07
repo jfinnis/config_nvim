@@ -54,7 +54,8 @@ require('gitsigns').setup {
         map('n', '<leader>gb', function() gs.blame_line{full=true} end, {desc='Show git blame in popup window'})
         map('n', '<leader>gB', gs.toggle_current_line_blame, {desc='Toggle git blame on current line'})
         map('n', '<leader>gd', gs.diffthis)
-        map('n', '<leader>gs', function() gs.setqflist('all') end, {desc='Git status - Show all changes in repo'})
+        -- using telescope git status instead
+        --map('n', '<leader>gs', function() gs.setqflist('all') end, {desc='Git status - Show all changes in repo'})
         map('n', '<leader>gg', function()
             gs.toggle_deleted()
             gs.toggle_linehl()

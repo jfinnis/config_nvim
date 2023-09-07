@@ -39,10 +39,28 @@ lsp.on_attach(function(_, bufnr)
     lsp.default_keymaps({buffer = bufnr})
     vim.keymap.set('v', '=', vim.lsp.buf.format, {desc = 'LSP: Format the selected text'})
 
-    -- use gs gr is used for replace mode, so reuse gs instead
-    nmap('gs', require('telescope.builtin').lsp_references, '[G] [S]earch references to symbol')
-    nmap('gK', vim.lsp.buf.definition, '[G]oto [K] definition')
-    nmap('gt', vim.lsp.buf.type_definition, '[G]oto [T]ype of Element')
+    local telescope = require('telescope.builtin')
+    nmap('g/', function()
+        telescope.lsp_references({
+            show_line = true,
+            trim_text = true
+        })
+    end, '[g/] Search references to symbol')
+    nmap('gK', function()
+        telescope.lsp_definitions({
+            show_line = true
+        })
+    end, '[G]oto [K] definition')
+    nmap('gy', function()
+        telescope.lsp_document_symbols({
+            prompt_title = 'LSP Symbols (C-l to filter)',
+            show_line = true
+        })
+    end, '[G]oto LSP S[y]mbols')
+    nmap('<leader>fd', function()
+        telescope.diagnostics(require('telescope.themes').get_ivy{})
+    end, '[;f] Show [D]iagnostics')
+    nmap('gt', require('telescope.builtin').lsp_type_definitions, '[G]oto [T]ype of Element')
     nmap('g=', vim.lsp.buf.format, '[G=] Format Whole File')
     nmap('<leader>ca', vim.lsp.buf.code_action, '[;] Show [C]ode [A]ctions')
     nmap('<leader>cr', vim.lsp.buf.rename, '[;c] [R]ename Symbol Under Cursor')
@@ -101,7 +119,7 @@ capabilities.textDocument.completion.completionItem.snippetSupport = true
 lspconfig.emmet_ls.setup{
     -- on_attach = on_attach,
     capabilities = capabilities,
-    filetypes = {'css', 'html', 'javascript', 'javascriptreact', 'scss', 'typescriptreact'},
+    filetypes = {'css', 'scss', 'html', 'javascript', 'javascriptreact', 'scss', 'typescriptreact'},
     init_options = {
         html = {
             options = {
@@ -122,9 +140,5 @@ lspconfig.emmet_ls.setup{
 
 lsp.setup()
 
--- TODO: telescope code stuff
---nmap('<leader>cs', require('telescope.builtin').lsp_document_symbols, '[;] [C]ode [S]ymbols') -- TODO: what do these od
---nmap('<leader>cw', require('telescope.builtin').lsp_dynamic_workspace_symbols, '[;] [C]ode [S]ymbols')
-
 -- need to override LSP-Zero keymap after lsp.setup has been called
-vim.keymap.set('n', 'gd', vim.diagnostic.open_float, {desc = 'LSP: [G] Current Line [D]iagnostics'})
+vim.keymap.set('n', 'gd', vim.diagnostic.open_float, {desc = '[G]oto Current Line [D]iagnostics'})

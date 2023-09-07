@@ -14,7 +14,7 @@ local ensure_packer = function()
     return false
 end
 
--- first time startup?
+-- first time startup
 local packer_bootstrap = ensure_packer()
 
 -- autocommand that reloads neovim whenever you save the plugins.lua file

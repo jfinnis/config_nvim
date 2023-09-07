@@ -7,8 +7,10 @@
 -----------------------
 function ToggleColorScheme()
     local color
-    if vim.g.colors_name ~= 'rose-pine-moon' and vim.g.colors_name ~= 'rose-pine' then
-        color = 'rose-pine-moon'
+    --if vim.g.colors_name ~= 'rose-pine-moon' and vim.g.colors_name ~= 'rose-pine' then
+        --color = 'rose-pine-moon'
+    if vim.g.colors_name ~= 'terafox' then
+        color = 'terafox'
     else
         color = 'dayfox'
     end
