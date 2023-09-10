@@ -179,7 +179,12 @@ return require('packer').startup(function(use)
         'nvim-telescope/telescope-fzf-native.nvim',
         run = 'make'
     }
-
+    -- telescope - docker integration
+    use {
+        'lpoto/telescope-docker.nvim',
+        config = function() require('config.plugins.telescope-docker') end
+    }
+    -- telescope - alternate file mappings
     use {
         'otavioschwanck/telescope-alternate',
         config = function() require('config.plugins.telescope-alternate') end,
