@@ -51,7 +51,7 @@ vim.keymap.set('n', '<leader>Y', [["+Y]])
 -- window management --
 -----------------------
 -- open alternative buffer
-vim.keymap.set('n', '<Leader>,', ':e #<cr>')
+vim.keymap.set('n', '<Leader>#', ':e #<cr>')
 
 -- set window to max size and same size
 vim.keymap.set('n', '+', '<C-w>_')

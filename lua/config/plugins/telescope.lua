@@ -73,25 +73,21 @@ end, {desc='[;] [F]ind [s]earch term in current buffer'})
 
 --
 -- lsp extensions
+-- defined in lsp-zero file
 --
 
 -- gd - hover diagnostic in line
----- defined in lsp-zero file
 -- gK - search definition of term
----- defined in lsp-zero file
 -- gt - show type definition of term
----- defined in lsp-zero file
 -- gy - show lsp symbols
----- defined in lsp-zero file
 -- g/ - search references of term
----- defined in lsp-zero file
 
 
 --
 -- git extensions
 --
 
--- TODO: can git status toggle a staged setting?
+-- TODO: can git status toggle staged changes?
 -- ;gs - git status
 vim.keymap.set('n', '<leader>gs', function()
     telescope.git_status({

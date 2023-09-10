@@ -180,6 +180,12 @@ return require('packer').startup(function(use)
         run = 'make'
     }
 
+    use {
+        'otavioschwanck/telescope-alternate',
+        config = function() require('config.plugins.telescope-alternate') end,
+    }
+
+
     -- text objects
     use 'kana/vim-textobj-entire'
     use 'kana/vim-textobj-line'
