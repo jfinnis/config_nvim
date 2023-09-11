@@ -46,20 +46,20 @@ vim.keymap.set('n', '<leader>a', function()
         prompt_title = 'Search All Files',
         disable_coordinates = true,
     })
-end, {desc='[;] Search [a]ll files for string'})
+end, {desc='[;] Search [A]ll Files For String'})
 -- ;A - search under cursor
 vim.keymap.set('n', '<leader>A', function()
     telescope.grep_string({
         word_match = '-w',
         disable_coordinates = true
     })
-end, {desc='[;] Search for ex[A]ct string under cursor'})
+end, {desc='[;] Search For ex[A]ct String Under Cursor'})
 -- ;n - file finder
 vim.keymap.set('n', '<leader>n', function()
     telescope.find_files({
         hidden = true
     })
-end, {desc='[;n] Search files'})
+end, {desc='[;n] Search Files'})
 -- ;fs - fuzzy find cur buffer
 vim.keymap.set('n', '<leader>fs', function()
     telescope.current_buffer_fuzzy_find(themes.get_dropdown {
@@ -68,7 +68,7 @@ vim.keymap.set('n', '<leader>fs', function()
         previewer = false,
         -- TODO: how to set window options (title) to something else
     })
-end, {desc='[;] [F]ind [s]earch term in current buffer'})
+end, {desc='[;] [F]ind [S]earch Term In Current Buffer'})
 
 
 --
