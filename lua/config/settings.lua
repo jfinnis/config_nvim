@@ -24,11 +24,7 @@ vim.opt.cursorcolumn = false
 vim.opt.cursorline = false
 
 -- cursor line displays only in active window
-local cursorGroup = vim.api.nvim_create_augroup('CursorLine', {clear = true})
-vim.api.nvim_create_autocmd(
-    {'InsertLeave', 'WinEnter'},
-    {pattern = '*', command = 'set cursorline cursorcolumn', group = cursorGroup}
-)
+--local cursorGroup = vim.api.nvim_create_augroup('CursorLine', {clear = true})
 vim.api.nvim_create_autocmd(
     {'InsertEnter', 'WinLeave'},
     {pattern = '*', command = 'set nocursorline nocursorcolumn', group = cursorGroup}

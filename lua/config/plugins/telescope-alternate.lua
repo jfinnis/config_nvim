@@ -26,6 +26,8 @@
 
 
 require('telescope-alternate').setup({
+    presets = {}, --{ 'rails', 'rspec', 'nestjs', 'angular' }, Telescope pre-defined mapping presets
+    open_only_one_with = 'vertical_split', -- when just have only possible file, open it with. Can also be horizontal_split and vertical_split
     mappings = {
         { 'src/(.*)/(.*)/(.*).ts', {
             {'src/[1]/[2]/__test__/[3].test.ts', 'Test'},
@@ -64,8 +66,6 @@ require('telescope-alternate').setup({
 --      { 'app/models/(.*).rb', { { 'db/helpers/**/*[1:pluralize]*.rb', 'Helper' } } },
 --      { 'app/**/*.rb', { { 'spec/[1].rb', 'Test' } } }, -- Alternate between file and test
     },
-    presets = {}, --{ 'rails', 'rspec', 'nestjs', 'angular' }, Telescope pre-defined mapping presets
-    open_only_one_with = 'vertical_split', -- when just have only possible file, open it with. Can also be horizontal_split and vertical_split
     -- telescope_mappings = { -- Change the telescope mappings
     --   i = {
     --     open_current = '<CR>',

@@ -179,15 +179,30 @@ return require('packer').startup(function(use)
         'nvim-telescope/telescope-fzf-native.nvim',
         run = 'make'
     }
+    --use({
+    --    -- requires modern terminal - not iterm2
+    --    -- https://github.com/nvim-telescope/telescope-media-files.nvim
+    --    'nvim-telescope/telescope-media-files.nvim',
+    --    config = function()
+    --        require('telescope').load_extension('media_files')
+    --    end,
+    --    -- ? requires = 'nvim-lua/popup.nvim'
+    --})
     -- telescope - alternate file mappings
     use {
         'otavioschwanck/telescope-alternate',
-        config = function() require('config.plugins.telescope-alternate') end,
+        config = function() require('config.plugins.telescope-alternate') end
     }
     -- telescope - docker integration
     use {
         'lpoto/telescope-docker.nvim',
         config = function() require('config.plugins.telescope-docker') end
+    }
+    -- telescope - file browser
+    use {
+        'nvim-telescope/telescope-file-browser.nvim',
+        requires = {'nvim-telescope/telescope.nvim', 'nvimlua/plenary.nvim'},
+        config = function() require('config.plugins.telescope-file-browser') end
     }
     -- telescope - neoclip yank history
     use {
