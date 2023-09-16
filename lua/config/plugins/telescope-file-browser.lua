@@ -17,7 +17,7 @@ require('telescope').setup {
           ['sd'] = fb_actions.sort_by_date
         }
       },
-      depth = 2
+      depth = 1
     }
   } 
 }

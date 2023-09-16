@@ -212,6 +212,12 @@ return require('packer').startup(function(use)
         },
         config = function() require('config.plugins.telescope-neoclip') end
     }
+    use {
+        'nvim-tree/nvim-web-devicons'
+    }
+    --use {
+        --'yamatsum/nvim-nonicons'
+    --}
 
 
     -- text objects
