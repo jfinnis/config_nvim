@@ -252,6 +252,12 @@ return require('packer').startup(function(use)
         config = function() require('config.plugins.treesitter-textobjects') end
     }
 
+    -- twilight - dim inactive parts of file
+    use {
+        'folke/twilight.nvim',
+        config = function() require('config.plugins.twilight') end
+    }
+
     -- undotree - view history of changes
     use {
         'mbbill/undotree',
@@ -261,6 +267,21 @@ return require('packer').startup(function(use)
     -- unimpaired - navigation functions for the ] and [ keys
     -- forked repo to override some mappings
     use 'jfinnis/vim-unimpaired'
+
+    -- zen mode - focus on current buffer only
+    use {
+        'folke/zen-mode.nvim',
+        config = function() require('config.plugins.zenmode') end
+    }
+
+
+
+
+
+
+
+
+
 
   ----use {
     --  --'vimwiki/vimwiki',
@@ -280,24 +301,4 @@ return require('packer').startup(function(use)
     --  --cmd = { 'ZenMode' },
     --  --config = function() require('eric.plugins.zen-mode') end
   ----}
-
-    --      ---- autocompletion
-    --      --{ 'hrsh7th/nvim-cmp' },
-    --      --{ 'hrsh7th/cmp-buffer' },
-    --      --{ 'hrsh7th/cmp-path' },
-    --      --{ 'saadparwaiz1/cmp_luasnip' },
-    --      --{ 'hrsh7th/cmp-nvim-lsp' },
-    --      --{ 'hrsh7th/cmp-nvim-lua' },
-
-    --      ---- snippets
-    --      --{ 'L3MON4D3/LuaSnip' },
-    --      --{ 'rafamadriz/friendly-snippets' },
-    --  --},
-    --  --config = function() require('eric.plugins.lsp') end
-  ----}
-
-    ---- automatically set up the configuration after cloning packer.nvim
-    --if packer_bootstrap then
-    --    require('packer').sync()
-    --end
 end)
