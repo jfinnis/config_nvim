@@ -70,6 +70,12 @@ return require('packer').startup(function(use)
         config = function() require('config.plugins.gitsigns') end
     }
 
+    -- glow - preview markdown in neovim
+    use {
+        'ellisonleao/glow.nvim',
+        config = function() require('config.plugins.glow') end
+    }
+
     -- hexokinase - color indicator for html/css/etc
     use {
         'RRethy/vim-hexokinase',
