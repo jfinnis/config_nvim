@@ -152,6 +152,15 @@ return require('packer').startup(function(use)
         config = function() require('config.plugins.rainbow') end
     }
 
+    -- regexplainer - show help info for regexes
+    use {
+        'bennypowers/nvim-regexplainer',
+        requires = {
+            'nvim-treesitter/nvim-treesitter',
+            'MunifTanjim/nui.nvim'
+        },
+        config = function() require('config.plugins.regexplainer') end
+    }
     -- repeat - extend '.' repetition to plugins like surround
     use 'tpope/vim-repeat'
 
