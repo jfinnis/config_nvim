@@ -43,6 +43,12 @@ return require('packer').startup(function(use)
     }
     use 'EdenEast/nightfox.nvim'
 
+    -- comment - comment management
+    use {
+        'numToStr/Comment.nvim',
+        config = function() require('config.plugins.comment') end
+    }
+
     -- delimitMate - automatically close brackets
     use {
         'Raimondi/delimitMate',

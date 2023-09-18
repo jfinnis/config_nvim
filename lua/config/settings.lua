@@ -51,8 +51,7 @@ vim.opt.linebreak = true -- don't wrap in middle of words
 vim.opt.textwidth = 120
 vim.opt.virtualedit = 'block' -- position cursor where there is no char in block mode
 
-vim.opt.shiftwidth = 0 -- spaces used during (auto)indent, >>, and <<
-                       -- set to 0 to default to tabstop setting
+vim.opt.shiftwidth = 4 -- spaces used during (auto)indent, >>, and <<
 vim.opt.tabstop = 4 -- tabs are 4 spaces, can be overridden per filetype
 
 vim.opt.showmatch = true -- when inserting bracket/paren, highlight matching one
