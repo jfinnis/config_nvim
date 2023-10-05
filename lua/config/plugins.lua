@@ -153,9 +153,15 @@ return require('packer').startup(function(use)
 
     -- operator-replace - R{motion} replaces with current register
     use {
-      'kana/vim-operator-replace',
-      requires = { {'kana/vim-operator-user'} },
-      config = function() require('config.plugins.operator-replace') end
+        'kana/vim-operator-replace',
+        requires = { {'kana/vim-operator-user'} },
+        config = function() require('config.plugins.operator-replace') end
+    }
+
+    -- pretty_hover - clean up lsp dialogs
+    use {
+        'Fildo7525/pretty_hover',
+        config = function() require('config.plugins.prettyhover') end
     }
 
     -- rainbow parens
