@@ -3,48 +3,7 @@
   Plug 'leafgarland/typescript-vim'
   Plug 'peitalin/vim-jsx-typescript'
   Plug 'mxw/vim-jsx'
-  Plug 'scrooloose/nerdcommenter'
-  Plug 'scrooloose/nerdtree', {'on': 'NERDTreeToggle'}
   Plug 'stephenway/postcss.vim'
-  Plug 'tommcdo/vim-fubitive'
-  Plug 'tpope/vim-fugitive'
-  Plug 'tpope/vim-rhubarb'
-
-" fugitive git wrapping --------------------------------------------------- {{{2
-map <Leader>ga :Git add %<cr>
-map <Leader>gb :Git blame<cr>
-map <Leader>gc :Git commit<cr>
-map <Leader>gd :Gdiff<cr>
-map <silent> <Leader>gl :Gllog<cr><cr>:lopen<cr>
-map <Leader>gm :Gmerge<cr>
-map <Leader>gp :Gpush<cr>
-map <Leader>gr :Gread<cr>
-map <Leader>gs :Gstatus<cr>
-map <Leader>gv :Gmove 
-map <Leader>gw :GBrowse<cr>
-autocmd BufReadPost fugitive://* set bufhidden=delete
-
-" fix Gbrowse open web page
-augroup ft_fugitive
-  au!
-  au User Fugitive let g:netrw_browsex_viewer = "git web--browse"
-  au BufNewFile,BufRead .git/index setlocal nolist
-augroup END
-
-" nerdcommenter ----------------------------------------------------------- {{{2
-let NERDRemoveExtraSpaces=1
-let NERDSpaceDelims=1
-let NERDTrimTrailingWhitespace=1
-
-" nerdtree bindings and settings ------------------------------------------ {{{2
-map <silent> <Leader>N :NERDTreeToggle<cr>
-let NERDChDirMode=2
-let NERDTreeAutoDeleteBuffer=1
-let NERDTreeMinimalUI=1
-let NERDTreeIgnore=['\~$', '\.aux$', '\.blg$', '\.bbl$', '\.log$', '\.dvi$', '\.gif$', '\.jpg$', '\.doc$', '\.bmp$']
-
-" close vim if NERDTree is last window open
-autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 
 " vimux commands ---------------------------------------------------------- {{{2
 map <leader>! :call VimuxPromptCommand()<cr>

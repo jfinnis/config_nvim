@@ -52,7 +52,8 @@ require('gitsigns').setup {
         map('n', '<leader>gA', gs.stage_buffer, {desc='Add all changes in file'})
         map('n', '<leader>gR', gs.reset_buffer_index, {desc='Reset whole file'})
         map('n', '<leader>gb', function() gs.blame_line{full=true} end, {desc='Show git blame in popup window'})
-        map('n', '<leader>gB', gs.toggle_current_line_blame, {desc='Toggle git blame on current line'})
+        -- use fugitive instead
+        --map('n', '<leader>gB', gs.toggle_current_line_blame, {desc='Toggle git blame on current line'})
         map('n', '<leader>gd', gs.diffthis)
         -- using telescope git status instead
         --map('n', '<leader>gs', function() gs.setqflist('all') end, {desc='Git status - Show all changes in repo'})

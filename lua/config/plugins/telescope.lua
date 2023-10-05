@@ -27,7 +27,9 @@ require('telescope').setup{
         wrap_results = false, -- maybe true for certain views
         layout_strategy = 'horizontal',
         mappings = { n = telescope_mappings, i = telescope_mappings },
-        file_ignore_patterns = { '.png', '.gif', '.jpg', '.jpeg' },
+        -- Telescope plugin to preview images: https://github.com/nvim-telescope/telescope-media-files.nvim
+        -- But image handling doesn't seem to be something I'd use Neovim for...
+        --file_ignore_patterns = { '.png', '.gif', '.jpg', '.jpeg' },
     }
 }
 
@@ -88,12 +90,12 @@ end, {desc='[;] [F]ind [S]earch Term In Current Buffer'})
 --
 
 -- TODO: can git status toggle staged changes?
--- ;gs - git status
-vim.keymap.set('n', '<leader>gs', function()
+-- ;fg - git status
+vim.keymap.set('n', '<leader>fg', function()
     telescope.git_status({
         prompt_title = 'Git Status (<cr> to open, <tab> to stage/unstage)'
     })
-end, {desc='[;] [G]it [S]tatus'})
+end, {desc='[;f] [G]it Status'})
 -- ;gS - git stash
 vim.keymap.set('n', '<leader>gS', telescope.git_stash, {desc='; [G]it [S]tash'})
 

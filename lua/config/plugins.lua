@@ -63,11 +63,17 @@ return require('packer').startup(function(use)
     use {
         'j-hui/fidget.nvim',
         tag = 'legacy',
-        config = function()
-            require('fidget').setup {
-                -- options
-            }
-        end
+        config = function() require('fidget').setup{} end
+    }
+
+    -- fugitive
+    use {
+        'tpope/vim-fugitive',
+        config = function() require('config.plugins.fugitive') end
+    }
+    -- fubitive - allow bitbucket for Git Browse
+    use {
+        'tommcdo/vim-fubitive'
     }
 
     -- gitsigns - git file status in the signs, show/hide diffs
@@ -167,6 +173,10 @@ return require('packer').startup(function(use)
         },
         config = function() require('config.plugins.regexplainer') end
     }
+
+    -- relops - relative numbers for operator-pending mode only
+    use 'vim-scripts/RelOps'
+
     -- repeat - extend '.' repetition to plugins like surround
     use 'tpope/vim-repeat'
 
@@ -236,10 +246,6 @@ return require('packer').startup(function(use)
     use {
         'nvim-tree/nvim-web-devicons'
     }
-    --use {
-        --'yamatsum/nvim-nonicons'
-    --}
-
 
     -- text objects
     use 'kana/vim-textobj-entire'

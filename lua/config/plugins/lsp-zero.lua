@@ -142,3 +142,11 @@ lsp.setup()
 
 -- need to override LSP-Zero keymap after lsp.setup has been called
 vim.keymap.set('n', 'gd', vim.diagnostic.open_float, {desc = '[G]oto Current Line [D]iagnostics'})
+
+-- try to do a cloudformation experimental lsp TODO
+--vim.cmd [[
+--    let g:LanguageClient_serverCommands = { 'cfn.yaml': ['~/.local/bin/cfn-lsp-extra'], 'cfn.json': ['~/.local/bin/cfn-lsp-extra'] }
+--]]
+--
+--
+--TODO: try onsails/lspkind to add in lsp window icons
