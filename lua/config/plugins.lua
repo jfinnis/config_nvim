@@ -29,6 +29,12 @@ return require('packer').startup(function(use)
     -- vim plugin package manager
     use 'wbthomason/packer.nvim'
 
+    -- autosave
+    use {
+        'pocco81/auto-save.nvim',
+        config = function() require('config.plugins.autosave') end
+    }
+
     -- buffer close commands
     use {
         'ojroques/nvim-bufdel',
@@ -181,7 +187,8 @@ return require('packer').startup(function(use)
     }
 
     -- relops - relative numbers for operator-pending mode only
-    use 'vim-scripts/RelOps'
+    -- use 'vim-scripts/RelOps'
+    -- TODO: this is fucking up ciw command
 
     -- repeat - extend '.' repetition to plugins like surround
     use 'tpope/vim-repeat'

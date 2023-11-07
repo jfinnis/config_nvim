@@ -30,6 +30,7 @@ require('telescope').setup{
         -- Telescope plugin to preview images: https://github.com/nvim-telescope/telescope-media-files.nvim
         -- But image handling doesn't seem to be something I'd use Neovim for...
         --file_ignore_patterns = { '.png', '.gif', '.jpg', '.jpeg' },
+        file_ignore_patterns = { '^.git/' },
     }
 }
 
