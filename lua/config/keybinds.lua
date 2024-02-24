@@ -90,10 +90,6 @@ endfunction
 ]])
 vim.keymap.set('n', ',', ':call RepeatResize()<cr>', { silent = true })
 
--- replicate unimpaired mappings for [t and ]t for tabs
-vim.keymap.set('n', '[t', ':tabprev<cr>', {desc = 'Previous [T]ab'})
-vim.keymap.set('n', ']t', ':tabnext<cr>', {desc = 'Next [T]ab'})
-
 -----------------------
 --    completion     --
 -----------------------

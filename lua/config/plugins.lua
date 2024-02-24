@@ -312,32 +312,4 @@ return require('packer').startup(function(use)
         'folke/zen-mode.nvim',
         config = function() require('config.plugins.zenmode') end
     }
-
-
-
-
-
-
-
-
-
-
-  ----use {
-    --  --'vimwiki/vimwiki',
-    --  --config = function() require('eric.plugins.vimwiki') end,
-  ----}
-
-  ---- startup screen
-  ----use {
-    --  --'goolord/alpha-nvim',
-    --  --config = function() require('eric.plugins.alpha') end,
-  ----}
-
-  ---- distraction-free writing mode
-  ----use {
-    --  --'folke/zen-mode.nvim',
-    --  --opt = true,
-    --  --cmd = { 'ZenMode' },
-    --  --config = function() require('eric.plugins.zen-mode') end
-  ----}
 end)
