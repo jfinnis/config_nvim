@@ -33,7 +33,8 @@ require('lualine').setup{
                 sections = {'error', 'warn', 'info', 'hint'},
                 symbols = {error = '✘ ', warn = '▲ ', hint = '⚑ ', info = '» '},
                 always_visible = false
-            }
+            },
+            {'codeium'}
         },
         lualine_y = {
             {

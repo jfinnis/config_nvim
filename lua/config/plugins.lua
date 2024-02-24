@@ -49,6 +49,16 @@ return require('packer').startup(function(use)
     }
     use 'EdenEast/nightfox.nvim'
 
+    -- codeium - free ai assistant
+    use {
+        'Exafunction/codeium.vim',
+        requires = {
+            'nvim-lua/plenary.nvim',
+            'hrsh7th/nvim-cmp'
+        },
+        config = function() require('config.plugins.codeium') end
+    }
+
     -- comment - comment management
     use {
         'numToStr/Comment.nvim',
