@@ -265,6 +265,11 @@ return require('packer').startup(function(use)
     use 'kana/vim-textobj-line'
     use 'kana/vim-textobj-user'
 
+    use {
+        'folke/todo-comments.nvim',
+        config = function() require('config.plugins.todo-comments') end
+    }
+
     -- treesitter - syntax parser
     use {
         'nvim-treesitter/nvim-treesitter',

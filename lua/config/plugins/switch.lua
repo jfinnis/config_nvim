@@ -9,6 +9,7 @@ vim.g.switch_custom_definitions = {
    { 'disabled', 'enabled' },
    { 'Disabled', 'Enabled' },
    { '"', "'" },
+   { 'white', 'black' },
 }
 
 -- not needed anymore, but an example of buffer specific definitions
