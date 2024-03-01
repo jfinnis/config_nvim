@@ -109,8 +109,10 @@ vim.keymap.set('n', '<leader>fb', telescope.buffers, {desc='[F]ind Open [B]uffer
 vim.keymap.set('n', '<leader>fc', telescope.commands, {desc='[;] [F]ind Vim [C]ommands'})
 -- ;fC - display and preview colorschemes
 vim.keymap.set('n', '<leader>fC', function()
-    telescope.colorscheme({
-        enable_preview = true
+    telescope.colorscheme(require('telescope.themes').get_dropdown{
+        enable_preview = true,
+        winblend = 10,
+        previewer = false
     })
 end, {desc='[;] [F]ind [C]olorschemes'})
 -- ;fb - display telescope builtins
