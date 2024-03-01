@@ -91,14 +91,12 @@ end, {desc='[;] [F]ind [S]earch Term In Current Buffer'})
 --
 
 -- TODO: can git status toggle staged changes?
--- ;fg - git status
-vim.keymap.set('n', '<leader>fg', function()
-    telescope.git_status({
-        prompt_title = 'Git Status (<cr> to open, <tab> to stage/unstage)'
-    })
-end, {desc='[;f] [G]it Status'})
--- ;gS - git stash
-vim.keymap.set('n', '<leader>gS', telescope.git_stash, {desc='; [G]it [S]tash'})
+-- ;fgs - git status
+vim.keymap.set('n', '<leader>fgs', function() telescope.git_status({ prompt_title = 'Git Status (<cr> to open, <tab> to stage/unstage)' }) end, {desc='[;f] [G]it [S]tatus'})
+-- ;fgS - git stash
+vim.keymap.set('n', '<leader>fgS', telescope.git_stash, {desc='[;f] [G]it [S]tash'})
+-- ;fgc - git commits of file
+vim.keymap.set('n', '<leader>fgc', telescope.git_bcommits, {desc='[;f] [G]it [C]ommits of File'})
 
 
 --
@@ -115,6 +113,8 @@ vim.keymap.set('n', '<leader>fC', function()
         enable_preview = true
     })
 end, {desc='[;] [F]ind [C]olorschemes'})
+-- ;fb - display telescope builtins
+vim.keymap.set('n', '<leader>fB', telescope.builtin, {desc='[;] [F]ind All Telescope [B]uiltins'})
 -- ;fh - display vim help tags
 vim.keymap.set('n', '<leader>fh', telescope.help_tags, {desc='[;] [F]ind Vim [H]elp Tags'})
 -- ;fH - display vim highlight groups
@@ -146,10 +146,9 @@ vim.keymap.set('n', '<leader>fS', function()
     }))
 end, {desc='[;] [F]ind [S]pelling Suggestions'})
 -- q: - upgraded command history
-vim.keymap.set('n', 'q:', telescope.command_history, {desc='[q:] - Upgraded Command History Window'})
+vim.keymap.set('n', 'q:', telescope.command_history, {desc='[q:] Upgraded Command History Window'})
 -- q/ - upgraded search history
-vim.keymap.set('n', 'q/', telescope.search_history, {desc='[q/] - Upgraded Search History Window'})
-
+vim.keymap.set('n', 'q/', telescope.search_history, {desc='[q/] Upgraded Search History Window'})
 
 --
 -- misc
