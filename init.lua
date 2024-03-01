@@ -10,7 +10,7 @@ require('config.abbreviations')
 require('config.filetypes')
 
 
---- reload the neovim configuration
+-- reload the neovim configuration
 -- required to be in this directory to reload the subdirectories
 function reload_config()
     for name,_ in pairs(package.loaded) do
@@ -36,6 +36,3 @@ function reload_config()
     vim.notify("Nvim configuration reloaded!", vim.log.levels.INFO)
 end
 vim.keymap.set('n', '<leader>S', reload_config)
-
-
-

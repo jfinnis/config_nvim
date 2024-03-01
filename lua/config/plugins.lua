@@ -9,7 +9,7 @@ local ensure_packer = function()
     if fn.empty(fn.glob(install_path)) > 0 then
         fn.system({ 'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path })
         vim.cmd [[packadd packer.nvim]]
-      return true
+        return true
     end
     return false
 end
@@ -19,10 +19,10 @@ local packer_bootstrap = ensure_packer()
 
 -- autocommand that reloads neovim whenever you save the plugins.lua file
 vim.cmd([[
-    augroup packer_user_config
-        autocmd!
-        autocmd BufWritePost plugins.lua source <afile> | PackerSync
-    augroup end
+   augroup packer_user_config
+   autocmd!
+   autocmd BufWritePost plugins.lua source <afile> | PackerSync
+   augroup end
 ]])
 
 return require('packer').startup(function(use)
@@ -76,11 +76,7 @@ return require('packer').startup(function(use)
 
     -- fidget - eye candy for nvim-lsp language progress
     -- pinned to legacy while it is being rewritten
-    use {
-        'j-hui/fidget.nvim',
-        tag = 'legacy',
-        config = function() require('fidget').setup{} end
-    }
+    use 'j-hui/fidget.nvim'
 
     -- fugitive
     use {
@@ -126,26 +122,26 @@ return require('packer').startup(function(use)
 
     -- lsp-zero - good setup for lsp
     use {
-      'VonHeikemen/lsp-zero.nvim',
-      branch = 'v2.x',
-      requires = {
-        'neovim/nvim-lspconfig',
-        {'williamboman/mason.nvim',
-          run = function()
-            pcall(vim.cmd, 'MasonUpdate')
-          end,
-        },
-        'williamboman/mason-lspconfig.nvim',
+        'VonHeikemen/lsp-zero.nvim',
+        branch = 'v2.x',
+        requires = {
+            'neovim/nvim-lspconfig',
+            {'williamboman/mason.nvim',
+                run = function()
+                    pcall(vim.cmd, 'MasonUpdate')
+                end,
+            },
+            'williamboman/mason-lspconfig.nvim',
 
-        'hrsh7th/nvim-cmp',     -- base autocomplete plugin
-        'hrsh7th/cmp-nvim-lsp', --   source: language server data
-        'hrsh7th/cmp-path',     --   source: file system completion
-        {'hrsh7th/cmp-buffer',    --   source: buffer completions
-            --config = function() require('config.plugins.cmp-buffer') end
+            'hrsh7th/nvim-cmp',     -- base autocomplete plugin
+            'hrsh7th/cmp-nvim-lsp', --   source: language server data
+            'hrsh7th/cmp-path',     --   source: file system completion
+            {'hrsh7th/cmp-buffer',    --   source: buffer completions
+                --config = function() require('config.plugins.cmp-buffer') end
+            },
+            'L3MON4D3/LuaSnip',     --   source - snippets
         },
-        'L3MON4D3/LuaSnip',     --   source - snippets
-      },
-      config = function() require('config.plugins.lsp-zero') end
+        config = function() require('config.plugins.lsp-zero') end
     }
 
     -- lualine - fancy statusline
@@ -196,10 +192,6 @@ return require('packer').startup(function(use)
         config = function() require('config.plugins.regexplainer') end
     }
 
-    -- relops - relative numbers for operator-pending mode only
-    -- use 'vim-scripts/RelOps'
-    -- TODO: this is fucking up ciw command
-
     -- repeat - extend '.' repetition to plugins like surround
     use 'tpope/vim-repeat'
 
@@ -233,6 +225,7 @@ return require('packer').startup(function(use)
         'nvim-telescope/telescope-fzf-native.nvim',
         run = 'make'
     }
+
     --use({
     --    -- requires modern terminal - not iterm2
     --    -- https://github.com/nvim-telescope/telescope-media-files.nvim
@@ -247,6 +240,7 @@ return require('packer').startup(function(use)
         'otavioschwanck/telescope-alternate',
         config = function() require('config.plugins.telescope-alternate') end
     }
+
     -- telescope - docker integration
     use {
         'lpoto/telescope-docker.nvim',
@@ -258,6 +252,7 @@ return require('packer').startup(function(use)
         requires = {'nvim-telescope/telescope.nvim', 'nvimlua/plenary.nvim'},
         config = function() require('config.plugins.telescope-file-browser') end
     }
+
     -- telescope - neoclip yank history
     use {
         'AckslD/nvim-neoclip.lua',
@@ -275,6 +270,7 @@ return require('packer').startup(function(use)
     use 'kana/vim-textobj-line'
     use 'kana/vim-textobj-user'
 
+    -- todo comment highlighter
     use {
         'folke/todo-comments.nvim',
         config = function() require('config.plugins.todo-comments') end
