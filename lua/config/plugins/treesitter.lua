@@ -14,10 +14,11 @@ require('nvim-treesitter.configs').setup {
 
     -- Need to enable the modules because they're disabled by default.
     highlight = {
-        enable = true
+        enable = true,
         -- disable accepts list of languages or a function
-        --disable = function(lang, bufnr) -- Disable in large C++ buffers
-        --    return lang == "cpp" and vim.api.nvim_buf_line_count(bufnr) > 50000
+        --disable = function(lang, bufnr)
+            -- example: disable in large C++ buffers
+            -- return lang == "cpp" and vim.api.nvim_buf_line_count(bufnr) > 50000
         --end,
     },
 

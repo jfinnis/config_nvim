@@ -184,7 +184,9 @@ return require('packer').startup(function(use)
 
     -- regexplainer - show help info for regexes
     use {
-        'bennypowers/nvim-regexplainer',
+        'ArjunSahlot/nvim-regexplainer',
+        -- this fork fixes a bug with errors showing in temporary buffers like Trouble
+        -- 'bennypowers/nvim-regexplainer',
         requires = {
             'nvim-treesitter/nvim-treesitter',
             'MunifTanjim/nui.nvim'
@@ -295,6 +297,13 @@ return require('packer').startup(function(use)
         after = 'nvim-treesitter',
         requires = 'nvim-treesitter/nvim-treesitter',
         config = function() require('config.plugins.treesitter-textobjects') end
+    }
+
+    -- trouble - pretty quickfix/notices/diagnostics
+    use {
+        'folke/trouble.nvim',
+        requires = 'nvim-tree/nvim-web-devicons',
+        config = function() require('config.plugins.trouble') end
     }
 
     -- twilight - dim inactive parts of file
