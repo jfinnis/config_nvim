@@ -44,16 +44,3 @@ vim.keymap.set('n', '<leader>tt', function() require('trouble').toggle() end, { 
 vim.keymap.set('n', '<leader>tr', function() require('trouble').refresh() end, { desc = '[;] [T]rouble [R]efresh' })
 vim.keymap.set('n', '<leader>tq', function() require('trouble').toggle('quickfix') end, { desc = '[;] [T]rouble [Q]uickfix' })
 vim.keymap.set('n', 'g/', ':Trouble lsp_references', { desc = '[g/] Show LSP References' })
-
--- TODO: can possibly open telescope search results
---    local actions = require("telescope.actions")
---    local trouble = require("trouble.providers.telescope")
---    local telescope = require("telescope")
---    telescope.setup {
---      defaults = {
---        mappings = {
---          i = { ["<c-t>"] = trouble.open_with_trouble },
---          n = { ["<c-t>"] = trouble.open_with_trouble },
---        },
---      },
---    }
