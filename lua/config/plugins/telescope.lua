@@ -85,7 +85,6 @@ end, {desc='[;] [F]ind [S]earch Term In Current Buffer'})
 -- gK - search definition of term
 -- gt - show type definition of term
 -- gy - show lsp symbols
--- g/ - search references of term
 
 
 --

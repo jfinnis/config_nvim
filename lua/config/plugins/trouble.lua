@@ -43,4 +43,4 @@ require('trouble').setup({
 vim.keymap.set('n', '<leader>tt', function() require('trouble').toggle() end, { desc = '[;] [T]rouble [T]oggle' })
 vim.keymap.set('n', '<leader>tr', function() require('trouble').refresh() end, { desc = '[;] [T]rouble [R]efresh' })
 vim.keymap.set('n', '<leader>tq', function() require('trouble').toggle('quickfix') end, { desc = '[;] [T]rouble [Q]uickfix' })
-vim.keymap.set('n', 'g/', ':Trouble lsp_references', { desc = '[g/] Show LSP References' })
+vim.keymap.set('n', 'g/', function() require('trouble').toggle('lsp_references') end, { desc = '[g/] Show LSP References' })

@@ -40,12 +40,13 @@ lsp.on_attach(function(_, bufnr)
     vim.keymap.set('v', '=', vim.lsp.buf.format, {desc = 'LSP: Format the selected text'})
 
     local telescope = require('telescope.builtin')
-    nmap('g/', function()
-        telescope.lsp_references({
-            show_line = true,
-            trim_text = true
-        })
-    end, '[g/] Search references to symbol')
+    -- NOTE: use Trouble for lsp_references instead
+    -- nmap('g/', function()
+    --     telescope.lsp_references({
+    --         show_line = true,
+    --         trim_text = true
+    --     })
+    -- end, '[g/] Search references to symbol')
     nmap('gK', function()
         telescope.lsp_definitions({
             show_line = true
