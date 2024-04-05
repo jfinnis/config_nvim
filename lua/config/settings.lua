@@ -3,6 +3,8 @@
 --
 vim.g.mapleader = ';'
 
+vim.opt.backupcopy = 'yes' -- will create a backup file instead of renaming the file. needed
+                           -- for vite dev server which was having issues watching changes
 vim.opt.conceallevel = 2 -- use replacement character for concealed text
 vim.opt.gdefault = true -- replace all occurenses in line for :s///
 vim.opt.list = true -- show chars for end of line
