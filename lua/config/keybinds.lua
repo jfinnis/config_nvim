@@ -48,7 +48,7 @@ vim.keymap.set({'n', 'v'}, '<leader>y', [["+y]])
 vim.keymap.set('n', '<leader>Y', [["+Y]])
 
 -- format file with biome formatter
-vim.keymap.set('n', '<tab><space>', ':!biome format --write "<cr>"', { desc = '[<tab><space>] Format file with Biome', silent = true })
+vim.keymap.set('n', '<tab><space>', ":silent !biome format --write '%'<cr>", { desc = '[<tab><space>] Format file with Biome', silent = true })
 
 -----------------------
 -- window management --
