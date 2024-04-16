@@ -22,7 +22,7 @@ vim.opt.undofile = true
 vim.opt.wildmode = 'longest:full' -- command completion to longest substring, then show popup menu of completions
 
 -- display stuff
-vim.opt.colorcolumn = '80,120' -- highlight these columns in different color
+vim.opt.colorcolumn = '100' -- highlight these columns in different color
 vim.opt.cursorcolumn = false
 vim.opt.cursorline = false
 
