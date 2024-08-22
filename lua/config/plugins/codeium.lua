@@ -18,3 +18,7 @@ vim.keymap.set('i', '<tab>]', function() return vim.fn['codeium#CycleCompletions
 -- prev suggestion
 vim.keymap.set('i', '<tab>[', function() return vim.fn['codeium#CycleCompletions'](-1) end,
     { desc='Previous AI Suggestion', expr=true, silent=true})
+
+-- open chat
+vim.keymap.set('n', '<tab>I', function() return vim.fn['codeium#Chat']() end,
+    { desc='<tab> Open A[I] Chat', expr=true, silent=true})
