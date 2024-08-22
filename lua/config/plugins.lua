@@ -121,6 +121,12 @@ return require('packer').startup(function(use)
         config = function() require('config.plugins.indent-blankline') end
     }
 
+    -- lsp-signature - show function signatures while editing
+    use {
+        'ray-x/lsp_signature.nvim',
+        config = function() require('config.plugins.lsp-signature') end
+    }
+
     -- lsp-zero - good setup for lsp
     use {
         'VonHeikemen/lsp-zero.nvim',

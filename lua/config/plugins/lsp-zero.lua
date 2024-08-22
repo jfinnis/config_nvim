@@ -141,8 +141,12 @@ lspconfig.emmet_ls.setup{
 
 lsp.setup()
 
+-- Show floating window of function signature when editing
+require 'lsp_signature'.on_attach()
+
 -- need to override LSP-Zero keymap after lsp.setup has been called
 vim.keymap.set('n', 'gd', vim.diagnostic.open_float, {desc = '[G]oto Current Line [D]iagnostics'})
+
 
 -- try to do a cloudformation experimental lsp TODO
 --vim.cmd [[
