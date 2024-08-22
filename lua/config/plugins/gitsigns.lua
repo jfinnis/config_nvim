@@ -5,6 +5,7 @@
 require('gitsigns').setup {
     numhl = true, -- highlight line numbers
     linehl = false, -- highlight full lines
+    culhl = false, -- highlight current line
     diff_opts = {
         algorithm = 'myers',
         internal = true,

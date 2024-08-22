@@ -1,7 +1,6 @@
 --
 -- telescope settings
 --
-local trouble = require("trouble.providers.telescope")
 
 local telescope_mappings = {
     ['<C-k>'] = require('telescope.actions.layout').toggle_preview,
@@ -16,7 +15,7 @@ local telescope_mappings = {
     ['<C-o>o'] = function(prompt_bufnr) require('telescope.actions').select_default(prompt_bufnr) require('telescope.builtin').resume() end,
     ['<C-o>v'] = function(prompt_bufnr) require('telescope.actions').select_vertical(prompt_bufnr) require('telescope.builtin').resume() end,
     ['<C-o>h'] = function(prompt_bufnr) require('telescope.actions').select_horizontal(prompt_bufnr) require('telescope.builtin').resume() end,
-    ['<c-q>'] = trouble.open_with_trouble,
+    ['<c-q>'] = require('trouble.sources.telescope').open(),
 }
 
 require('telescope').setup{

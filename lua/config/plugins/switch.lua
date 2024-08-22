@@ -8,6 +8,7 @@ vim.g.switch_custom_definitions = {
    { '===', '!==' },
    { 'disabled', 'enabled' },
    { 'Disabled', 'Enabled' },
+   { 'toBeTruthy', 'toBeFalsy' },
    { '"', "'" },
    { 'white', 'black' },
 }
