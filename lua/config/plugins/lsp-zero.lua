@@ -65,6 +65,14 @@ lsp.on_attach(function(_, bufnr)
     nmap('g=', vim.lsp.buf.format, '[G=] Format Whole File')
     nmap('<leader>ca', vim.lsp.buf.code_action, '[;] Show [C]ode [A]ctions')
     nmap('<leader>cr', vim.lsp.buf.rename, '[;c] [R]ename Symbol Under Cursor')
+
+    -- Show floating window of function signature when editing
+    require 'lsp_signature'.on_attach({
+        bind = true,
+        handler_opts = {
+            border = 'double'
+        },
+    }, bufnr)
 end)
 
 local lspconfig = require('lspconfig')
@@ -140,9 +148,6 @@ lspconfig.emmet_ls.setup{
 }
 
 lsp.setup()
-
--- Show floating window of function signature when editing
-require 'lsp_signature'.on_attach()
 
 -- need to override LSP-Zero keymap after lsp.setup has been called
 vim.keymap.set('n', 'gd', vim.diagnostic.open_float, {desc = '[G]oto Current Line [D]iagnostics'})
