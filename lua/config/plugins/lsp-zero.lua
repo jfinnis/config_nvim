@@ -83,6 +83,11 @@ local lspconfig = require('lspconfig')
 --lspconfig.lua_ls.setup(lsp.nvim_lua_ls())
 
 --
+-- gleam
+--
+lspconfig.gleam.setup({})
+
+--
 -- json
 --
 lspconfig.jsonls.setup{
