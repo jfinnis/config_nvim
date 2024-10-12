@@ -334,4 +334,10 @@ return require('packer').startup(function(use)
         'folke/zen-mode.nvim',
         config = function() require('config.plugins.zenmode') end
     }
+
+    -- Automatically set up your configuration after cloning packer.nvim
+    -- Put this at the end after all plugins
+    if packer_bootstrap then
+       require('packer').sync()
+    end
 end)
