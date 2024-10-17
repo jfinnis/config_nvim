@@ -3,6 +3,7 @@
 --
 
 vim.cmd('ab teh the')
+vim.cmd('ab hte the')
 vim.cmd('ab taht that')
 vim.cmd('ab thign thing')
 vim.cmd('ab thigns things')
@@ -29,3 +30,4 @@ vim.cmd('ab imoprt import')
 vim.cmd('ab recognitino recognition')
 vim.cmd('ab descirption description')
 vim.cmd('ab cahce cache')
+vim.cmd('ab udpate update')
