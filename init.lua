@@ -3,8 +3,8 @@
 -- inspired by https://github.com/ericmurphyxyz/dotfiles/tree/master/.config/nvim
 --
 
-require('config.plugins')
 require('config.settings')
+require('config.lazy')
 require('config.keybinds')
 require('config.abbreviations')
 require('config.filetypes')
@@ -19,8 +19,8 @@ function reload_config()
         end
     end
 
-    require('config.plugins')
     require('config.settings')
+    require('config.lazy')
     require('config.keybinds')
     require('config.abbreviations')
     require('config.filetypes')

@@ -28,53 +28,6 @@ lsp.set_sign_icons({
     info = '»'
 })
 
-local nmap = function(keys, func, desc)
-    if desc then
-        desc = 'LSP: ' .. desc
-    end
-    vim.keymap.set('n', keys, func, {buffer = bufnr, desc = desc})
-end
-
-lsp.on_attach(function(_, bufnr)
-    lsp.default_keymaps({buffer = bufnr})
-    vim.keymap.set('v', '=', vim.lsp.buf.format, {desc = 'LSP: Format the selected text'})
-
-    local telescope = require('telescope.builtin')
-    -- NOTE: use Trouble for lsp_references instead
-    -- nmap('g/', function()
-    --     telescope.lsp_references({
-    --         show_line = true,
-    --         trim_text = true
-    --     })
-    -- end, '[g/] Search references to symbol')
-    nmap('gK', function()
-        telescope.lsp_definitions({
-            show_line = true
-        })
-    end, '[G]oto [K] definition')
-    nmap('gy', function()
-        telescope.lsp_document_symbols({
-            prompt_title = 'LSP Symbols (C-l to filter)',
-            show_line = true
-        })
-    end, '[G]oto LSP S[y]mbols')
-    nmap('<leader>fd', function()
-        telescope.diagnostics(require('telescope.themes').get_ivy{})
-    end, '[;f] Show [D]iagnostics')
-    nmap('gt', require('telescope.builtin').lsp_type_definitions, '[G]oto [T]ype of Element')
-    nmap('g=', vim.lsp.buf.format, '[G=] Format Whole File')
-    nmap('<leader>ca', vim.lsp.buf.code_action, '[;] Show [C]ode [A]ctions')
-    nmap('<leader>cr', vim.lsp.buf.rename, '[;c] [R]ename Symbol Under Cursor')
-
-    -- Show floating window of function signature when editing
-    require 'lsp_signature'.on_attach({
-        bind = true,
-        handler_opts = {
-            border = 'double'
-        },
-    }, bufnr)
-end)
-
 local lspconfig = require('lspconfig')
 
 --
@@ -120,7 +73,7 @@ lspconfig.yamlls.setup{
 --
 -- typescript
 --
-lspconfig.tsserver.setup{
+lspconfig.ts_ls.setup{
 }
 
 
@@ -154,14 +107,6 @@ lspconfig.emmet_ls.setup{
 
 lsp.setup()
 
--- need to override LSP-Zero keymap after lsp.setup has been called
-vim.keymap.set('n', 'gd', vim.diagnostic.open_float, {desc = '[G]oto Current Line [D]iagnostics'})
 
 
--- try to do a cloudformation experimental lsp TODO
---vim.cmd [[
---    let g:LanguageClient_serverCommands = { 'cfn.yaml': ['~/.local/bin/cfn-lsp-extra'], 'cfn.json': ['~/.local/bin/cfn-lsp-extra'] }
---]]
---
---
 --TODO: try onsails/lspkind to add in lsp window icons
