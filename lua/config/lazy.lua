@@ -20,9 +20,6 @@ vim.g.maplocalleader = ' '
 -- Setup lazy.nvim
 require("lazy").setup({
     spec = {
-        -- import your plugins
-        -- { import = "config/plugins" },
-
         -- autosave
         {
             'pocco81/auto-save.nvim',
@@ -48,12 +45,6 @@ require("lazy").setup({
             'Exafunction/codeium.vim',
             event = 'BufEnter',
             config = function() require('config.plugins.codeium') end
-        },
-        --
-        -- comment - comment management
-        {
-            'numToStr/Comment.nvim',
-            config = function() require('config.plugins.comment') end
         },
 
         -- delimitMate - automatically close brackets
