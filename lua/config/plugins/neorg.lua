@@ -5,7 +5,7 @@
 require("neorg").setup {
     load = {
         ['core.defaults'] = {}, -- loads default behavior
-        ['core.concealer'] = { -- adds pretty icons to documents
+        ['core.concealer'] = {  -- adds pretty icons to documents
             config = {
                 icon_preset = 'diamond',
                 icons = {
@@ -65,13 +65,26 @@ require("neorg").setup {
     },
 }
 
+-- can be called outside neorg files to start the Neorg interface
+vim.keymap.set('n', '<Leader>I', ':Neorg index<cr>', { desc = '[<space>] Open Neorg [I]ndex' })
+
+vim.keymap.set('n', '<Leader>JJ', ':Neorg journal today<cr>', { desc = '[<Leader>] Neorg: [J]ournal [J]Today' })
+vim.keymap.set('n', '<Leader>JT', ':Neorg journal tomorrow<cr>', { desc = '[<Leader>] Neorg: [J]ournal [T]omorrow' })
+vim.keymap.set('n', '<Leader>JY', ':Neorg journal yesterday<cr>', { desc = '[<Leader>] Neorg: [J]ournal [Y]esterday' })
+
+local function buffer_is_empty()
+  local lines = vim.api.nvim_buf_get_lines(0, 0, -1, false)
+  return #lines == 0 or (#lines == 1 and lines[1] == "")
+end
+
 vim.api.nvim_create_autocmd('FileType', {
     pattern = 'norg',
     callback = function()
-        -- open index and return
-        vim.keymap.set('n', '<LocalLeader>N', ':Neorg index<cr>', { desc = '[<space>] Open [N]eorg', buffer = true })
+        -- basic navigation
         vim.keymap.set('n', '<LocalLeader>nr', ':Neorg return<cr>',
-            { desc = '[<space>] [N]eorg [R]eturn', buffer = true })
+            { desc = '[<space>] [N]eorg: [R]eturn', buffer = true })
+        vim.keymap.set('n', '<LocalLeader>c', ':Neorg toc<cr>',
+            { desc = '[<space>] Neorg: Table of [C]ontents', buffer = true })
 
         -- inject metadata
         vim.keymap.set('n', '<LocalLeader>m', ':Neorg inject-metadata<cr>',
@@ -90,6 +103,38 @@ vim.api.nvim_create_autocmd('FileType', {
         -- code block magnify (edit in own tmp buffer)
         -- TODO: doesn't work?
         -- vim.keymap.set('n', '<LocalLeader>z', ':Neorg keybind all core.looking-glass.magnify-code-block<cr>', { desc = '[<space>] [Z]oom code block to own buffer', buffer = true })
+
+        -- journal bindings - if the filename includes neorg/journal then do the steps
+        if string.find(vim.fn.expand('%'), 'neorg/journal') then
+            if buffer_is_empty() then
+                local output = vim.fn.system('curl -s "https://wttr.in/arden+nc?1nAQFdT"')
+                -- substitute neorg special chars
+                output = output:gsub('\\', '\\\\')
+                output = output:gsub('`', '\\`')
+                output = output:gsub('-', '\\-')
+                -- bold the date. due to lua regex quirks, can't combine non-capturing groups with
+                -- options so specify individually
+                output = output:gsub('(Sun %d+ %a+)', '*%1*')
+                output = output:gsub('(Mon %d+ %a+)', '*%1*')
+                output = output:gsub('(Tue %d+ %a+)', '*%1*')
+                output = output:gsub('(Wed %d+ %a+)', '*%1*')
+                output = output:gsub('(Thu %d+ %a+)', '*%1*')
+                output = output:gsub('(Fri %d+ %a+)', '*%1*')
+                output = output:gsub('(Sat %d+ %a+)', '*%1*')
+                -- hide top current weather report
+                local output_without_top = vim.list_slice(vim.split(output, '\n'), 6)
+                table.insert(output_without_top, '... \\<today\'s focus\\> ...')
+                table.insert(output_without_top, '')
+                table.insert(output_without_top, '... \\<dinner plans\\> ...')
+                table.insert(output_without_top, '')
+                table.insert(output_without_top, '* Work')
+                table.insert(output_without_top, '- ')
+                table.insert(output_without_top, '')
+                table.insert(output_without_top, '* Etc')
+                table.insert(output_without_top, '- ')
+                vim.api.nvim_buf_set_lines(0, 0, -1, false, output_without_top)
+            end
+        end
     end
 })
 
