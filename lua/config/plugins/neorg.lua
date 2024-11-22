@@ -77,6 +77,44 @@ local function buffer_is_empty()
   return #lines == 0 or (#lines == 1 and lines[1] == "")
 end
 
+local function parse_weather_day(filename)
+    -- filter the weather for today's and tomorrow's dates only
+    local today = tostring(os.date('%Y/%m/%d'))
+    local timestamp = os.date('*t')
+    local raw_tomorrow = os.time({
+        year = timestamp.year,
+        month = timestamp.month,
+        day = timestamp.day + 1
+    })
+    local tomorrow = tostring(os.date('%Y/%m/%d', raw_tomorrow))
+
+    if string.find(filename, today) then
+        return 'today'
+    elseif string.find(filename, tomorrow) then
+        return 'tomorrow'
+    else
+        return ''
+    end
+end
+
+local function substitute_weather_output(output)
+    -- substitute neorg special chars
+    output = output:gsub('\\', '\\\\')
+    output = output:gsub('`', '\\`')
+    output = output:gsub('-', '\\-')
+
+    -- bold the date. due to lua regex quirks, can't combine non-capturing groups with
+    -- options so specify individually
+    output = output:gsub('(Sun %d+ %a+)', '*%1*')
+    output = output:gsub('(Mon %d+ %a+)', '*%1*')
+    output = output:gsub('(Tue %d+ %a+)', '*%1*')
+    output = output:gsub('(Wed %d+ %a+)', '*%1*')
+    output = output:gsub('(Thu %d+ %a+)', '*%1*')
+    output = output:gsub('(Fri %d+ %a+)', '*%1*')
+    output = output:gsub('(Sat %d+ %a+)', '*%1*')
+    return output
+end
+
 vim.api.nvim_create_autocmd('FileType', {
     pattern = 'norg',
     callback = function()
@@ -104,41 +142,51 @@ vim.api.nvim_create_autocmd('FileType', {
         -- TODO: doesn't work?
         -- vim.keymap.set('n', '<LocalLeader>z', ':Neorg keybind all core.looking-glass.magnify-code-block<cr>', { desc = '[<space>] [Z]oom code block to own buffer', buffer = true })
 
+        -- TODO: this should add the weather for the day of the journal (or just today?)
         -- journal bindings - if the filename includes neorg/journal then do the steps
-        if string.find(vim.fn.expand('%'), 'neorg/journal') then
+        local filename = vim.fn.expand('%')
+        if string.find(filename, 'neorg/journal') then
+            -- only add template if the file is empty
             if buffer_is_empty() then
-                local output = vim.fn.system('curl -s "https://wttr.in/arden+nc?1nAQFdT"')
-                -- substitute neorg special chars
-                output = output:gsub('\\', '\\\\')
-                output = output:gsub('`', '\\`')
-                output = output:gsub('-', '\\-')
-                -- bold the date. due to lua regex quirks, can't combine non-capturing groups with
-                -- options so specify individually
-                output = output:gsub('(Sun %d+ %a+)', '*%1*')
-                output = output:gsub('(Mon %d+ %a+)', '*%1*')
-                output = output:gsub('(Tue %d+ %a+)', '*%1*')
-                output = output:gsub('(Wed %d+ %a+)', '*%1*')
-                output = output:gsub('(Thu %d+ %a+)', '*%1*')
-                output = output:gsub('(Fri %d+ %a+)', '*%1*')
-                output = output:gsub('(Sat %d+ %a+)', '*%1*')
-                -- hide top current weather report
-                local output_without_top = vim.list_slice(vim.split(output, '\n'), 6)
-                table.insert(output_without_top, '... \\<today\'s focus\\> ...')
-                table.insert(output_without_top, '')
-                table.insert(output_without_top, '... \\<dinner plans\\> ...')
-                table.insert(output_without_top, '')
-                table.insert(output_without_top, '* Work')
-                table.insert(output_without_top, '- ')
-                table.insert(output_without_top, '')
-                table.insert(output_without_top, '* Etc')
-                table.insert(output_without_top, '- ')
-                vim.api.nvim_buf_set_lines(0, 0, -1, false, output_without_top)
+                local day = parse_weather_day(filename)
+                if day == 'today' or day == 'tomorrow' then
+                    print('need to check weather')
+                    local url, lines_to_skip
+                    -- pull weather text with minimal options
+                    if day == 'today' then
+                        url = '"https://wttr.in/arden+nc?1nAQFdT"'
+                        lines_to_skip = 6
+                    else
+                        url = '"https://wttr.in/arden+nc?2nAQFdT"'
+                        lines_to_skip = 16
+                    end
+
+                    local output = vim.fn.system('curl -s ' .. url)
+                    output = substitute_weather_output(output)
+
+                    -- hide top current weather report
+                    local output_lines = vim.list_slice(vim.split(output, '\n'), lines_to_skip)
+
+                    -- add default template
+                    table.insert(output_lines, '... \\<today\'s focus\\> ...')
+                    table.insert(output_lines, '')
+                    table.insert(output_lines, '')
+                    table.insert(output_lines, '... \\<dinner plans\\> ...')
+                    table.insert(output_lines, '')
+                    table.insert(output_lines, '')
+                    table.insert(output_lines, '* Work')
+                    table.insert(output_lines, '- ')
+                    table.insert(output_lines, '')
+                    table.insert(output_lines, '')
+                    table.insert(output_lines, '* Etc')
+                    table.insert(output_lines, '- ')
+                    table.insert(output_lines, '')
+                    vim.api.nvim_buf_set_lines(0, 0, -1, false, output_lines)
+                end
             end
         end
     end
 })
-
--- TODO: add mapping to generate index
 
 vim.wo.foldlevel = 99 -- overriding value of 7
 --vim.wo.conceallevel = 2 -- set in settings.lua
