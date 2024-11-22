@@ -150,7 +150,6 @@ vim.api.nvim_create_autocmd('FileType', {
             if buffer_is_empty() then
                 local day = parse_weather_day(filename)
                 if day == 'today' or day == 'tomorrow' then
-                    print('need to check weather')
                     local url, lines_to_skip
                     -- pull weather text with minimal options
                     if day == 'today' then

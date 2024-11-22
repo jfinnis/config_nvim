@@ -1,5 +1,3 @@
-print('loading json ftplugin')
-
 -- add comma when hitting o for new line
 vim.keymap.set('n', 'o', function()
     print('o pressed')
