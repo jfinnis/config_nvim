@@ -18,6 +18,7 @@ function ToggleColorScheme()
 end
 ToggleColorScheme()
 vim.keymap.set('n', '<leader>C', ToggleColorScheme, {desc = '[;cc] Toggle light/dark colorscheme'})
+vim.api.nvim_set_hl(0, 'WinSeparator', { fg = 'antiquewhite' })
 vim.cmd[[highlight Comment gui=italic]]
 
 
