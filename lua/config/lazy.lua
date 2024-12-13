@@ -106,13 +106,6 @@ require("lazy").setup({
             opts = {},
         },
 
-        -- lsp-signature - show function signatures while editing
-        {
-            'ray-x/lsp_signature.nvim',
-            event = 'VeryLazy',
-            config = function() require('config.plugins.lsp-signature') end
-        },
-
         -- lsp-zero - good setup for lsp
         {
             'VonHeikemen/lsp-zero.nvim',
