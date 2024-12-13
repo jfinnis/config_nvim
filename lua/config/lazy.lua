@@ -23,12 +23,6 @@ require("lazy").setup({
         -- Load plugin directory - each file installs itself
         { import = 'config.plugins2' },
 
-        -- autosave
-        {
-            'pocco81/auto-save.nvim',
-            config = function() require('config.plugins.autosave') end
-        },
-
         -- buffer close commands
         {
             'ojroques/nvim-bufdel',
