@@ -264,13 +264,6 @@ require("lazy").setup({
             config = function() require('config.plugins.telescope-docker') end
         },
 
-        -- telescope - file browser
-        {
-            'nvim-telescope/telescope-file-browser.nvim',
-            dependencies = {'nvim-telescope/telescope.nvim', 'nvim-lua/plenary.nvim'},
-            config = function() require('config.plugins.telescope-file-browser') end
-        },
-
         -- telescope - neoclip yank history
         {
             'AckslD/nvim-neoclip.lua',
