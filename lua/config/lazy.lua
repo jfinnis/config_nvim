@@ -238,14 +238,6 @@ require("lazy").setup({
         -- tagalong - match open/ending html tags when changing with 'c'
         { 'AndrewRadev/tagalong.vim' },
 
-        -- telescope - fuzzy finder
-        {
-            'nvim-telescope/telescope.nvim',
-            tag = '0.1.8',
-            dependencies = { {'nvim-lua/plenary.nvim'} },
-            config = function() require('config.plugins.telescope') end
-        },
-
         -- telescope - faster search
         {
             'nvim-telescope/telescope-fzf-native.nvim',
