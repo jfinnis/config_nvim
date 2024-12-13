@@ -25,6 +25,10 @@ vim.cmd[[highlight Comment gui=italic]]
 -----------------------
 --   misc functions  --
 -----------------------
+-- run current lua line (useful for editing nvim config)
+vim.keymap.set('n', '<leader>x', ':.lua<cr>', { desc = '[;] E[x]ecute current line (lua)' })
+vim.keymap.set('v', '<leader>x', ':lua<cr>', { desc = '[;] E[x]ecute current line (lua)' })
+
 -- fold all folds recursively
 vim.keymap.set('n', 'zn', 'zR')
 
