@@ -27,6 +27,9 @@ return {
         }
 
         require('telescope').setup{
+            extensions = {
+                fzf = {}
+            },
             defaults = {
                 prompt_prefix = ' 🔎 ',
                 selection_caret = ' → ',
@@ -48,12 +51,7 @@ return {
         local themes = require('telescope.themes')
 
         -- ;a - search
-        vim.keymap.set('n', '<leader>a', function()
-            telescope.live_grep({
-                prompt_title = 'Search All Files',
-                disable_coordinates = true,
-            })
-        end, {desc='[;] Search [A]ll Files For String'})
+        require('config.telescope.multigrep').setup()
         -- ;A - search under cursor
         vim.keymap.set('n', '<leader>A', function()
             telescope.grep_string({
@@ -67,12 +65,18 @@ return {
                 hidden = true
             })
         end, {desc='[;n] Search Files'})
-        -- ;n - file finder - just notes
+        -- ;JF - file finder - just notes
         vim.keymap.set('n', '<leader>JF', function()
             telescope.find_files({
                 cwd = vim.fn.expand('~/Documents/neorg')
             })
         end, {desc='[;JF] Search Neorg Notes'})
+        -- ;fp - file finder - nvim plugins
+        vim.keymap.set('n', '<leader>fp', function()
+            telescope.find_files({
+                cwd = vim.fs.joinpath(vim.fn.stdpath('data'), 'lazy')
+            })
+        end, {desc='[;] [F]ind inside [P]lugins Directory'})
         -- ;fs - fuzzy find cur buffer
         vim.keymap.set('n', '<leader>fs', function()
             telescope.current_buffer_fuzzy_find(themes.get_dropdown {
