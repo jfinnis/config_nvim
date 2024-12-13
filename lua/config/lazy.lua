@@ -242,12 +242,6 @@ require("lazy").setup({
         -- surround - control surrounding quotes, brackets, html tags, etc
         { 'tpope/vim-surround' },
 
-        -- switch - toggle common cyclical words (true -> false -> true)
-        {
-            'AndrewRadev/switch.vim',
-            config = function() require('config.plugins.switch') end
-        },
-
         -- tagalong - match open/ending html tags when changing with 'c'
         { 'AndrewRadev/tagalong.vim' },
 

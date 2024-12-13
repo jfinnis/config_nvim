@@ -1,3 +1,7 @@
+--
+-- oil - file explorer
+--
+
 -- for toggling file detail view
 local detail = false
 
@@ -74,6 +78,6 @@ return {
             },
         })
 
-        vim.keymap.set('n', '<leader>-', ':Oil<cr>', { desc = '[;-] Open parent directory' })
+        vim.keymap.set('n', '-', ':Oil<cr>', { desc = '[-] Open parent directory' })
     end,
 }
