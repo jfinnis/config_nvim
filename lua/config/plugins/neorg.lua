@@ -118,6 +118,9 @@ end
 vim.api.nvim_create_autocmd('FileType', {
     pattern = 'norg',
     callback = function()
+        -- don't expand concealed links unless you're in insert mode
+        vim.opt.concealcursor = 'nc'
+
         -- basic navigation
         vim.keymap.set('n', '<LocalLeader>nr', ':Neorg return<cr>',
             { desc = '[<space>] [N]eorg: [R]eturn', buffer = true })
@@ -169,15 +172,13 @@ vim.api.nvim_create_autocmd('FileType', {
                     -- add default template
                     table.insert(output_lines, '... \\<today\'s focus\\> ...')
                     table.insert(output_lines, '')
-                    table.insert(output_lines, '')
                     table.insert(output_lines, '... \\<dinner plans\\> ...')
                     table.insert(output_lines, '')
-                    table.insert(output_lines, '')
-                    table.insert(output_lines, '* Work')
+                    table.insert(output_lines, '* Todo')
                     table.insert(output_lines, '- ')
                     table.insert(output_lines, '')
                     table.insert(output_lines, '')
-                    table.insert(output_lines, '* Etc')
+                    table.insert(output_lines, '* Done')
                     table.insert(output_lines, '- ')
                     table.insert(output_lines, '')
                     vim.api.nvim_buf_set_lines(0, 0, -1, false, output_lines)

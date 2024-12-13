@@ -20,6 +20,9 @@ vim.g.maplocalleader = ' '
 -- Setup lazy.nvim
 require("lazy").setup({
     spec = {
+        -- Load plugin directory - each file installs itself
+        { import = 'config.plugins2' },
+
         -- autosave
         {
             'pocco81/auto-save.nvim',
@@ -354,5 +357,5 @@ require("lazy").setup({
     -- colorscheme that will be used when installing plugins.
     install = { colorscheme = { "habamax" } },
     -- automatically check for plugin updates
-    checker = { enabled = true },
+    checker = { enabled = false },
 })
