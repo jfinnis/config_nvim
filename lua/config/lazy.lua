@@ -179,13 +179,6 @@ require("lazy").setup({
             config = function() require('config.plugins.lualine') end
         },
 
-        -- marks - show marks in sign column
-        {
-            'chentoast/marks.nvim',
-            event = 'VeryLazy',
-            config = function() require('config.plugins.marks') end
-        },
-
         -- matchup - advanced matching pairs with %
         { 'andymass/vim-matchup' },
 
