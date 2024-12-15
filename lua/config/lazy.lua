@@ -213,33 +213,6 @@ require("lazy").setup({
         -- schemastore - catalog of json schemas to check against
         { 'b0o/schemastore.nvim' },
 
-        -- telescope - faster search
-        {
-            'nvim-telescope/telescope-fzf-native.nvim',
-            build = 'make'
-        },
-
-        -- telescope - alternate file mappings
-        {
-            'otavioschwanck/telescope-alternate',
-            config = function() require('config.plugins.telescope-alternate') end
-        },
-
-        -- telescope - docker integration
-        {
-            'lpoto/telescope-docker.nvim',
-            config = function() require('config.plugins.telescope-docker') end
-        },
-
-        -- telescope - neoclip yank history
-        {
-            'AckslD/nvim-neoclip.lua',
-            dependencies = {
-                {'nvim-telescope/telescope.nvim'}
-            },
-            config = function() require('config.plugins.telescope-neoclip') end
-        },
-
         -- web-icons
         {
             'nvim-tree/nvim-web-devicons'
