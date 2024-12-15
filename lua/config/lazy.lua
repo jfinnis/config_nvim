@@ -210,20 +210,8 @@ require("lazy").setup({
             config = function() require('config.plugins.regexplainer') end
         },
 
-        -- repeat - extend '.' repetition to plugins like surround
-        { 'tpope/vim-repeat' },
-
         -- schemastore - catalog of json schemas to check against
         { 'b0o/schemastore.nvim' },
-
-        -- sleuth - detect shift/tabwidth based upon the current file
-        { 'tpope/vim-sleuth' },
-
-        -- surround - control surrounding quotes, brackets, html tags, etc
-        { 'tpope/vim-surround' },
-
-        -- tagalong - match open/ending html tags when changing with 'c'
-        { 'AndrewRadev/tagalong.vim' },
 
         -- telescope - faster search
         {
@@ -301,10 +289,6 @@ require("lazy").setup({
             config = function() require('config.plugins.undotree') end
         },
 
-        -- unimpaired - navigation functions for the ] and [ keys
-        -- forked repo to override some mappings
-        { 'jfinnis/vim-unimpaired' },
-
         -- zen mode - focus on current buffer only
         {
             'folke/zen-mode.nvim',
@@ -317,4 +301,10 @@ require("lazy").setup({
     install = { colorscheme = { "habamax" } },
     -- automatically check for plugin updates
     checker = { enabled = false },
+})
+
+require('lazy').setup('plugins', {
+    change_detection = {
+        notify = false,
+    },
 })
