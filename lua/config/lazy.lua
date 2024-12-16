@@ -176,15 +176,6 @@ require("lazy").setup({
             config = function() require('config.plugins.operator-replace') end
         },
 
-        -- neorg - orgmode for neovim
-        {
-            'nvim-neorg/neorg',
-            lazy = false,
-            dependencies = { 'nvim-treesitter' },
-            version = "*",
-            config = function() require('config.plugins.neorg') end
-        },
-
         -- pretty_hover - clean up lsp dialogs
         {
             'Fildo7525/pretty_hover',
