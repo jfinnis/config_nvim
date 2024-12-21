@@ -216,24 +216,6 @@ require("lazy").setup({
             config = function() require('config.plugins.todo-comments') end
         },
 
-        -- treesitter - syntax parser
-        {
-            'nvim-treesitter/nvim-treesitter',
-            build = ':TSUpdate',
-            config = function() require('config.plugins.treesitter') end
-        },
-        -- treesitter - always show function context as top line
-        {
-            'nvim-treesitter/nvim-treesitter-context',
-            config = function() require('config.plugins.treesitter-context') end
-        },
-        -- treesitter - text objects
-        {
-            'nvim-treesitter/nvim-treesitter-textobjects',
-            dependencies = 'nvim-treesitter/nvim-treesitter',
-            config = function() require('config.plugins.treesitter-textobjects') end
-        },
-
         -- trouble - pretty quickfix/notices/diagnostics
         {
             'folke/trouble.nvim',
