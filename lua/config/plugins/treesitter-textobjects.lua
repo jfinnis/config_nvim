@@ -66,13 +66,13 @@ require'nvim-treesitter.configs'.setup {
         swap = {
             enable = true,
             swap_next = {
-                ['>a'] = '@parameter.inner',
+                -- ['>a'] = '@parameter.inner', -- using iswap.nvim to allow more general swaps
                 ['>f'] = '@function.outer',
                 ['>m'] = '@class.outer',
                 ['>n'] = '@number.inner'
             },
             swap_previous = {
-                ['<a'] = '@parameter.inner',
+                -- ['<a'] = '@parameter.inner',
                 ['<f'] = '@function.outer',
                 ['<m'] = '@class.outer',
                 ['<n'] = '@number.inner'
