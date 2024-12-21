@@ -66,12 +66,12 @@ return {
                     hidden = true
                 })
             end, {desc='[;n] Search Files'})
-            -- ;JF - file finder - just notes
-            vim.keymap.set('n', '<leader>JF', function()
+            -- <space>f - file finder - just notes
+            vim.keymap.set('n', '<space>f', function()
                 telescope.find_files({
                     cwd = vim.fn.expand('~/Documents/neorg')
                 })
-            end, {desc='[;JF] Search Neorg Notes'})
+            end, {desc='[<space>] [F]ind Neorg Notes'})
             -- ;fp - file finder - nvim plugins
             vim.keymap.set('n', '<leader>fp', function()
                 telescope.find_files({

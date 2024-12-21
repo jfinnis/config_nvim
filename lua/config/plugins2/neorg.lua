@@ -50,11 +50,12 @@ return {
     {
         'nvim-neorg/neorg',
         lazy = false,
-        dependencies = { 'nvim-treesitter' },
+        dependencies = { 'nvim-treesitter', 'nvim-lua/plenary.nvim', 'nvim-neorg/neorg-telescope' },
         version = "*",
         config = function()
             require("neorg").setup {
                 load = {
+                    ['core.integrations.telescope'] = {}, -- sets up telescope
                     ['core.defaults'] = {}, -- loads default behavior
                     ['core.concealer'] = {  -- adds pretty icons to documents
                         config = {
@@ -128,8 +129,16 @@ return {
                         { desc = '[<space>] [N]eorg: [R]eturn', buffer = true })
                     vim.keymap.set('n', '<LocalLeader>c', ':Neorg toc<cr>',
                         { desc = '[<space>] Neorg: Table of [C]ontents', buffer = true })
+                    -- <space>f - telescope finder for neorg notes
+                    -- located in telescope file
+                    -- <space>i - neorg insert link
+                    vim.keymap.set('n', '<LocalLeader>i', ':Telescope neorg insert_link<cr>',
+                        { desc = '[<space>] Neorg: [I]nsert Link', buffer = true })
+                    -- <space>/ - neorg search backlinks (references)
+                    vim.keymap.set('n', '<LocalLeader>/', ':Telescope neorg find_backlinks<cr>',
+                        { desc = '[<space>/] Neorg: Search Backlinks', buffer = true })
 
-                    -- inject metadata
+                    -- <space>m - inject metadata
                     vim.keymap.set('n', '<LocalLeader>m', ':Neorg inject-metadata<cr>',
                         { desc = '[<space>] Add Neorg [M]etadata', buffer = true })
 
