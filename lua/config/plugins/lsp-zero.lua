@@ -47,7 +47,7 @@ lspconfig.jsonls.setup{
     settings = {
         json = {
             schemas = require('schemastore').json.schemas(),
-            validate = {enable = true}
+            validate = { enable = true }
         }
     }
 }
@@ -74,35 +74,6 @@ lspconfig.yamlls.setup{
 -- typescript
 --
 lspconfig.ts_ls.setup{
-}
-
-
---
--- emmet
---
-local capabilities = vim.lsp.protocol.make_client_capabilities()
-capabilities.textDocument.completion.completionItem.snippetSupport = true
-
-lspconfig.emmet_ls.setup{
-    -- on_attach = on_attach,
-    capabilities = capabilities,
-    filetypes = {'css', 'scss', 'html', 'javascript', 'javascriptreact', 'scss', 'typescriptreact'},
-    init_options = {
-        html = {
-            options = {
-                -- For possible options, see: https://github.com/emmetio/emmet/blob/master/src/config.ts#L79-L267
-                ['output.selfClosingStyle'] = 'xhtml',
-                ['bem.enabled'] = true,
-            },
-        },
-        jsx = {
-            options = {
-                -- For possible options, see: https://github.com/emmetio/emmet/blob/master/src/config.ts#L79-L267
-                ['output.selfClosingStyle'] = 'xhtml',
-                ['bem.enabled'] = true,
-            },
-        },
-    }
 }
 
 lsp.setup()
