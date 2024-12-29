@@ -100,11 +100,13 @@ require("lazy").setup({
     -- Configure any other settings here. See the documentation for more details.
     -- colorscheme that will be used when installing plugins.
     install = { colorscheme = { "habamax" } },
-    -- automatically check for plugin updates
-    checker = { enabled = false },
+    -- check plugin updates but don't notify
+    checker = { enabled = true, notify = false },
+    -- don't reload config on changes
+    change_detection = { enabled = false, notify = false },
 }, {
     rocks = {
-        hererocks = true,  -- recommended if you do not have global installation of Lua 5.1.
+        hererocks = true,
     },
 })
 
