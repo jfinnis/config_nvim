@@ -10,6 +10,7 @@
   "helpview.nvim": { "branch": "main", "commit": "857aec1dab331252910da158ab6cbfbc65239c71" },
   "hop.nvim": { "branch": "master", "commit": "08ddca799089ab96a6d1763db0b8adc5320bf050" },
   "image.nvim": { "branch": "master", "commit": "b991fc7f845bc6ab40c6ec00b39750dcd5190010" },
+  "img-clip.nvim": { "branch": "main", "commit": "5ff183655ad98b5fc50c55c66540375bbd62438c" },
   "indent-blankline.nvim": { "branch": "master", "commit": "259357fa4097e232730341fa60988087d189193a" },
   "iswap.nvim": { "branch": "master", "commit": "e02cc91f2a8feb5c5a595767d208c54b6e3258ec" },
   "lazy.nvim": { "branch": "main", "commit": "7e6c863bc7563efbdd757a310d17ebc95166cef3" },
