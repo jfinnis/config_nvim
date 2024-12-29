@@ -102,6 +102,10 @@ require("lazy").setup({
     install = { colorscheme = { "habamax" } },
     -- automatically check for plugin updates
     checker = { enabled = false },
+}, {
+    rocks = {
+        hererocks = true,  -- recommended if you do not have global installation of Lua 5.1.
+    },
 })
 
 require('lazy').setup('plugins', {

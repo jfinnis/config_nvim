@@ -50,7 +50,13 @@ return {
     {
         'nvim-neorg/neorg',
         lazy = false,
-        dependencies = { 'nvim-treesitter', 'nvim-lua/plenary.nvim', 'nvim-neorg/neorg-telescope' },
+        dependencies = {
+            'nvim-treesitter',
+            'nvim-lua/plenary.nvim',
+            'nvim-neorg/neorg-telescope',
+            'nvim-neorg/tree-sitter-norg',
+            'nvim-neorg/lua-utils.nvim',
+        },
         version = "*",
         config = function()
             require("neorg").setup {

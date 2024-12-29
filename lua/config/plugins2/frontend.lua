@@ -1,5 +1,17 @@
 return {
     {
+        -- convert css units
+        'cjodo/convert.nvim',
+        dependencies = {
+            'MunifTanjim/nui.nvim'
+        },
+        keys = {
+            { "<leader>cc", "<cmd>ConvertFindCurrent<CR>", desc = "Find convertable unit in current line" },
+            { "<leader>cC", "<cmd>ConvertAll<CR>", desc = "Convert all of a specified unit" },
+        },
+    },
+
+    {
         -- live-server
         'barrett-ruth/live-server.nvim',
         config = function()
