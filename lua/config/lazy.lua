@@ -22,13 +22,6 @@ require("lazy").setup({
     spec = {
         -- Load plugin directory - each file installs itself
         { import = 'config.plugins2' },
-
-        -- codeium - free ai assistant
-        {
-            'Exafunction/codeium.vim',
-            event = 'BufEnter',
-            config = function() require('config.plugins.codeium') end
-        },
     },
 
     -- Configure any other settings here. See the documentation for more details.
