@@ -32,9 +32,6 @@ require("lazy").setup({
 
         -- mason
 
-        -- fidget - eye candy for nvim-lsp language progress
-        { 'j-hui/fidget.nvim' },
-
         {
             'williamboman/mason.nvim',
             lazy = false,
