@@ -30,16 +30,11 @@ require("lazy").setup({
             config = function() require('config.plugins.codeium') end
         },
 
+        -- mason
+
         -- fidget - eye candy for nvim-lsp language progress
         { 'j-hui/fidget.nvim' },
 
-        -- lsp-zero - good setup for lsp
-        -- {
-        --     'VonHeikemen/lsp-zero.nvim',
-        --     branch = 'v4.x',
-        --     lazy = true,
-        --     config = function() require('config.plugins.lsp-zero') end
-        -- },
         {
             'williamboman/mason.nvim',
             lazy = false,

@@ -2,6 +2,20 @@
 -- all LSP configuration
 --
 
+local nmap = function(keys, func, event, desc)
+    if desc then
+        desc = 'LSP: ' .. desc
+    end
+    vim.keymap.set('n', keys, func, { buffer = event.buf, desc = desc })
+end
+
+-- lsp.set_sign_icons({
+--     error = '✘',
+--     warn = '▲',
+--     hint = '⚑',
+--     info = '»'
+-- })
+
 return {
     {
         'neovim/nvim-lspconfig',
@@ -20,28 +34,87 @@ return {
             },
         },
         config = function()
-            local capabilities = require('blink.cmp').get_lsp_capabilities()
-            require('lspconfig').lua_ls.setup { capabilities = capabilities }
-
-            -- vim.keymap.set('n', 'g/', vim.lsp.buf.references) -- default grr
-            ---- use trouble version instead
-            vim.keymap.set('n', 'gd', vim.diagnostic.open_float,
-                { desc = '[G]oto Current Line [D]iagnostics' }) -- default <C-W>d
-            vim.keymap.set('n', '<tab><space>', ':lua vim.lsp.buf.format()<cr>',
-                { desc = '[<tab><space>] Format the entire file' })
-            vim.keymap.set('i', '<tab><space>', vim.lsp.buf.signature_help,
-                { desc = '[i_<tab><space>] Show function signature' }) -- default <C-S>
-
-            -- TODO: remove when updated and these become defaults
-            -- these mappings are defaults in the nightly version of Neovim
-            vim.keymap.set('n', 'grn', vim.lsp.buf.rename)
-            vim.keymap.set('n', 'gra', vim.lsp.buf.code_action)
-            vim.keymap.set('n', 'gri', vim.lsp.buf.implementation)
-            vim.keymap.set('n', 'gO', vim.lsp.buf.document_symbol)
-        end,
-        init = function()
             -- Reserve a space in the gutter to avoid an annoying layout shift in the screen.
             vim.opt.signcolumn = 'yes'
+
+            -- configure the language servers
+            local capabilities = require('blink.cmp').get_lsp_capabilities()
+
+            -- lua
+            local lspconfig = require('lspconfig')
+            lspconfig.lua_ls.setup { capabilities = capabilities }
+
+            -- typescript
+            lspconfig.ts_ls.setup {
+            }
+
+            -- gleam
+            lspconfig.gleam.setup {}
+
+            -- json
+            lspconfig.jsonls.setup {
+                settings = {
+                    json = {
+                        schemas = require('schemastore').json.schemas(),
+                        validate = { enable = true }
+                    }
+                }
+            }
+
+            -- yaml
+            lspconfig.yamlls.setup {
+                settings = {
+                    yaml = {
+                        schemaStore = {
+                            -- You must disable built-in schemaStore support if you want to use
+                            -- this plugin and its advanced options like `ignore`.
+                            enable = false,
+                            -- Avoid TypeError: Cannot read properties of undefined (reading 'length')
+                            url = "",
+                        },
+                        schemas = require('schemastore').yaml.schemas()
+                    }
+                }
+            }
+
+            -- create LSP mappings
+            vim.api.nvim_create_autocmd('LspAttach', {
+                desc = 'LSP Actions',
+                callback = function(event)
+                    local telescope = require('telescope.builtin')
+                    nmap('gK', function()
+                        telescope.lsp_definitions({ show_line = true })
+                    end, event, '[G]oto [K] definition')
+                    nmap('<leader>fd', function()
+                        telescope.diagnostics(require('telescope.themes').get_ivy{})
+                    end, event, '[;f] Show [D]iagnostics')
+                    nmap('gy', function()
+                        telescope.lsp_document_symbols({
+                            prompt_title = 'LSP Symbols (C-l to filter)',
+                            show_line = true
+                        })
+                    end, event, '[G]oto LSP S[y]mbols') -- default gO
+
+                    -- vim.keymap.set('n', 'g/', vim.lsp.buf.references) -- default grr
+                    ---- use trouble version instead
+                    nmap('gd', vim.diagnostic.open_float, event,
+                        '[G]oto Current Line [D]iagnostics') -- default <C-W>d
+                    nmap('gt', require('telescope.builtin').lsp_type_definitions,
+                        event, '[G]oto [T]ype of Element')
+                    nmap('<tab><space>', ':lua vim.lsp.buf.format({ async = true })<cr>',
+                        event, '[<tab><space>] Format the entire file')
+                    vim.keymap.set('i', '<tab><space>', vim.lsp.buf.signature_help,
+                        { buffer = event.buf, desc = '[i_<tab><space>] Show function signature' }) -- default <C-S>
+
+                    -- TODO: remove when updated and these become defaults (current in nightly)
+                    nmap('grn', vim.lsp.buf.rename,
+                        { buffer = event.buf, desc = '[g] [R]e[n]ame' })
+                    nmap('gra', vim.lsp.buf.code_action,
+                        { buffer = event.buf, desc = '[gr] Code [a]ction' })
+                    nmap('gi', vim.lsp.buf.implementation,
+                        { buffer = event.buf, desc = '[G]oto [I]mplementation' }) -- default gri
+                end
+            })
         end,
     },
 }
