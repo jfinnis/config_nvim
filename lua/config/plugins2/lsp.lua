@@ -9,12 +9,27 @@ local nmap = function(keys, func, event, desc)
     vim.keymap.set('n', keys, func, { buffer = event.buf, desc = desc })
 end
 
--- lsp.set_sign_icons({
---     error = '✘',
---     warn = '▲',
---     hint = '⚑',
---     info = '»'
--- })
+-- replicate LSP signs from lsp-zero plugin
+local set_sign_icons = function(opts)
+    local ds = vim.diagnostic.severity
+    local levels = {
+        [ds.ERROR] = 'error',
+        [ds.WARN] = 'warn',
+        [ds.INFO] = 'info',
+        [ds.HINT] = 'hint'
+    }
+
+    local text = {}
+    for i, l in pairs(levels) do
+        if type(opts[l]) == 'string' then
+            text[i] = opts[l]
+        end
+    end
+
+    vim.diagnostic.config({signs = { text = text }})
+    return
+end
+set_sign_icons { error = '✘', warn = '▲', hint = '⚑', info = '»' }
 
 return {
     {
