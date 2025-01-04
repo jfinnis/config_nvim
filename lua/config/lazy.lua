@@ -34,12 +34,12 @@ require("lazy").setup({
         { 'j-hui/fidget.nvim' },
 
         -- lsp-zero - good setup for lsp
-        {
-            'VonHeikemen/lsp-zero.nvim',
-            branch = 'v4.x',
-            lazy = true,
-            config = function() require('config.plugins.lsp-zero') end
-        },
+        -- {
+        --     'VonHeikemen/lsp-zero.nvim',
+        --     branch = 'v4.x',
+        --     lazy = true,
+        --     config = function() require('config.plugins.lsp-zero') end
+        -- },
         {
             'williamboman/mason.nvim',
             lazy = false,
@@ -47,54 +47,36 @@ require("lazy").setup({
         },
 
         -- Autocompletion
-        {
-            'hrsh7th/nvim-cmp',
-            event = 'InsertEnter',
-            config = function()
-                local cmp = require('cmp')
-
-                cmp.setup({
-                    sources = {
-                        {name = 'nvim_lsp'},
-                    },
-                    mapping = cmp.mapping.preset.insert({
-                        ['<C-Space>'] = cmp.mapping.complete(),
-                        ['<C-u>'] = cmp.mapping.scroll_docs(-4),
-                        ['<C-d>'] = cmp.mapping.scroll_docs(4),
-                    }),
-                    snippet = {
-                        expand = function(args)
-                            vim.snippet.expand(args.body)
-                        end,
-                    },
-                })
-            end
-        },
-
-        -- LSP
-        {
-            'neovim/nvim-lspconfig',
-            cmd = {'LspInfo', 'LspInstall', 'LspStart'},
-            event = {'BufReadPre', 'BufNewFile'},
-            dependencies = {
-                {'hrsh7th/cmp-nvim-lsp'},
-                {'williamboman/mason.nvim'},
-                {'williamboman/mason-lspconfig.nvim'},
-            },
-            init = function()
-                -- Reserve a space in the gutter
-                -- This will avoid an annoying layout shift in the screen
-                vim.opt.signcolumn = 'yes'
-            end,
-            config = function() require('config.plugins.lspconfig') end
-        },
+        -- {
+        --     'hrsh7th/nvim-cmp',
+        --     event = 'InsertEnter',
+        --     config = function()
+        --         local cmp = require('cmp')
+        --
+        --         cmp.setup({
+        --             sources = {
+        --                 {name = 'nvim_lsp'},
+        --             },
+        --             mapping = cmp.mapping.preset.insert({
+        --                 ['<C-Space>'] = cmp.mapping.complete(),
+        --                 ['<C-u>'] = cmp.mapping.scroll_docs(-4),
+        --                 ['<C-d>'] = cmp.mapping.scroll_docs(4),
+        --             }),
+        --             snippet = {
+        --                 expand = function(args)
+        --                     vim.snippet.expand(args.body)
+        --                 end,
+        --             },
+        --         })
+        --     end
+        -- },
 
         -- pretty_hover - clean up lsp dialogs
-        {
-            'Fildo7525/pretty_hover',
-            event = 'LspAttach',
-            config = function() require('config.plugins.prettyhover') end
-        },
+        -- {
+        --     'Fildo7525/pretty_hover',
+        --     event = 'LspAttach',
+        --     config = function() require('config.plugins.prettyhover') end
+        -- },
     },
 
     -- Configure any other settings here. See the documentation for more details.

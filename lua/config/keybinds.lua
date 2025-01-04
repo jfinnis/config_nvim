@@ -42,9 +42,6 @@ vim.keymap.set('i', '', '<esc>yypv$r-o')
 -- remove all trailing whitespace
 vim.keymap.set('n', '<leader>W', ":%s/\\s\\+$//<cr>:let @/=''<cr>:echo 'Removed trailing whitespace'<cr>")
 
--- replace defaults to vreplace which replaces screen real estate instead of characters
-vim.keymap.set('n', 'gr', 'gR')
-
 -- split line at the current cursor position
 vim.keymap.set('n', 'S', 'i<cr><esc>')
 
@@ -53,7 +50,8 @@ vim.keymap.set({'n', 'v'}, '<leader>y', [["+y]])
 vim.keymap.set('n', '<leader>Y', [["+Y]])
 
 -- format file with biome formatter
-vim.keymap.set('n', '<tab><space>', ":silent !biome check --write '%'<cr>", { desc = '[<tab><space>] Format file with Biome', silent = true })
+-- vim.keymap.set('n', '<tab><space>', ":silent !biome check --write '%'<cr>", { desc = '[<tab><space>] Format file with Biome', silent = true })
+-- TODO: check this biome lsp
 
 -----------------------
 -- window management --
@@ -100,6 +98,9 @@ vim.keymap.set('n', ',', ':call RepeatResize()<cr>', { silent = true })
 -----------------------
 -- reuse tab for completions, hit twice for a real tab
 vim.keymap.set('i', '<tab><tab>', '<tab>')
+
+-- omnicomplete
+vim.keymap.set('i', '<tab>o', '<C-X><C-O>')
 
 -- complete whole lines
 vim.keymap.set('i', '<tab>l', '<C-X><C-L>')
