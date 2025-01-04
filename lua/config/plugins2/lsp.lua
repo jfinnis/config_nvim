@@ -1,5 +1,6 @@
 --
 -- all LSP configuration
+-- lspconfig + mason + pretty_hover
 --
 
 local nmap = function(keys, func, event, desc)
@@ -51,6 +52,9 @@ return {
         config = function()
             -- Reserve a space in the gutter to avoid an annoying layout shift in the screen.
             vim.opt.signcolumn = 'yes'
+
+            -- Set the key K so that Neovim doesn't override it and we can attach later
+            vim.keymap.set('n', 'K', '')
 
             -- configure the language servers
             local capabilities = require('blink.cmp').get_lsp_capabilities()
@@ -110,8 +114,15 @@ return {
                         })
                     end, event, '[G]oto LSP S[y]mbols') -- default gO
 
+                    -- pretty hover (with transparent window)
+                    vim.cmd[[ hi NormalFloat guifg=#e6eaea guibg=NONE ]]
+                    vim.keymap.set('n', 'K', ":lua require('pretty_hover').hover()<cr>",
+                        { desc ='[K] Show Info in Hover', silent = true })
+                    -- TODO: overrides default hover on K? not letting me
+
                     -- vim.keymap.set('n', 'g/', vim.lsp.buf.references) -- default grr
                     ---- use trouble version instead
+
                     nmap('gd', vim.diagnostic.open_float, event,
                         '[G]oto Current Line [D]iagnostics') -- default <C-W>d
                     nmap('gt', require('telescope.builtin').lsp_type_definitions,
@@ -131,5 +142,17 @@ return {
                 end
             })
         end,
+    },
+
+    {
+        'williamboman/mason.nvim',
+        lazy = false,
+        opts = {},
+    },
+
+    {
+        'Fildo7525/pretty_hover',
+        event = 'LspAttach',
+        opts = {},
     },
 }

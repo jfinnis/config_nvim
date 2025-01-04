@@ -29,21 +29,6 @@ require("lazy").setup({
             event = 'BufEnter',
             config = function() require('config.plugins.codeium') end
         },
-
-        -- mason
-
-        {
-            'williamboman/mason.nvim',
-            lazy = false,
-            opts = {},
-        },
-
-        -- pretty_hover - clean up lsp dialogs
-        -- {
-        --     'Fildo7525/pretty_hover',
-        --     event = 'LspAttach',
-        --     config = function() require('config.plugins.prettyhover') end
-        -- },
     },
 
     -- Configure any other settings here. See the documentation for more details.
