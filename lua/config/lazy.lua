@@ -21,7 +21,7 @@ vim.g.maplocalleader = ' '
 require("lazy").setup({
     spec = {
         -- Load plugin directory - each file installs itself
-        { import = 'config.plugins2' },
+        { import = 'config.plugins' },
     },
 
     -- Configure any other settings here. See the documentation for more details.
