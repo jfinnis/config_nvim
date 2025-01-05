@@ -28,7 +28,6 @@ local set_sign_icons = function(opts)
     end
 
     vim.diagnostic.config({signs = { text = text }})
-    return
 end
 set_sign_icons { error = '✘', warn = '▲', hint = '⚑', info = '»' }
 
@@ -64,8 +63,10 @@ return {
             lspconfig.lua_ls.setup { capabilities = capabilities }
 
             -- typescript
-            lspconfig.ts_ls.setup {
-            }
+            lspconfig.ts_ls.setup {}
+
+            -- biome.js linter/formatter
+            lspconfig.biome.setup {}
 
             -- gleam
             lspconfig.gleam.setup {}
@@ -118,19 +119,21 @@ return {
                     vim.cmd[[ hi NormalFloat guifg=#e6eaea guibg=NONE ]]
                     vim.keymap.set('n', 'K', ":lua require('pretty_hover').hover()<cr>",
                         { desc ='[K] Show Info in Hover', silent = true })
-                    -- TODO: overrides default hover on K? not letting me
 
+                    ---- use trouble references instead
                     -- vim.keymap.set('n', 'g/', vim.lsp.buf.references) -- default grr
-                    ---- use trouble version instead
 
-                    nmap('gd', vim.diagnostic.open_float, event,
-                        '[G]oto Current Line [D]iagnostics') -- default <C-W>d
+                    nmap('gd', function()
+                        vim.diagnostic.open_float({ border = 'rounded' })
+                    end, event, '[G]oto Current Line [D]iagnostics') -- default <C-W>d
                     nmap('gt', require('telescope.builtin').lsp_type_definitions,
                         event, '[G]oto [T]ype of Element')
-                    nmap('<tab><space>', ':lua vim.lsp.buf.format({ async = true })<cr>',
-                        event, '[<tab><space>] Format the entire file')
                     vim.keymap.set('i', '<tab><space>', vim.lsp.buf.signature_help,
                         { buffer = event.buf, desc = '[i_<tab><space>] Show function signature' }) -- default <C-S>
+
+                    -- set formatting command in ftplugin instead
+                    -- nmap('<tab><space>', ':lua vim.lsp.buf.format({ async = true })<cr>',
+                    --    event, '[<tab><space>] Format the entire file')
 
                     -- TODO: remove when updated and these become defaults (current in nightly)
                     nmap('grn', vim.lsp.buf.rename,
@@ -147,7 +150,11 @@ return {
     {
         'williamboman/mason.nvim',
         lazy = false,
-        opts = {},
+        opts = {
+            ui = {
+                border = 'rounded',
+            }
+        },
     },
 
     {
