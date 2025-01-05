@@ -1,11 +1,10 @@
 --
 -- LSP Completion
---
+-- blink + colorful-menu
 
 return {
     {
         'saghen/blink.cmp',
-        dependencies = 'rafamadriz/friendly-snippets',
         version = '*',
         opts = {
             keymap = {
@@ -92,6 +91,7 @@ return {
         },
         opts_extend = { 'sources.default' }
     },
+
     {
         'xzbdmw/colorful-menu.nvim',
         config = function()
@@ -104,5 +104,5 @@ return {
                 }
             })
         end,
-    }
+    },
 }

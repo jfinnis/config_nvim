@@ -1,0 +1,390 @@
+{
+    "Constructor": {
+        "prefix": "ctor",
+        "body": [
+            "/**",
+            " *",
+            " */",
+            "constructor() {",
+            "\tsuper()",
+            "\t$0",
+            "}"
+        ],
+        "description": "Constructor"
+    },
+    "Class Definition": {
+        "prefix": "class",
+        "body": [
+            "class ${1:name} {",
+            "\tconstructor(${2:parameters}) {",
+            "\t\t$0",
+            "\t}",
+            "}"
+        ],
+        "description": "Class Definition"
+    },
+    "Import external module.": {
+        "prefix": "import statement",
+        "body": ["import { $0 } from '${1:module}'"],
+        "description": "Import external module."
+    },
+    "Define a full property": {
+        "prefix": "prop",
+        "body": [
+            "",
+            "private _${1:value} : ${2:string}",
+            "public get ${1:value}() : ${2:string} {",
+            "\treturn this._${1:value}",
+            "}",
+            "public set ${1:value}(v : ${2:string}) {",
+            "\tthis._${1:value} = v",
+            "}",
+            ""
+        ],
+        "description": "Define a full property"
+    },
+    "Triple-slash reference": {
+        "prefix": "ref",
+        "body": ["/// <reference path=\"$1\" />", "$0"],
+        "description": "Triple-slash reference"
+    },
+    "For Loop": {
+        "prefix": "for",
+        "body": [
+            "for (let ${1:index} = 0; ${1:index} < ${2:array}.length; ${1:index}++) {",
+            "\tconst ${3:element} = ${2:array}[${1:index}]",
+            "\t$0",
+            "}"
+        ],
+        "description": "For Loop"
+    },
+    "For-Each Loop using =>": {
+        "prefix": "foreach =>",
+        "body": ["${1:array}.forEach(${2:element} => {", "\t$0", "})"],
+        "description": "For-Each Loop using =>"
+    },
+    "For-In Loop": {
+        "prefix": "forin",
+        "body": [
+            "for (const ${1:key} in ${2:object}) {",
+            "\tif (${2:object}.hasOwnProperty(${1:key})) {",
+            "\t\tconst ${3:element} = ${2:object}[${1:key}]",
+            "\t\t$0",
+            "\t}",
+            "}"
+        ],
+        "description": "For-In Loop"
+    },
+    "For-Of Loop": {
+        "prefix": "forof",
+        "body": ["for (const ${1:iterator} of ${2:object}) {", "\t$0", "}"],
+        "description": "For-Of Loop"
+    },
+    "For-Await-Of Loop": {
+        "prefix": "forawaitof",
+        "body": [
+            "for await (const ${1:iterator} of ${2:object}) {",
+            "\t$0",
+            "}"
+        ],
+        "description": "For-Await-Of Loop"
+    },
+    "Function Statement": {
+        "prefix": "function",
+        "body": ["function ${1:name}(${2:params}:${3:type}) {", "\t$0", "}"],
+        "description": "Function Statement"
+    },
+    "If Statement": {
+        "prefix": "if",
+        "body": ["if (${1:condition}) {", "\t$0", "}"],
+        "description": "If Statement"
+    },
+    "If-Else Statement": {
+        "prefix": "ifelse",
+        "body": ["if (${1:condition}) {", "\t$2", "} else {", "\t$0", "}"],
+        "description": "If-Else Statement"
+    },
+    "New Statement": {
+        "prefix": "new",
+        "body": ["const ${1:name} = new ${2:type}(${3:arguments})$0"],
+        "description": "New Statement"
+    },
+    "Switch Statement": {
+        "prefix": "switch",
+        "body": [
+            "switch (${1:key}) {",
+            "\tcase ${2:value}:",
+            "\t\t$0",
+            "\t\tbreak",
+            "",
+            "\tdefault:",
+            "\t\tbreak",
+            "}"
+        ],
+        "description": "Switch Statement"
+    },
+    "While Statement": {
+        "prefix": "while",
+        "body": ["while (${1:condition}) {", "\t$0", "}"],
+        "description": "While Statement"
+    },
+    "Do-While Statement": {
+        "prefix": "dowhile",
+        "body": ["do {", "\t$0", "} while (${1:condition})"],
+        "description": "Do-While Statement"
+    },
+    "Try-Catch Statement": {
+        "prefix": "trycatch",
+        "body": ["try {", "\t$0", "} catch (${1:error}) {", "\t", "}"],
+        "description": "Try-Catch Statement"
+    },
+    "Set Timeout Function": {
+        "prefix": "settimeout",
+        "body": ["setTimeout(() => {", "\t$0", "}, ${1:timeout})"],
+        "description": "Set Timeout Function"
+    },
+    "process.env": {
+        "prefix": "pe",
+        "body": "process.env"
+    },
+    "Promise.all": {
+        "prefix": "pa",
+        "body": "Promise.all(${1:value})"
+    },
+    "Promise.resolve": {
+        "prefix": "prs",
+        "body": "Promise.resolve(${1:value})"
+    },
+    "Promise.reject": {
+        "prefix": "prj",
+        "body": "Promise.reject(${1:value})"
+    },
+    "describe": {
+        "prefix": "desc",
+        "body": "describe('${1:description}', () => {\n\t${0}\n})"
+    },
+    "it asynchronous": {
+        "prefix": "it",
+        "body": "it('${1:description}', async () => {\n\t${0}\n})"
+    },
+    "it synchronous": {
+        "prefix": "its",
+        "body": "it('${1:description}', () => {\n\t${0}\n})"
+    },
+    "beforeAll": {
+        "prefix": "ba",
+        "body": "beforeAll(async () => {\n\t${0}\n})"
+    },
+    "beforeEach": {
+        "prefix": "bfe",
+        "body": "beforeEach(async () => {\n\t${0}\n})"
+    },
+    "after": {
+        "prefix": "aft",
+        "body": "after(() => {\n\t${0}\n})"
+    },
+    "afterEach": {
+        "prefix": "afe",
+        "body": "afterEach(() => {\n\t${0}\n})"
+    },
+    "dom event cancel default and propagation": {
+        "prefix": "evc",
+        "body": "ev.preventDefault()\nev.stopPropagation()\nreturn false"
+    },
+    "getElementById": {
+        "prefix": "gi",
+        "body": "${1:document}.getElementById('${2:id}')"
+    },
+    "getElementsByClassName": {
+        "prefix": "gc",
+        "body": "Array.from(${1:document}.getElementsByClassName('${2:class}'))"
+    },
+    "querySelector": {
+        "prefix": "qs",
+        "body": "${1:document}.querySelector('${2:selector}')"
+    },
+    "querySelectorAll": {
+        "prefix": "qsa",
+        "body": "Array.from(${1:document}.querySelectorAll('${2:selector}'))"
+    },
+    "filter": {
+        "prefix": "filter",
+        "body": "${1:iterable}.filter((${2:item}) => {\n\t${0}\n})"
+    },
+    "find": {
+        "prefix": "find",
+        "body": "${1:iterable}.find((${2:item}) => {\n\t${0}\n})"
+    },
+    "every": {
+        "prefix": "every",
+        "body": "${1:iterable}.every((${2:item}) => {\n\t${0}\n})"
+    },
+    "some": {
+        "prefix": "some",
+        "body": "${1:iterable}.some((${2:item}) => {\n\t${0}\n})"
+    },
+    "export named function": {
+        "prefix": "ef",
+        "body": "export function ${1:member} (${2:arguments}) {\n\t${0}\n}"
+    },
+    "module default export": {
+        "prefix": "ed",
+        "body": "export default ${1:member}"
+    },
+    "module default export function": {
+        "prefix": "edf",
+        "body": "export default function ${1:name} (${2:arguments}) {\n\t${0}\n}"
+    },
+    "try/catch": {
+        "prefix": "tc",
+        "body": "try {\n\t${0}\n} catch (${1:err}) {\n\t\n}"
+    },
+    "Log to the console": {
+        "prefix": "log",
+        "body": ["console.log($1)", "$0"],
+        "description": "Log to the console"
+    },
+    "Log warning to console": {
+        "prefix": "warn",
+        "body": ["console.warn($1)", "$0"],
+        "description": "Log warning to the console"
+    },
+    "Log error to console": {
+        "prefix": "error",
+        "body": ["console.error($1)", "$0"],
+        "description": "Log error to the console"
+    },
+    "console.dir": {
+        "prefix": "logd",
+        "body": "console.dir('${1}:', ${1})"
+    },
+    "console.log a variable": {
+        "prefix": "logv",
+        "body": "console.log('${1}:', ${1})"
+    },
+    "JSON.stringify()": {
+        "prefix": "js",
+        "body": "JSON.stringify($0)"
+    },
+    "JSON.parse()": {
+        "prefix": "jp",
+        "body": "JSON.parse($0)"
+    },
+    "Object.keys": {
+        "prefix": "ok",
+        "body": "Object.keys(${1:obj})"
+    },
+    "Object.values": {
+        "prefix": "ov",
+        "body": "Object.values(${1:obj})"
+    },
+    "Object.entries": {
+        "prefix": "oe",
+        "body": "Object.entries(${1:obj})"
+    },
+    "parseInt": {
+        "prefix": "pi",
+        "body": ["Number.parseInt($1);", "$0"],
+        "description": "The Number.parseInt() method parses a string argument and returns an integer of the specified radix or base."
+    },
+    "reactFunctionComponent": {
+        "prefix": "rfc",
+        "body": "import React from 'react'\n\nexport default function ${TM_FILENAME_BASE}(props : {}) {\n\treturn (\n\t\t<div>\n\t\t\t$0\n\t\t</div>\n\t)\n}",
+        "description": "Creates a React functional component without PropTypes"
+    },
+    "useState": {
+        "prefix": "us",
+        "body": "const [${1:state}, set${1/(.*)/${1:/capitalize}/}] = useState(${2:initValue})$0",
+        "description": "React useState() hook"
+    },
+    "useEffect": {
+        "prefix": "ue",
+        "body": ["useEffect(() => {", "\t$1", "}, [${3:dependencies}])$0"],
+        "description": "React useEffect() hook"
+    },
+    "Remix loader function": {
+        "prefix": "rxl",
+        "body": [
+            "import { type LoaderFunction, json } from '@remix-run/node'",
+            "import { useLoaderData } from '@remix-run/react'",
+            "",
+            "export const loader: LoaderFunction = async () => {",
+            "\treturn json({ ok: true })",
+            "}"
+        ],
+        "description": "Remix loader function"
+    },
+    "Remix action function": {
+        "prefix": "rxa",
+        "body": [
+            "import { type ActionFunction, json } from '@remix-run/node'",
+            "",
+            "export const action: ActionFunction = async ({ request }) => {",
+            "\treturn json({ ok: true })",
+            "}"
+        ],
+        "description": "Remix action function"
+    },
+    "Remix meta function": {
+        "prefix": "rxm",
+        "body": [
+            "import { type MetaFunction } from '@remix-run/node'",
+            "",
+            "export const meta: MetaFunction = () => {",
+            "\treturn [",
+            "\t\t{ title: ''},",
+            "\t\t{ name: 'description', content: ''}",
+            "\t]",
+            "}"
+        ],
+        "description": "Remix meta function"
+    },
+    "Remix links function": {
+        "prefix": "rxi",
+        "body": [
+            "import { type LinksFunction } from '@remix-run/node'",
+            "",
+            "export const links: LinksFunction = () => {",
+            "\treturn [",
+            "\t\t{",
+            "\t\t}",
+            "\t]",
+            "}"
+        ],
+        "description": "Remix links function"
+    },
+    "uuid": {
+        "prefix": "uuid",
+        "body": "${UUID}",
+        "description": "A Version 4 UUID"
+    },
+    "Lorem Ipsum Sentence": {
+        "prefix": "loremSent",
+        "body": "Lorem ipsum dolor sit amet, qui minim labore adipisicing minim sint cillum sint consectetur cupidatat.",
+        "description": "Lorem Ipsum Sentence"
+    },
+    "Lorem Ipsum Paragraph": {
+        "prefix": "loremPara",
+        "body": "Lorem ipsum dolor sit amet, officia excepteur ex fugiat reprehenderit enim labore culpa sint ad nisi Lorem pariatur mollit ex esse exercitation amet. Nisi anim cupidatat excepteur officia. Reprehenderit nostrud nostrud ipsum Lorem est aliquip amet voluptate voluptate dolor minim nulla est proident. Nostrud officia pariatur ut officia. Sit irure elit esse ea nulla sunt ex occaecat reprehenderit commodo officia dolor Lorem duis laboris cupidatat officia voluptate. Culpa proident adipisicing id nulla nisi laboris ex in Lorem sunt duis officia eiusmod. Aliqua reprehenderit commodo ex non excepteur duis sunt velit enim. Voluptate laboris sint cupidatat ullamco ut ea consectetur et est culpa et culpa duis.",
+        "description": "Lorem Ipsum Paragraph"
+    },
+    "html5": {
+        "prefix": "html5",
+        "body": [
+            "<!DOCTYPE html>",
+            "<html lang=\"$1en\">",
+            "    <head>",
+            "        <meta charset=\"UTF-8\">",
+            "        <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">",
+            "        <title>$2</title>",
+            "        <link href=\"$3css/style.css\" rel=\"stylesheet\">",
+            "   </head>",
+            "   <body>",
+            "   $0",
+            "   </body>",
+            "</html>"
+        ],
+        "description": "HTML - Defines a template for a html5 document",
+        "scope": "text.html"
+    }
+}

@@ -24,9 +24,9 @@ require("lazy").setup({
         { import = 'config.plugins' },
     },
 
-    -- Configure any other settings here. See the documentation for more details.
-    -- colorscheme that will be used when installing plugins.
+    ui = { border = 'rounded' },
     install = { colorscheme = { "habamax" } },
+
     -- check plugin updates but don't notify
     checker = { enabled = true, notify = false },
     -- don't reload config on changes
