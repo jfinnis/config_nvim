@@ -186,15 +186,13 @@ return {
                                 local output_lines = vim.list_slice(vim.split(output, '\n'), lines_to_skip)
 
                                 -- add default template
-                                table.insert(output_lines, '... \\<today\'s focus\\> ...')
+                                table.insert(output_lines, 'Dinner: \\<dinner plans\\>')
                                 table.insert(output_lines, '')
-                                table.insert(output_lines, '... \\<dinner plans\\> ...')
-                                table.insert(output_lines, '')
-                                table.insert(output_lines, '* Todo')
+                                table.insert(output_lines, '* Done')
                                 table.insert(output_lines, '- ')
                                 table.insert(output_lines, '')
                                 table.insert(output_lines, '')
-                                table.insert(output_lines, '* Done')
+                                table.insert(output_lines, '* Todo')
                                 table.insert(output_lines, '- ')
                                 table.insert(output_lines, '')
                                 vim.api.nvim_buf_set_lines(0, 0, -1, false, output_lines)

@@ -7,6 +7,12 @@ return {
         'saghen/blink.cmp',
         version = '*',
         opts = {
+            -- don't show completion menu in notes files
+            enabled = function()
+              return not vim.tbl_contains({ 'norg', 'markdown' }, vim.bo.filetype)
+                and vim.bo.buftype ~= "prompt"
+                and vim.b.completion ~= false
+            end,
             keymap = {
                 preset = 'default',
                 -- scroll_documentation_up and down - how to do?
