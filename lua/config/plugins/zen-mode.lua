@@ -1,8 +1,19 @@
 --
 -- zen mode - focus on current buffer only
+-- and related plugins neoscroll + twilight (disabled)
 --
 
 return {
+    -- neoscroll smooth scrolling
+    {
+        'karb94/neoscroll.nvim',
+        opts = {
+            easing = 'quadratic',
+            -- don't set mappings by default, set them in Zenmode only (;z)
+            mappings = {},
+        },
+    },
+
     -- twilight - dim inactive parts of file
     -- Triggered through zen-mode mapping
     {
@@ -64,15 +75,24 @@ return {
                         ruler = false, -- disables the ruler text in the cmd line area
                         showcmd = false, -- disables the command in the last line of the screen
                     },
-                    twilight = { enabled = true }, -- enable to start Twilight when zen mode opens
+                    twilight = { enabled = false }, -- enable to start Twilight when zen mode opens
                     gitsigns = { enabled = false }, -- disables git signs
                     tmux = { enabled = false }, -- disables the tmux statusline
                 },
                 -- callback where you can add custom code when the Zen window opens
                 on_open = function(win)
+                    vim.keymap.set('n', '<C-u>', function()
+                        require('neoscroll').ctrl_u({ duration = 250 })
+                    end, { desc = '<C-u> Zenmode: Graceful scroll up' })
+                    vim.keymap.set('n', '<C-d>', function()
+                        require('neoscroll').ctrl_d({ duration = 250 })
+                    end, { desc = '<C-d> Zenmode: Graceful scroll down' })
                 end,
                 -- callback where you can add custom code when the Zen window closes
                 on_close = function()
+                    -- revert the keybinds
+                    vim.keymap.del('n', '<C-u>')
+                    vim.keymap.del('n', '<C-d>')
                 end,
             })
 
