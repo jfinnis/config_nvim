@@ -12,6 +12,7 @@ return {
             -- don't set mappings by default, set them in Zenmode only (;z)
             mappings = {},
         },
+        event = 'VeryLazy',
     },
 
     -- twilight - dim inactive parts of file

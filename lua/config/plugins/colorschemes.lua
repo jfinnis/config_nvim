@@ -34,6 +34,7 @@ return {
                     comments = 'italics',
                 }
             }
+            vim.cmd('colorscheme terafox')
         end
     },
 }
