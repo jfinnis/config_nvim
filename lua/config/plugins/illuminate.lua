@@ -1,3 +1,7 @@
+--
+-- illuminate - highlight word under cursor
+--
+
 return {
     'rrethy/vim-illuminate',
     event = 'VeryLazy',
