@@ -10,5 +10,9 @@ return {
 
         -- working git repo
         'jfinnis/present.nvim',
+    },
+    {
+        -- dir = '~/Documents/projects/spotify-notification.nvim',
+        'jfinnis/spotify-notification.nvim',
     }
 }
