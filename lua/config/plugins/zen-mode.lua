@@ -3,6 +3,9 @@
 -- and related plugins neoscroll + twilight (disabled)
 --
 
+---@type boolean
+local was_spotify_notif_running = false
+
 return {
     -- neoscroll smooth scrolling
     {
@@ -82,18 +85,31 @@ return {
                 },
                 -- callback where you can add custom code when the Zen window opens
                 on_open = function(win)
+                    -- use graceful neoscrolling - may be more clear when presenting
                     vim.keymap.set('n', '<C-u>', function()
                         require('neoscroll').ctrl_u({ duration = 250 })
                     end, { desc = '<C-u> Zenmode: Graceful scroll up' })
                     vim.keymap.set('n', '<C-d>', function()
                         require('neoscroll').ctrl_d({ duration = 250 })
                     end, { desc = '<C-d> Zenmode: Graceful scroll down' })
+
+                    -- record state of spotify notification plugin to see if we restore
+                    print('zen open was running?')
+                    was_spotify_notif_running = require('spotify-notification.commands').is_running()
+                    vim.api.nvim_command('SpotifyNotifStop')
+                    print('zen open was running?' .. (was_spotify_notif_running and 'true' or 'false'))
+
                 end,
                 -- callback where you can add custom code when the Zen window closes
                 on_close = function()
-                    -- revert the keybinds
+                    -- revert the neoscroll keybinds
                     vim.keymap.del('n', '<C-u>')
                     vim.keymap.del('n', '<C-d>')
+
+                    -- only restore if was running before entering zen mode
+                    if was_spotify_notif_running then
+                        vim.api.nvim_command('SpotifyNotifStart')
+                    end
                 end,
             })
 

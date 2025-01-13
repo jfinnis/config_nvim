@@ -43,7 +43,7 @@
   "rose-pine": { "branch": "main", "commit": "91548dca53b36dbb9d36c10f114385f759731be1" },
   "schemastore.nvim": { "branch": "main", "commit": "fa47222e29d6f6e80eddcdd0f125c27edf274ad5" },
   "smear-cursor.nvim": { "branch": "main", "commit": "005b50b891d662bdd3160dc2a143939066b5cc17" },
-  "spotify-notification.nvim": { "branch": "main", "commit": "cd851e8265bcb3781645b8700f51e0c49dba5f38" },
+  "spotify-notification.nvim": { "branch": "main", "commit": "ee1cefa096eb9e20bbff07aa76f601d4b8f0bbb0" },
   "switch.vim": { "branch": "main", "commit": "21defb202ebb8406b8ed63183a43ea026f2645b3" },
   "tagalong.vim": { "branch": "main", "commit": "5a2bbf2b1d5b657685a49d48d98a4aa921c1fde3" },
   "telescope-docker.nvim": { "branch": "main", "commit": "4219840291d9e3e64f6b8eefa11e8deb14357581" },
