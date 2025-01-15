@@ -33,17 +33,17 @@ vim.api.nvim_create_autocmd(
     {pattern = '*', command = 'set nocursorline nocursorcolumn', group = cursorGroup}
 )
 
--- highlight yanked text briefly
-vim.api.nvim_create_augroup('YankHighlight', {clear = true})
-vim.api.nvim_create_autocmd('TextYankPost', {
-    group = 'YankHighlight',
-    callback = function()
-        vim.highlight.on_yank({higroup = 'IncSearch', timeout = '200'})
-    end
-})
+-- highlight yanked text briefly - replaced with Tiny Glimmer plugin for animated yank
+-- vim.api.nvim_create_augroup('YankHighlight', {clear = true})
+-- vim.api.nvim_create_autocmd('TextYankPost', {
+--     group = 'YankHighlight',
+--     callback = function()
+--         vim.highlight.on_yank({higroup = 'IncSearch', timeout = '200'})
+--     end
+-- })
 
 -- search
-vim.opt.hlsearch = true -- hightlight every match, clear with <C-l>
+vim.opt.hlsearch = true -- highlight every match, clear with <C-l>
 vim.opt.ignorecase = true -- ignore case when searching
 vim.opt.smartcase = true -- ... unless capitals are included
 
@@ -59,6 +59,14 @@ vim.opt.tabstop = 4 -- tabs are 4 spaces, can be overridden per filetype
 
 vim.opt.showmatch = true -- when inserting bracket/paren, highlight matching one
 vim.opt.matchtime = 3 -- tenths of a second
+
+-- enable undercurl support
+vim.cmd([[let &t_Cs = "\e[4:3m"]])
+vim.cmd([[let &t_Ce = "\e[4:0m"]])
+
+-- enable spell check
+vim.opt.spell = true
+vim.opt.spelllang = { 'en_us' }
 
 -- allow closing windows with 'q' that normally require ':q'
 vim.api.nvim_create_autocmd(
