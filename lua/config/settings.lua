@@ -104,8 +104,11 @@ vim.opt.spelllang = { 'en_us' }
 vim.api.nvim_create_autocmd(
     'FileType',
     {
-        pattern = {'help', 'qf', 'lspinfo'},
-        command = [[nnoremap <buffer><silent> q :close<cr>]]
+        pattern = {'help', 'qf', 'lspinfo', 'startuptime', 'man', 'checkhealth', 'lazy'},
+        command = [[
+            nnoremap <buffer><silent> q :close<cr>
+            set nobuflisted
+        ]]
     }
 )
 
