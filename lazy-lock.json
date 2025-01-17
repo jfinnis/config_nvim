@@ -40,6 +40,7 @@
   "present.nvim": { "branch": "main", "commit": "99d43e2a870e42069fe99f679f5f1961a119e1e5" },
   "pretty_hover": { "branch": "master", "commit": "914cd727d39be2ad641839d339482851a75003ca" },
   "rainbow-delimiters.nvim": { "branch": "master", "commit": "77e5bad54227dcfe3878ffbda88ab1efdaacb475" },
+  "richclip.nvim": { "branch": "main", "commit": "f3c5c9f22483ab983fcd820c878431f316be9a29" },
   "rose-pine": { "branch": "main", "commit": "91548dca53b36dbb9d36c10f114385f759731be1" },
   "schemastore.nvim": { "branch": "main", "commit": "fa47222e29d6f6e80eddcdd0f125c27edf274ad5" },
   "smear-cursor.nvim": { "branch": "main", "commit": "005b50b891d662bdd3160dc2a143939066b5cc17" },

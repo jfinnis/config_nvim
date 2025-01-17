@@ -29,9 +29,14 @@ vim.opt.cursorline = false
 -- cursor line displays only in active window
 local cursorGroup = vim.api.nvim_create_augroup('CursorLine', {clear = true})
 vim.api.nvim_create_autocmd(
-    {'InsertEnter', 'WinLeave'},
-    {pattern = '*', command = 'set nocursorline nocursorcolumn', group = cursorGroup}
+    { 'InsertEnter', 'WinLeave' },
+    { pattern = '*', command = 'set nocursorline nocursorcolumn', group = cursorGroup }
 )
+
+--- auto resize splits when the terminal's window is resized
+vim.api.nvim_create_autocmd('VimResized', {
+    command = 'wincmd =',
+})
 
 -- highlight yanked text briefly - replaced with Tiny Glimmer plugin for animated yank
 -- vim.api.nvim_create_augroup('YankHighlight', {clear = true})
