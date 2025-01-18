@@ -13,4 +13,11 @@ return {
     opts = {
         -- configurations go here
     },
+    config = function()
+        require('barbecue').setup {
+            theme = {
+                dirname = { fg = '#757575' },
+            }
+        }
+    end
 }

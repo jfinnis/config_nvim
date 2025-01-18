@@ -1,3 +1,8 @@
+--
+-- image.nvim - base support for images
+-- img-clip - clipboard support
+--
+
 return {
     {
         -- image support inside nvim

@@ -33,7 +33,7 @@ vim.api.nvim_create_autocmd(
     { pattern = '*', command = 'set nocursorline nocursorcolumn', group = cursorGroup }
 )
 
---- Auto resize splits when the terminal's window is resized
+-- auto resize splits when the terminal's window is resized
 vim.api.nvim_create_autocmd('VimResized', {
     command = 'wincmd =',
 })
@@ -48,6 +48,36 @@ vim.api.nvim_create_autocmd('BufReadPost', {
         end
     end,
 })
+ 
+-- -- only show command line when typing a command
+-- vim.o.cmdheight = 0
+-- vim.api.nvim_create_autocmd('CmdlineEnter', {
+--     group = vim.api.nvim_create_augroup(
+--         'gmr_cmdheight_1_on_cmdlineenter',
+--         { clear = true }
+--     ),
+--     desc = 'Don\'t hide the status line when typing a command',
+--     command = ':set cmdheight=1',
+-- })
+-- 
+-- vim.api.nvim_create_autocmd('CmdlineLeave', {
+--     group = vim.api.nvim_create_augroup(
+--         'gmr_cmdheight_0_on_cmdlineleave',
+--         { clear = true }
+--     ),
+--     desc = 'Hide cmdline when not typing a command',
+--     command = ':set cmdheight=0',
+-- })
+-- 
+-- vim.api.nvim_create_autocmd('BufWritePost', {
+--     group = vim.api.nvim_create_augroup(
+--         'gmr_hide_message_after_write',
+--         { clear = true }
+--     ),
+--     desc = 'Get rid of message after writing a file',
+--     pattern = { '*' },
+--     command = 'redrawstatus',
+-- })
 
 -- set local settings for terminal buffers
 vim.api.nvim_create_autocmd('TermOpen', {

@@ -36,13 +36,10 @@ return {
                     selection_caret = ' → ',
                     multi_icon = '＋',
                     dynamic_preview_title = true,
-                    path_display = 'smart', -- figure out
+                    path_display = 'smart',
                     wrap_results = false, -- maybe true for certain views
                     layout_strategy = 'horizontal',
                     mappings = { n = telescope_mappings, i = telescope_mappings },
-                    -- Telescope plugin to preview images: https://github.com/nvim-telescope/telescope-media-files.nvim
-                    -- But image handling doesn't seem to be something I'd use Neovim for...
-                    --file_ignore_patterns = { '.png', '.gif', '.jpg', '.jpeg' },
                     file_ignore_patterns = { '^.git/' },
                 }
             }
