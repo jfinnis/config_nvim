@@ -17,7 +17,7 @@ return {
                     gitrebase = false,
                     ['dap-repl'] = false,
                     ['.'] = false,
-                    
+                    oil = false,
                 }
             })
 
