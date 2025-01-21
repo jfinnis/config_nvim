@@ -167,28 +167,6 @@ vim.cmd[[
 ]]
 
 -----------------------
---       colors      --
------------------------
-function ToggleColorScheme()
-    local color
-    --if vim.g.colors_name ~= 'rose-pine-moon' and vim.g.colors_name ~= 'rose-pine' then
-        --color = 'rose-pine-moon'
-    if vim.g.colors_name ~= 'terafox' then
-        color = 'terafox'
-    else
-        color = 'dayfox'
-    end
-    vim.cmd.colorscheme(color)
-end
-vim.keymap.set('n', '<leader>C', ToggleColorScheme, {desc = '[;cc] Toggle light/dark colorscheme'})
-vim.api.nvim_set_hl(0, 'WinSeparator', { fg = 'antiquewhite' })
-vim.cmd[[highlight Comment gui=italic]]
-
--- set bash highlighting that appears in package.json files
-vim.cmd('hi @bash.argumentFlag guifg=#689d6a')
-vim.cmd('hi @bash.specialKeyword guifg=#fe8019')
-
------------------------
 --       utils       --
 -----------------------
 -- util for creating :ex command aliases for common typos
