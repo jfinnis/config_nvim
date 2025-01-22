@@ -203,12 +203,18 @@ return {
             })
 
             -- can be called outside neorg files to start the Neorg interface
-            vim.keymap.set('n', '<Leader>I', ':Neorg index<cr>', { desc = '[<space>] Open Neorg [I]ndex' })
+            vim.keymap.set('n', '<Leader>I', ':Neorg index<cr>',
+                { desc = '[<space>] Open Neorg [I]ndex' })
 
             -- journal mappings
-            vim.keymap.set('n', '<Leader>JJ', ':Neorg journal today<cr>', { desc = '[<Leader>] Neorg: [J]ournal [J]Today' })
-            vim.keymap.set('n', '<Leader>JT', ':Neorg journal tomorrow<cr>', { desc = '[<Leader>] Neorg: [J]ournal [T]omorrow' })
-            vim.keymap.set('n', '<Leader>JY', ':Neorg journal yesterday<cr>', { desc = '[<Leader>] Neorg: [J]ournal [Y]esterday' })
+            vim.keymap.set('n', '<Leader>JJ', ':Neorg journal today<cr>',
+                { desc = '[<Leader>] Neorg: [J]ournal [J]Today' })
+            vim.keymap.set('n', '<Leader>JT', ':Neorg journal tomorrow<cr>',
+                { desc = '[<Leader>] Neorg: [J]ournal [T]omorrow' })
+            vim.keymap.set('n', '<Leader>JY', ':Neorg journal yesterday<cr>',
+                { desc = '[<Leader>] Neorg: [J]ournal [Y]esterday' })
+            vim.keymap.set('n', '<Leader>JC', ':Neorg journal custom<cr>',
+                { desc = '[<Leader>] Neorg: [J]ournal [C]ustom' })
 
             vim.wo.foldlevel = 99 -- overriding value of 7
             --vim.wo.conceallevel = 2 -- set in settings.lua
