@@ -1,4 +1,5 @@
 {
+  "CloudWatch-query.nvim": { "branch": "main", "commit": "5bc0d23049aab329d5f201295d9219f56bfce53a" },
   "auto-save.nvim": { "branch": "main", "commit": "979b6c82f60cfa80f4cf437d77446d0ded0addf0" },
   "barbecue": { "branch": "main", "commit": "cd7e7da622d68136e13721865b4d919efd6325ed" },
   "blink.cmp": { "branch": "main", "commit": "e3b7cb4a1094377c3093a021300de123d9fc60d3" },
