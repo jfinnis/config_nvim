@@ -94,10 +94,8 @@ return {
                     end, { desc = '<C-d> Zenmode: Graceful scroll down' })
 
                     -- record state of spotify notification plugin to see if we restore
-                    print('zen open was running?')
                     was_spotify_notif_running = require('spotify-notification.commands').is_running()
                     vim.api.nvim_command('SpotifyNotifStop')
-                    print('zen open was running?' .. (was_spotify_notif_running and 'true' or 'false'))
 
                 end,
                 -- callback where you can add custom code when the Zen window closes
