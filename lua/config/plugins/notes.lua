@@ -1,5 +1,10 @@
 --
 -- neorg - orgmode for Neovim
+-- neorg-contexts - treesitter-contexts clone
+-- neorg-interim-ls - lsp for completion
+-- neorg-extras - extra folding support
+-- neorg-se - full text search
+-- note2cal - create calendar items from text
 --
 
 -- helper functions for neorg templates
@@ -48,6 +53,26 @@ end
 
 return {
     {
+        dir = '~/Documents/projects/note2cal.nvim',
+        -- 'lfilho/note2cal.nvim',
+        config = function()
+            require('note2cal').setup({
+                debug = false, -- if true, prints a debug message an return early (won't schedule events)
+                calendar_name = 'Me@gmail', -- the name of the calendar as it appear on Calendar.app
+                highlights = {
+                    at_symbol = 'WarningMsg', -- the highlight group for the "@" symbol
+                    at_text = 'Number', -- the highlight group for the date-time part
+                },
+                keymaps = {
+                    normal = '<Leader>e', -- mnemonic: Schedule [E]vent
+                    visual = '<Leader>e', -- mnemonic: Schedule [E]vent
+                },
+            })
+        end,
+        ft = 'norg',
+    },
+
+    {
         'nvim-neorg/neorg',
         lazy = false,
         dependencies = {
@@ -56,6 +81,10 @@ return {
             'nvim-neorg/neorg-telescope',
             'nvim-neorg/tree-sitter-norg',
             'nvim-neorg/lua-utils.nvim',
+            'max397574/neorg-contexts',
+            'benlubas/neorg-interim-ls',
+            'juniorsundar/neorg-extras',
+            'benlubas/neorg-se',
         },
         version = "*",
         config = function()
@@ -63,6 +92,9 @@ return {
                 load = {
                     ['core.integrations.telescope'] = {}, -- sets up telescope
                     ['core.defaults'] = {}, -- loads default behavior
+                    ['core.completion'] = {
+                        config = { engine = { module_name = 'external.lsp-completion' } },
+                    },
                     ['core.concealer'] = {  -- adds pretty icons to documents
                         config = {
                             icon_preset = 'diamond',
@@ -116,9 +148,31 @@ return {
                     },
                     ['core.text-objects'] = {},
                     ['core.looking-glass'] = {},
-                    ['core.presenter'] = {
+                    -- disabled - due for rewrite
+                    -- ['core.presenter'] = {
+                    --     config = {
+                    --         zen_mode = 'zen-mode'
+                    --     }
+                    -- },
+                    -- treesitter-like context for headings
+                    ['external.context'] = {},
+                    -- lsp completion for filenames and headings
+                    -- allows renamed headings and filenames (oil) to be updated
+                    ['external.interim-ls'] = {},
+                    -- folding
+                    ['external.many-mans'] = {
                         config = {
-                            zen_mode = 'zen-mode'
+                            metadata_fold = true, -- If want @data property ... @end to fold
+                            code_fold = true, -- If want @code ... @end to fold
+                        }
+                    },
+                    -- search categories and full notes texts
+                    ['external.search'] = {
+                        config = {
+                            -- Index the workspace when neovim launches. This process happens on a
+                            -- separate thread, so it doesn't significantly contribute to startup
+                            -- time or block neovim.
+                            index_on_start = true,
                         }
                     },
                 },
@@ -130,13 +184,19 @@ return {
                     -- don't expand concealed links unless you're in insert mode
                     vim.opt.concealcursor = 'nc'
 
+                    -- searching
+                    -- <space>f - telescope finder for neorg notes
+                    -- located in telescope file
+                    vim.keymap.set('n', '<LocalLeader>C', ':Neorg search query categories<cr>',
+                        { desc = '[<space>] Search [C]ategories', buffer = true })
+                    vim.keymap.set('n', '<LocalLeader>F', ':Neorg search query fulltext<cr>',
+                        { desc = '[<space>] Search [F]ulltext Across Notes', buffer = true })
+
                     -- basic navigation
                     vim.keymap.set('n', '<LocalLeader>nr', ':Neorg return<cr>',
                         { desc = '[<space>] [N]eorg: [R]eturn', buffer = true })
                     vim.keymap.set('n', '<LocalLeader>c', ':Neorg toc<cr>',
                         { desc = '[<space>] Neorg: Table of [C]ontents', buffer = true })
-                    -- <space>f - telescope finder for neorg notes
-                    -- located in telescope file
                     -- <space>i - neorg insert link
                     vim.keymap.set('n', '<LocalLeader>i', ':Telescope neorg insert_link<cr>',
                         { desc = '[<space>] Neorg: [I]nsert Link', buffer = true })
@@ -199,6 +259,31 @@ return {
                             end
                         end
                     end
+
+                    vim.wo.foldlevel = 99 -- overriding value of 7
+                    --vim.wo.conceallevel = 2 -- set in settings.lua
+                end
+            })
+
+            -- custom neorg wrap settings for when long links make the lines wrap
+            local orig_formatlistpat = vim.opt.formatlistpat
+            vim.api.nvim_create_autocmd('BufEnter', {
+                pattern = '*.norg',
+                callback = function()
+                    vim.opt.wrap = false
+                    vim.opt.breakindent = true
+                    vim.opt.breakindentopt = 'list:-1'
+                    vim.opt.formatlistpat = '^\\s*[-~>]\\+\\s\\((.)\\s\\)\\?'
+                end
+            })
+            vim.api.nvim_create_autocmd('BufLeave', {
+                pattern = '*.norg',
+                callback = function()
+                    -- restore the original wrap settings
+                    vim.opt.wrap = true
+                    vim.opt.breakindent = false
+                    vim.opt.breakindentopt = ''
+                    vim.opt.formatlistpat = orig_formatlistpat
                 end
             })
 
@@ -215,9 +300,6 @@ return {
                 { desc = '[<Leader>] Neorg: [J]ournal [Y]esterday' })
             vim.keymap.set('n', '<Leader>JC', ':Neorg journal custom<cr>',
                 { desc = '[<Leader>] Neorg: [J]ournal [C]ustom' })
-
-            vim.wo.foldlevel = 99 -- overriding value of 7
-            --vim.wo.conceallevel = 2 -- set in settings.lua
         end
     },
 }

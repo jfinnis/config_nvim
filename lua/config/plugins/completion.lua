@@ -1,6 +1,7 @@
 --
 -- LSP Completion
 -- blink + colorful-menu
+--
 
 return {
     {
@@ -9,7 +10,8 @@ return {
         opts = {
             -- don't show completion menu in notes files
             enabled = function()
-              return not vim.tbl_contains({ 'norg', 'markdown' }, vim.bo.filetype)
+              -- return not vim.tbl_contains({ 'norg', 'markdown' }, vim.bo.filetype)
+              return not vim.tbl_contains({ 'markdown' }, vim.bo.filetype)
                 and vim.bo.buftype ~= "prompt"
                 and vim.b.completion ~= false
             end,

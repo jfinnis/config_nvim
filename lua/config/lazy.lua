@@ -19,6 +19,9 @@ vim.g.maplocalleader = ' '
 
 -- Setup lazy.nvim
 require("lazy").setup({
+    git = {
+        timeout = 300,
+    },
     spec = {
         -- Load plugin directory - each file installs itself
         { import = 'config.plugins' },

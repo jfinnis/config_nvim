@@ -71,6 +71,9 @@ return {
             -- gleam
             lspconfig.gleam.setup {}
 
+            -- kulala - http file LS
+            lspconfig.kulala_ls.setup({ capabilities = capabilities })
+
             -- json
             lspconfig.jsonls.setup {
                 settings = {
