@@ -45,6 +45,10 @@ return {
             }
 
             require('telescope').load_extension('fzf')
+
+            require('telescope').load_extension('fidget')
+            vim.keymap.set('n', '<leader>fn', ':Telescope fidget<cr>', { desc = '[;] [F]ind [N]otifications' })
+
             local telescope = require('telescope.builtin')
             local themes = require('telescope.themes')
 

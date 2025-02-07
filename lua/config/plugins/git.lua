@@ -64,8 +64,7 @@ return {
                         return '<Ignore>'
                     end, {expr=true, desc='Jump to previous git hunk'})
 
-                    map('n', '<leader>ga', gs.stage_hunk, {desc='Add change to staged'})
-                    map('n', '<leader>gr', gs.undo_stage_hunk, {desc='Remove change'})
+                    map('n', '<leader>ga', gs.stage_hunk, {desc='Toggle change to staged'})
                     map('n', '<leader>gu', gs.reset_hunk, {desc='Undo last staged change'})
                     map('n', '<leader>gp', gs.preview_hunk, {desc='Preview change'})
                     map('n', '<leader>gA', gs.stage_buffer, {desc='Add all changes in file'})
@@ -77,7 +76,7 @@ return {
                     -- using telescope git status instead
                     --map('n', '<leader>gs', function() gs.setqflist('all') end, {desc='Git status - Show all changes in repo'})
                     map('n', '<leader>gg', function()
-                        gs.toggle_deleted()
+                        gs.toggle_deleted() -- deprecated - use preview_hunk_inline instead? doesn't show deleted lines
                         gs.toggle_linehl()
                         gs.toggle_word_diff()
                     end, {desc='Toggle all git changes'})

@@ -39,7 +39,8 @@ return {
             signature = {
                 enabled = true,
                 window = {
-                    border = 'rounded'
+                    border = 'rounded',
+                    show_documentation = true,
                 }
             },
 

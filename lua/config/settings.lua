@@ -153,8 +153,8 @@ vim.api.nvim_create_autocmd(
 )
 
 -- center screen when searching, folding, and navigating to marks
-vim.keymap.set('n', 'n', 'nzz')
-vim.keymap.set('n', 'N', 'Nzz')
+-- vim.keymap.set('n', 'n', 'nzz')
+-- vim.keymap.set('n', 'N', 'Nzz')
 vim.keymap.set('n', 'zc', 'zczz')
 vim.keymap.set('n', 'zo', 'zozz')
 vim.cmd[[

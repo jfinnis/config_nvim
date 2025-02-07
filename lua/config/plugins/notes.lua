@@ -69,7 +69,7 @@ return {
                 },
             })
         end,
-        ft = 'norg',
+        ft = 'norg', -- TODO: keymaps not mapped in neorg files
     },
 
     {
