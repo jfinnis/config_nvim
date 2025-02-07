@@ -121,6 +121,7 @@ return {
                     ['core.esupports.metagen'] = {
                         config = {
                             author = 'josh',
+                            type = auto,
                             update_date = false, -- TODO: would like to set to
                             -- true but having autosave issues
                             -- undojoin_updates = true -- Must be paired with
@@ -128,6 +129,9 @@ return {
                         }
                     },
                     ['core.summary'] = {},
+                    ['core.qol.todo_items'] = {
+                        create_todo_parents = false,
+                    },
                     ['core.keybinds'] = {
                         config = {
                             hook = function(keybinds)

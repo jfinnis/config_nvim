@@ -17,8 +17,7 @@ return {
             end,
             keymap = {
                 preset = 'default',
-                -- scroll_documentation_up and down - how to do?
-                -- snippet_forward backward - how to do snippets
+                -- scroll_documentation_up and down - how to do? snippet_forward backward - how to do snippets
             },
             appearance = {
                 nerd_font_variant = 'mono'
