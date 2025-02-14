@@ -39,3 +39,10 @@ vim.api.nvim_buf_set_keymap(
     '<cmd>lua require("kulala").from_curl()<cr>',
     { noremap = true, silent = true, desc = '[;] [P]aste Curl' }
 )
+vim.api.nvim_buf_set_keymap(
+    0,
+    'n',
+    '<leader>c',
+    '<cmd>lua require("kulala").copy()<cr>',
+    { noremap = true, silent = true, desc = '[;] [C]opy as Curl' }
+)
