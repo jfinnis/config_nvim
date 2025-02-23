@@ -199,8 +199,6 @@ return {
                     -- basic navigation
                     vim.keymap.set('n', '<LocalLeader>nr', ':Neorg return<cr>',
                         { desc = '[<space>] [N]eorg: [R]eturn', buffer = true })
-                    vim.keymap.set('n', '<LocalLeader>c', ':Neorg toc<cr>',
-                        { desc = '[<space>] Neorg: Table of [C]ontents', buffer = true })
                     -- <space>i - neorg insert link
                     vim.keymap.set('n', '<LocalLeader>i', ':Telescope neorg insert_link<cr>',
                         { desc = '[<space>] Neorg: [I]nsert Link', buffer = true })
@@ -254,7 +252,6 @@ return {
                                 table.insert(output_lines, '')
                                 table.insert(output_lines, '* Done')
                                 table.insert(output_lines, '- ')
-                                table.insert(output_lines, '')
                                 table.insert(output_lines, '')
                                 table.insert(output_lines, '* Todo')
                                 table.insert(output_lines, '- ')
