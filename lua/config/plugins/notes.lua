@@ -121,7 +121,7 @@ return {
                     ['core.esupports.metagen'] = {
                         config = {
                             author = 'josh',
-                            type = auto,
+                            type = 'auto',
                             update_date = false, -- TODO: would like to set to
                             -- true but having autosave issues
                             -- undojoin_updates = true -- Must be paired with
@@ -251,10 +251,10 @@ return {
                                 table.insert(output_lines, 'Dinner: \\<dinner plans\\>')
                                 table.insert(output_lines, '')
                                 table.insert(output_lines, '* Done')
-                                table.insert(output_lines, '- ')
+                                table.insert(output_lines, '  - ')
                                 table.insert(output_lines, '')
                                 table.insert(output_lines, '* Todo')
-                                table.insert(output_lines, '- ')
+                                table.insert(output_lines, '  - ')
                                 table.insert(output_lines, '')
                                 vim.api.nvim_buf_set_lines(0, 0, -1, false, output_lines)
                             end

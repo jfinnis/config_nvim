@@ -1,6 +1,7 @@
 --
 -- telescope settings
---
+-- telescope-docker, nvim-neoclip, telescope-fzf-native
+-- telescope-hierarchy
 
 return {
     {
@@ -155,7 +156,7 @@ return {
             -- ;fr - display registers
             vim.keymap.set('n', '<leader>fr', telescope.registers, {desc='[;] [F]ind [R]egisters'})
             -- ;fs - display spelling suggestions
-            vim.keymap.set('n', '<leader>fS', function()
+            vim.keymap.set('n', 'z=', function()
                 telescope.spell_suggest(themes.get_dropdown({
                     winblend = 7
                 }))
