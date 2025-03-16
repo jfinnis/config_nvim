@@ -233,4 +233,31 @@ return {
             vim.keymap.set('n', '<leader>df', ':Telescope docker files<cr>', {desc = '[;] Show [D]ocker [F]iles'})
         end
     },
+
+    {
+        'jmacadie/telescope-hierarchy.nvim',
+        keys = {
+            {
+                'gri',
+                '<cmd>Telescope hierarchy incoming_calls<cr>',
+                desc = 'LSP: [gr] [I]ncoming Calls',
+            },
+            {
+                'gro',
+                '<cmd>Telescope hierarchy outgoing_calls<cr>',
+                desc = 'LSP: [gr] [O]utgoing Calls',
+            },
+        },
+        opts = {
+            extensions = {
+                hierarchy = {
+                    -- plugin-specific options
+                },
+            },
+        },
+        config = function(_, opts)
+            require('telescope').setup(opts)
+            require('telescope').load_extension('hierarchy')
+        end,
+    }
 }
