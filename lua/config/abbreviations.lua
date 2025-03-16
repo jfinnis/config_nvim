@@ -36,4 +36,4 @@ vim.cmd('ab udpate update')
 vim.cmd('ab neovim Neovim')
 vim.cmd('ab cloudwatch CloudWatch')
 vim.cmd('ab Cloudwatch CloudWatch')
-
+vim.cmd('ab figma Figma')
