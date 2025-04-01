@@ -10,6 +10,7 @@ return {
             vim.keymap.set('n', '<leader>gB', ':Git blame<cr>', { desc = '[;] [G]it [B]lame All Lines' })
             vim.keymap.set('n', '<leader>gs', ':G<cr>', { desc = '[;] [G]it [S]tatus and Staging' })
             vim.keymap.set({'n', 'v'}, '<leader>gw', ':GBrowse<cr>', { desc = '[;] [G]it [B]rowse' })
+            vim.keymap.set('n', '<leader>gl', ':G log %<cr>', { desc = '[;] [G]it [L]og Current File' })
         end
     },
 
