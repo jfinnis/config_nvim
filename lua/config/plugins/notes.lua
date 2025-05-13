@@ -118,6 +118,7 @@ return {
                             default_workspace = 'notes',
                         },
                     },
+                    ['core.export'] = {},
                     ['core.esupports.metagen'] = {
                         config = {
                             author = 'josh',
@@ -187,6 +188,15 @@ return {
                 callback = function()
                     -- don't expand concealed links unless you're in insert mode
                     vim.opt.concealcursor = 'nc'
+
+                    vim.o.colorcolumn = '80'
+                    vim.o.textwidth = 80
+
+                    -- paste should reindent at level of heading
+                    -- TODO: find solution that allows repeat to work
+                    -- -> currently repeats the indent
+                    vim.keymap.set('n', 'p', 'pi<esc>', { buffer = true })
+                    vim.keymap.set('n', 'P', 'Pi<esc>', { buffer = true })
 
                     -- searching
                     -- <space>f - telescope finder for neorg notes
