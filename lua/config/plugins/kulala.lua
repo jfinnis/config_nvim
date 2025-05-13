@@ -3,9 +3,9 @@
 --
 
 vim.filetype.add({
-  extension = {
-    ['http'] = 'http',
-  },
+    extension = {
+        ['http'] = 'http',
+    },
 })
 
 return {
@@ -18,6 +18,7 @@ return {
         show_icons = 'on_request', -- on_request | above_request | below_request | nil
         winbar = true,
         default_winbar_panes = { 'body', 'headers', 'verbose', 'stats', 'script_output' }, -- also headers_body
+        halt_on_error = true,
         environment_scope = 'g', -- b = buffer | g = global
         -- example certificates
         --certificates = {
