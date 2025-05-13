@@ -6,7 +6,8 @@ vim.api.nvim_buf_set_keymap(
     '<cmd>lua require("kulala").run()<cr>',
     { noremap = true, silent = true, desc = '<CR> Run request' }
 )
--- <shift><cr> to run request
+
+-- <shift><cr> to run all requests
 vim.api.nvim_buf_set_keymap(
     0,
     'n',
@@ -46,3 +47,7 @@ vim.api.nvim_buf_set_keymap(
     '<cmd>lua require("kulala").copy()<cr>',
     { noremap = true, silent = true, desc = '[;] [C]opy as Curl' }
 )
+
+-- format file with kulala formatter
+vim.keymap.set('n', '<tab><space>', ":silent !kulala-fmt format '%'<cr>",
+    { desc = '[<tab><space>] Format file with Kulala-fmt', silent = true })
