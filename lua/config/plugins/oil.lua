@@ -7,9 +7,9 @@ local detail = false
 
 -- Declare a global function to retrieve the current directory
 function _G.get_oil_winbar()
-    local dir = require("oil").get_current_dir()
+    local dir = require('oil').get_current_dir()
     if dir then
-        return vim.fn.fnamemodify(dir, ":~")
+        return vim.fn.fnamemodify(dir, ':~')
     else
         -- If there is no current directory (e.g. over ssh), just show the buffer name
         return vim.api.nvim_buf_get_name(0)
@@ -65,7 +65,6 @@ return {
                 -- A function that returns true to disable preview on a file e.g. to avoid lag
                 -- TODO: this is not working?
                 disable_preview = function(filename)
-                    print('hifhdsif   ' .. filename)
                     return filename == 'package-lock.json'
                         or filename == 'mthesaur.txt'
                 end,
@@ -75,7 +74,7 @@ return {
             progress = { border = 'double' },
             keymaps_help = { border = 'double' },
             win_options = {
-                winbar = "%!v:lua.get_oil_winbar()",
+                winbar = '%!v:lua.get_oil_winbar()',
             },
         })
 

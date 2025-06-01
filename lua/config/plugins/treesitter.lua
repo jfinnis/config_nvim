@@ -34,7 +34,8 @@ return {
                     'yaml',
                     'gitignore',
                     'gitcommit',
-                    'git_config'
+                    'git_config',
+                    'http'
                 },
 
                 -- Install parsers synchronously (only applied to `ensure_installed`)

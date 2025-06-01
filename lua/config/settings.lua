@@ -26,6 +26,7 @@ vim.opt.wildmode = 'longest:full' -- command completion to longest substring, th
 vim.opt.colorcolumn = '100' -- highlight these columns in different color
 vim.opt.cursorcolumn = false
 vim.opt.cursorline = false
+vim.opt.winborder = 'double'
 
 -- cursor line displays only in active window
 local cursorGroup = vim.api.nvim_create_augroup('CursorLine', {clear = true})
