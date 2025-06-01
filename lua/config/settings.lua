@@ -132,8 +132,7 @@ vim.opt.spell = true
 vim.opt.spelllang = { 'en_us' }
 
 -- allow closing windows with 'q' that normally require ':q'
-vim.api.nvim_create_autocmd(
-    'FileType',
+vim.api.nvim_create_autocmd('FileType',
     {
         pattern = {'help', 'qf', 'lspinfo', 'startuptime', 'man', 'checkhealth', 'lazy'},
         command = [[
@@ -144,8 +143,7 @@ vim.api.nvim_create_autocmd(
 )
 
 -- show line numbers for help files
-vim.api.nvim_create_autocmd(
-    'FileType',
+vim.api.nvim_create_autocmd('FileType',
     {
         pattern = {'help'},
         command = 'set number'
