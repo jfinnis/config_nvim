@@ -3,30 +3,30 @@
 --
 vim.g.mapleader = ';'
 
-vim.opt.backupcopy = 'yes' -- will create a backup file instead of renaming the file
+vim.o.backupcopy = 'yes' -- will create a backup file instead of renaming the file
                            -- needed for vite dev server which was having issues watching changes
-vim.opt.conceallevel = 2 -- use replacement character for concealed text
-vim.opt.diffopt = 'internal,filler,closeoff,linematch:60'
-vim.opt.gdefault = true -- replace all occurrences in line for :s///
-vim.opt.list = true -- show chars for end of line
---vim.opt.listchars:append 'eol:↴'
-vim.opt.number = true
-vim.opt.numberwidth = 2
-vim.opt.scrolloff = 4 -- lines above/below cursor while scrolling
-vim.opt.shortmess = 'filmnxtTIoOF' -- experiment with I above, hides intro (try with alpha-nvim)
-vim.opt.signcolumn = 'auto' -- only display when there's a sign to display
-vim.opt.timeoutlen = 500 -- shorter timeout for mappings (milliseconds)
-vim.opt.title = true -- terminal window shows name of file - doesn't work in tmux?
-vim.opt.termguicolors = true -- advanced colors required for hexokinase plugin
-vim.opt.updatetime = 1000 -- write swapfile to disk after these milliseconds
-vim.opt.undofile = true
-vim.opt.wildmode = 'longest:full' -- command completion to longest substring, then show popup menu of completions
+vim.o.conceallevel = 2 -- use replacement character for concealed text
+vim.o.diffopt = 'internal,filler,closeoff,linematch:60'
+vim.o.gdefault = true -- replace all occurrences in line for :s///
+vim.o.list = true -- show chars for end of line
+--vim.o.listchars:append 'eol:↴'
+vim.o.number = true
+vim.o.numberwidth = 2
+vim.o.scrolloff = 4 -- lines above/below cursor while scrolling
+vim.o.shortmess = 'filmnxtTIoOF' -- experiment with I above, hides intro (try with alpha-nvim)
+vim.o.signcolumn = 'auto' -- only display when there's a sign to display
+vim.o.timeoutlen = 500 -- shorter timeout for mappings (milliseconds)
+vim.o.title = true -- terminal window shows name of file - doesn't work in tmux?
+vim.o.termguicolors = true -- advanced colors required for hexokinase plugin
+vim.o.updatetime = 1000 -- write swapfile to disk after these milliseconds
+vim.o.undofile = true
+vim.o.wildmode = 'longest:full' -- command completion to longest substring, then show popup menu of completions
 
 -- display stuff
-vim.opt.colorcolumn = '100' -- highlight these columns in different color
-vim.opt.cursorcolumn = false
-vim.opt.cursorline = false
-vim.opt.winborder = 'double'
+vim.o.colorcolumn = '100' -- highlight these columns in different color
+vim.o.cursorcolumn = false
+vim.o.cursorline = false
+vim.o.winborder = 'double'
 
 -- cursor line displays only in active window
 local cursorGroup = vim.api.nvim_create_augroup('CursorLine', {clear = true})
@@ -85,12 +85,12 @@ vim.api.nvim_create_autocmd('BufReadPost', {
 vim.api.nvim_create_autocmd('TermOpen', {
     pattern = 'term://*',
     callback = function()
-        if vim.opt.buftype:get() == 'terminal' then
+        if vim.o.buftype:get() == 'terminal' then
             local set = vim.opt_local
             set.number = false
             set.relativenumber = false
             set.scrolloff = 0
-            vim.opt.filetype = 'terminal'
+            vim.o.filetype = 'terminal'
 
             vim.cmd.startinsert() -- start in insert mode
         end
@@ -107,29 +107,29 @@ vim.api.nvim_create_autocmd('TermOpen', {
 -- })
 
 -- search
-vim.opt.hlsearch = true -- highlight every match, clear with <C-l>
-vim.opt.ignorecase = true -- ignore case when searching
-vim.opt.smartcase = true -- ... unless capitals are included
+vim.o.hlsearch = true -- highlight every match, clear with <C-l>
+vim.o.ignorecase = true -- ignore case when searching
+vim.o.smartcase = true -- ... unless capitals are included
 
 -- text formatting
-vim.opt.expandtab = true -- convert tab presses to spaces
-vim.opt.formatoptions = 'cro/q1jl'
-vim.opt.linebreak = true -- don't wrap in middle of words
-vim.opt.textwidth = 120
-vim.opt.virtualedit = 'block' -- position cursor where there is no char in block mode
+vim.o.expandtab = true -- convert tab presses to spaces
+vim.o.formatoptions = 'cro/q1jl'
+vim.o.linebreak = true -- don't wrap in middle of words
+vim.o.textwidth = 120
+vim.o.virtualedit = 'block' -- position cursor where there is no char in block mode
 
-vim.opt.shiftwidth = 4 -- spaces used during (auto)indent, >>, and <<
-vim.opt.tabstop = 4 -- tabs are 4 spaces, can be overridden per filetype
+vim.o.shiftwidth = 4 -- spaces used during (auto)indent, >>, and <<
+vim.o.tabstop = 4 -- tabs are 4 spaces, can be overridden per filetype
 
-vim.opt.showmatch = true -- when inserting bracket/paren, highlight matching one
-vim.opt.matchtime = 3 -- tenths of a second
+vim.o.showmatch = true -- when inserting bracket/paren, highlight matching one
+vim.o.matchtime = 3 -- tenths of a second
 
 -- enable undercurl support
 vim.cmd([[let &t_Cs = "\e[4:3m"]])
 vim.cmd([[let &t_Ce = "\e[4:0m"]])
 
 -- enable spell check
-vim.opt.spell = true
+vim.o.spell = true
 vim.opt.spelllang = { 'en_us' }
 
 -- allow closing windows with 'q' that normally require ':q'
@@ -151,6 +151,8 @@ vim.api.nvim_create_autocmd('FileType',
     }
 )
 
+-- don't have things folded initially
+vim.o.foldlevel = 99
 -- center screen when searching, folding, and navigating to marks
 -- vim.keymap.set('n', 'n', 'nzz')
 -- vim.keymap.set('n', 'N', 'Nzz')
