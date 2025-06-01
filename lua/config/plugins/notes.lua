@@ -230,6 +230,10 @@ return {
                     vim.keymap.set({ 'o', 'x' }, 'ah', '<Plug>(neorg.text-objects.textobject.heading.outer)',
                         { desc = '[ah] Text Object: Neorg heading', buffer = true })
 
+                    -- ctrl+enter - run kulala request
+                    vim.keymap.set({ 'n', 'v' }, '<c-cr>', ':lua require("kulala").run()<cr>',
+                        { desc = '[<ctrl>+<enter] Kulala - Run request in code block', buffer = true })
+
                     -- code block magnify (edit in own tmp buffer)
                     -- TODO: doesn't work?
                     -- vim.keymap.set('n', '<LocalLeader>z', ':Neorg keybind all core.looking-glass.magnify-code-block<cr>', { desc = '[<space>] [Z]oom code block to own buffer', buffer = true })
