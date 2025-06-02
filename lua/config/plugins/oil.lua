@@ -78,6 +78,6 @@ return {
             },
         })
 
-        vim.keymap.set('n', '-', ':Oil<cr>', { desc = '[-] Open parent directory' })
+        vim.keymap.set('n', '-', ':Oil<cr>', { desc = '[-] Open parent directory', silent = true })
     end,
 }
