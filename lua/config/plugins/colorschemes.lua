@@ -55,6 +55,8 @@ return {
             -- set bash highlighting that appears in package.json files
             vim.cmd('hi @bash.argumentFlag guifg=#689d6a')
             vim.cmd('hi @bash.specialKeyword guifg=#fe8019')
+            -- make floating window background transparent
+            vim.cmd[[ hi NormalFloat guifg=#e6eaea guibg=NONE ]]
         end
     },
 }

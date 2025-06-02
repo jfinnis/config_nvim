@@ -71,9 +71,6 @@ return {
             -- gleam
             lspconfig.gleam.setup {}
 
-            -- kulala - http file LS
-            lspconfig.kulala_ls.setup({ capabilities = capabilities })
-
             -- json
             lspconfig.jsonls.setup {
                 settings = {
@@ -108,43 +105,39 @@ return {
                     nmap('gK', function()
                         telescope.lsp_definitions({ show_line = true })
                     end, event, '[G]oto [K] definition')
+
                     nmap('<leader>fd', function()
                         telescope.diagnostics(require('telescope.themes').get_ivy{})
-                    end, event, '[;f] Show [D]iagnostics')
-                    nmap('gy', function()
+                    end, event, '[;] [F]ind [D]iagnostics')
+
+                    nmap('gO', function()
                         telescope.lsp_document_symbols({
                             prompt_title = 'LSP Symbols (C-l to filter)',
                             show_line = true
                         })
-                    end, event, '[G]oto LSP S[y]mbols') -- default gO
+                    end, event, '[G]oto LSP Symb[o]ls') -- default gO
 
-                    -- pretty hover (with transparent window)
-                    vim.cmd[[ hi NormalFloat guifg=#e6eaea guibg=NONE ]]
+                    -- NOTE: hover replaced by pretty_hover plugin
+                    -- vim.keymap.set('n', 'K', vim.lsp.buf.hover, { buffer = event.buf })
                     vim.keymap.set('n', 'K', ":lua require('pretty_hover').hover()<cr>",
                         { desc ='[K] Show Info in Hover', silent = true })
-
-                    ---- use trouble references instead
-                    -- vim.keymap.set('n', 'g/', vim.lsp.buf.references) -- default grr
 
                     nmap('gd', function()
                         vim.diagnostic.open_float({ border = 'rounded' })
                     end, event, '[G]oto Current Line [D]iagnostics') -- default <C-W>d
+
                     nmap('gt', require('telescope.builtin').lsp_type_definitions,
                         event, '[G]oto [T]ype of Element')
                     vim.keymap.set('i', '<tab><space>', vim.lsp.buf.signature_help,
                         { buffer = event.buf, desc = '[i_<tab><space>] Show function signature' }) -- default <C-S>
 
-                    -- set formatting command in ftplugin instead
+                    -- NOTE: set formatting command in ftplugin instead
                     -- nmap('<tab><space>', ':lua vim.lsp.buf.format({ async = true })<cr>',
                     --    event, '[<tab><space>] Format the entire file')
 
-                    -- TODO: remove when updated and these become defaults (current in nightly)
-                    nmap('grn', vim.lsp.buf.rename,
-                        { buffer = event.buf, desc = '[g] [R]e[n]ame' })
-                    nmap('gra', vim.lsp.buf.code_action,
-                        { buffer = event.buf, desc = '[gr] Code [a]ction' })
-                    nmap('gi', vim.lsp.buf.implementation,
-                        { buffer = event.buf, desc = '[G]oto [I]mplementation' }) -- default gri
+                    -- NOTE: use trouble references instead
+                    -- vim.keymap.set('n', 'g/', vim.lsp.buf.references) -- default grr
+
                 end
             })
         end,
