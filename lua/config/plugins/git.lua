@@ -33,10 +33,6 @@ return {
                     linematch = true
                 },
                 max_file_length = 40000, -- Disable if file is longer than this (in lines)
-                preview_config = {
-                    -- Options passed to nvim_open_win
-                    border = 'double',
-                },
                 current_line_blame_opts = {
                     virt_text = true,
                     virt_text_pos = 'eol', -- 'eol' | 'overlay' | 'right_align'
