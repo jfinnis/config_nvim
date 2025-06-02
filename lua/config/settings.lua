@@ -51,7 +51,7 @@ vim.api.nvim_create_autocmd('BufReadPost', {
     end,
 })
  
--- -- only show command line when typing a command
+-- TODO: only show command line when typing a command
 -- vim.o.cmdheight = 0
 -- vim.api.nvim_create_autocmd('CmdlineEnter', {
 --     group = vim.api.nvim_create_augroup(

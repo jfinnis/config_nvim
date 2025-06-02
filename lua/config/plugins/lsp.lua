@@ -102,6 +102,28 @@ return {
                 desc = 'LSP Actions',
                 callback = function(event)
                     local telescope = require('telescope.builtin')
+
+                    -- diagnostics only shown in sign column by default so show in
+                    -- text and lines
+                    vim.diagnostic.config({
+                        severity_sort = true,
+                        virtual_text = {
+                            severity = {
+                                vim.diagnostic.severity.WARN,
+                                vim.diagnostic.severity.INFO,
+                                vim.diagnostic.severity.HINT,
+                            },
+                            -- current_line = false,
+                        },
+                        virtual_lines = {
+                            severity = {
+                                vim.diagnostic.severity.ERROR,
+                            },
+                            -- current_line = true
+                        },
+                    })
+
+                    -- mappings
                     nmap('gK', function()
                         telescope.lsp_definitions({ show_line = true })
                     end, event, '[G]oto [K] definition')
