@@ -25,7 +25,7 @@ return {
                 ['<C-o>o'] = function(prompt_bufnr) require('telescope.actions').select_default(prompt_bufnr) require('telescope.builtin').resume() end,
                 ['<C-o>v'] = function(prompt_bufnr) require('telescope.actions').select_vertical(prompt_bufnr) require('telescope.builtin').resume() end,
                 ['<C-o>h'] = function(prompt_bufnr) require('telescope.actions').select_horizontal(prompt_bufnr) require('telescope.builtin').resume() end,
-                ['<c-q>'] = require('trouble.sources.telescope').open(),
+                -- ['<c-q>'] = require('trouble.sources.telescope').open(),
             }
 
             require('telescope').setup{
