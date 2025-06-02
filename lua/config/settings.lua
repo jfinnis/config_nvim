@@ -50,9 +50,18 @@ vim.api.nvim_create_autocmd('BufReadPost', {
         end
     end,
 })
- 
+
 -- only show command line when typing a command
 vim.o.cmdheight = 0
+-- TODO: messages show in box when cmdheight is 0 - not working yet?
+-- require('vim._extui').enable({
+--     msg = {
+--         pos = 'box',
+--         box = {
+--             timeout = 3000
+--         }
+--     }
+-- })
 vim.api.nvim_create_autocmd('CmdlineEnter', {
     group = vim.api.nvim_create_augroup(
         'gmr_cmdheight_1_on_cmdlineenter',
