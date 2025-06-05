@@ -202,37 +202,37 @@ return {
                     -- <space>f - telescope finder for neorg notes
                     -- located in telescope file
                     vim.keymap.set('n', '<LocalLeader>C', ':Neorg search query categories<cr>',
-                        { desc = '[<space>] Search [C]ategories', buffer = true })
+                        { desc = '[<space>] Search [C]ategories', buffer = true, silent = true })
                     vim.keymap.set('n', '<LocalLeader>F', ':Neorg search query fulltext<cr>',
-                        { desc = '[<space>] Search [F]ulltext Across Notes', buffer = true })
+                        { desc = '[<space>] Search [F]ulltext Across Notes', buffer = true, silent = true })
 
                     -- basic navigation
                     vim.keymap.set('n', '<LocalLeader>nr', ':Neorg return<cr>',
-                        { desc = '[<space>] [N]eorg: [R]eturn', buffer = true })
+                        { desc = '[<space>] [N]eorg: [R]eturn', buffer = true, silent = true })
                     -- <space>i - neorg insert link
                     vim.keymap.set('n', '<LocalLeader>i', ':Telescope neorg insert_link<cr>',
-                        { desc = '[<space>] Neorg: [I]nsert Link', buffer = true })
+                        { desc = '[<space>] Neorg: [I]nsert Link', buffer = true, silent = true })
                     -- <space>/ - neorg search backlinks (references)
                     vim.keymap.set('n', '<LocalLeader>/', ':Telescope neorg find_backlinks<cr>',
-                        { desc = '[<space>/] Neorg: Search Backlinks', buffer = true })
+                        { desc = '[<space>/] Neorg: Search Backlinks', buffer = true, silent = true })
 
                     -- <space>m - inject metadata
                     vim.keymap.set('n', '<LocalLeader>m', ':Neorg inject-metadata<cr>',
-                        { desc = '[<space>] Add Neorg [M]etadata', buffer = true })
+                        { desc = '[<space>] Add Neorg [M]etadata', buffer = true, silent = true })
 
                     -- text object mappings
                     vim.keymap.set('n', '<LocalLeader>k', '<Plug>(neorg.text-objects.item-up)',
-                        { desc = '[<space>k] Neorg: Move heading level down', buffer = true })
+                        { desc = '[<space>k] Neorg: Move heading level down', buffer = true, silent = true })
                     vim.keymap.set('n', '<LocalLeader>j', '<Plug>(neorg.text-objects.item-down)',
-                        { desc = '[<space>j] Neorg: Move heading level up', buffer = true })
+                        { desc = '[<space>j] Neorg: Move heading level up', buffer = true, silent = true })
                     vim.keymap.set({ 'o', 'x' }, 'ih', '<Plug>(neorg.text-objects.textobject.heading.inner)',
-                        { desc = '[ih] Text Object: Neorg heading', buffer = true })
+                        { desc = '[ih] Text Object: Neorg heading', buffer = true, silent = true })
                     vim.keymap.set({ 'o', 'x' }, 'ah', '<Plug>(neorg.text-objects.textobject.heading.outer)',
-                        { desc = '[ah] Text Object: Neorg heading', buffer = true })
+                        { desc = '[ah] Text Object: Neorg heading', buffer = true, silent = true })
 
                     -- ctrl+enter - run kulala request
                     vim.keymap.set({ 'n', 'v' }, '<c-cr>', ':lua require("kulala").run()<cr>',
-                        { desc = '[<ctrl>+<enter] Kulala - Run request in code block', buffer = true })
+                        { desc = '[<ctrl>+<enter] Kulala - Run request in code block', buffer = true, silent = true })
 
                     -- code block magnify (edit in own tmp buffer)
                     -- TODO: doesn't work?
@@ -280,6 +280,13 @@ return {
                 end
             })
 
+            vim.api.nvim_create_autocmd('BufWritePre', {
+                pattern = '*.norg',
+                callback = function()
+                    vim.cmd([[%s/’/'/ge]])
+                end,
+            })
+
             -- custom neorg wrap settings for when long links make the lines wrap
             local orig_formatlistpat = vim.opt.formatlistpat
             vim.api.nvim_create_autocmd('BufEnter', {
@@ -304,17 +311,17 @@ return {
 
             -- can be called outside neorg files to start the Neorg interface
             vim.keymap.set('n', '<Leader>I', ':Neorg index<cr>',
-                { desc = '[<space>] Open Neorg [I]ndex' })
+                { desc = '[<space>] Open Neorg [I]ndex', silent = true })
 
             -- journal mappings
             vim.keymap.set('n', '<Leader>JJ', ':Neorg journal today<cr>',
-                { desc = '[<Leader>] Neorg: [J]ournal [J]Today' })
+                { desc = '[<Leader>] Neorg: [J]ournal [J]Today', silent = true })
             vim.keymap.set('n', '<Leader>JT', ':Neorg journal tomorrow<cr>',
-                { desc = '[<Leader>] Neorg: [J]ournal [T]omorrow' })
+                { desc = '[<Leader>] Neorg: [J]ournal [T]omorrow', silent = true })
             vim.keymap.set('n', '<Leader>JY', ':Neorg journal yesterday<cr>',
-                { desc = '[<Leader>] Neorg: [J]ournal [Y]esterday' })
+                { desc = '[<Leader>] Neorg: [J]ournal [Y]esterday', silent = true })
             vim.keymap.set('n', '<Leader>JC', ':Neorg journal custom<cr>',
-                { desc = '[<Leader>] Neorg: [J]ournal [C]ustom' })
+                { desc = '[<Leader>] Neorg: [J]ournal [C]ustom', silent = true })
         end
     },
 }

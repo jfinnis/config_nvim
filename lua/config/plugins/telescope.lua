@@ -37,7 +37,7 @@ return {
                     selection_caret = ' → ',
                     multi_icon = '＋',
                     dynamic_preview_title = true,
-                    path_display = 'smart',
+                    path_display = { 'smart' },
                     wrap_results = false, -- maybe true for certain views
                     layout_strategy = 'horizontal',
                     mappings = { n = telescope_mappings, i = telescope_mappings },
