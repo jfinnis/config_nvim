@@ -216,6 +216,10 @@ return {
                     vim.keymap.set('n', '<LocalLeader>/', ':Telescope neorg find_backlinks<cr>',
                         { desc = '[<space>/] Neorg: Search Backlinks', buffer = true, silent = true })
 
+                    -- gO - table of contents
+                    vim.keymap.set('n', 'gO', ':Neorg toc<cr>',
+                        { desc = '[gO] Neorg: Table of Contents', buffer = true, silent = true })
+
                     -- <space>m - inject metadata
                     vim.keymap.set('n', '<LocalLeader>m', ':Neorg inject-metadata<cr>',
                         { desc = '[<space>] Add Neorg [M]etadata', buffer = true, silent = true })
