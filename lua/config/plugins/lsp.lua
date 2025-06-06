@@ -132,7 +132,7 @@ return {
                         telescope.diagnostics(require('telescope.themes').get_ivy{})
                     end, event, '[;] [F]ind [D]iagnostics')
 
-                    nmap('gO', function()
+                    nmap('gy', function()
                         telescope.lsp_document_symbols({
                             prompt_title = 'LSP Symbols (C-l to filter)',
                             show_line = true
