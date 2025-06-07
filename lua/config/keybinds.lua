@@ -39,36 +39,6 @@ vim.keymap.set('n', '<Leader>#', ':e #<cr>')
 vim.keymap.set('n', '+', '<C-w>_')
 vim.keymap.set('n', '_', '<C-w>=')
 
--- move between windows
-vim.keymap.set('n', '<Leader>h', '<C-W>h') -- left
-vim.keymap.set('n', '<Leader>j', '<C-W>j') -- down
-vim.keymap.set('n', '<Leader>k', '<C-W>k') -- up
-vim.keymap.set('n', '<Leader>l', '<C-W>l') -- right
-
--- resize left/right/up/down
-vim.keymap.set('n', '<C-W><', '<C-W><:let g:LastWindowResize="in-horiz"<cr>', { silent = true })
-vim.keymap.set('n', '<C-W>>', '<C-W>>:let g:LastWindowResize="out-horiz"<cr>', { silent = true })
-vim.keymap.set('n', '<C-W>+', '<C-W>+:let g:LastWindowResize="out-vert"<cr>', { silent = true })
-vim.keymap.set('n', '<C-W>-', '<C-W>-:let g:LastWindowResize="in-vert"<cr>', { silent = true })
-
--- repeat last resize with comma ','
-vim.cmd([[
-function! RepeatResize()
-    if exists("g:LastWindowResize")
-        if match(g:LastWindowResize, "in-horiz") == 0
-            normal! <
-        elseif match(g:LastWindowResize, "out-horiz") == 0
-            normal! >
-        elseif match(g:LastWindowResize, "out-vert") == 0
-            normal! +
-        else
-            normal! -
-        endif
-    endif
-endfunction
-]])
-vim.keymap.set('n', ',', ':call RepeatResize()<cr>', { silent = true })
-
 -----------------------
 --    completion     --
 -----------------------
