@@ -1,5 +1,9 @@
 --
 -- git plugins
+-- fugitive
+-- fubitive - browse code in bitbucket
+-- gitsigns
+-- git-log - popup window for log
 --
 
 return {
@@ -7,16 +11,20 @@ return {
     {
         'tpope/vim-fugitive',
         config = function()
-            vim.keymap.set('n', '<leader>gB', ':Git blame<cr>', { desc = '[;] [G]it [B]lame All Lines' })
-            vim.keymap.set('n', '<leader>gs', ':G<cr>', { desc = '[;] [G]it [S]tatus and Staging' })
-            vim.keymap.set({'n', 'v'}, '<leader>gw', ':GBrowse<cr>', { desc = '[;] [G]it [B]rowse' })
-            vim.keymap.set('n', '<leader>gl', ':G log %<cr>', { desc = '[;] [G]it [L]og Current File' })
+            vim.keymap.set('n', '<leader>gB', ':Git blame<cr>',
+                { desc = '[;] [G]it [B]lame All Lines', silent = true })
+            vim.keymap.set('n', '<leader>gs', ':G<cr>',
+                { desc = '[;] [G]it [S]tatus and Staging', silent = true })
+            vim.keymap.set({'n', 'v'}, '<leader>gw', ':GBrowse<cr>',
+                { desc = '[;] [G]it [B]rowse', silent = true })
+            -- prefer git-log plugin for popup logs
+            -- vim.keymap.set('n', '<leader>gl', ':G log %<cr>', { desc = '[;] [G]it [L]og Current File' })
         end
     },
 
     -- fubitive - allow bitbucket for Git Browse
     { 'tommcdo/vim-fubitive' },
-    --
+
     -- gitsigns - git file status in the signs, show/hide diffs
     {
         'lewis6991/gitsigns.nvim',
@@ -53,30 +61,36 @@ return {
                         if vim.wo.diff then return ']c' end
                         vim.schedule(function() gs.next_hunk() end)
                         return '<Ignore>'
-                    end, {expr=true, desc='Jump to next git hunk'})
+                    end, { expr = true, desc = ']g - Jump to next git hunk' })
 
                     map('n', '[g', function()
                         if vim.wo.diff then return '[c' end
                         vim.schedule(function() gs.prev_hunk() end)
                         return '<Ignore>'
-                    end, {expr=true, desc='Jump to previous git hunk'})
+                    end, { expr = true, desc = '[g - Jump to previous git hunk' })
 
-                    map('n', '<leader>ga', gs.stage_hunk, {desc='Toggle change to staged'})
-                    map('n', '<leader>gu', gs.reset_hunk, {desc='Undo last staged change'})
-                    map('n', '<leader>gp', gs.preview_hunk, {desc='Preview change'})
-                    map('n', '<leader>gA', gs.stage_buffer, {desc='Add all changes in file'})
-                    map('n', '<leader>gR', gs.reset_buffer_index, {desc='Reset whole file'})
-                    map('n', '<leader>gb', function() gs.blame_line{full=true} end, {desc='Show git blame in popup window'})
+                    map('n', '<leader>ga', gs.stage_hunk,
+                        { desc = '[;] [G]it [a]dd to staged' })
+                    map('n', '<leader>gu', gs.reset_hunk,
+                        { desc = '[;] [G]it [u]ndo last staged change' })
+                    map('n', '<leader>gp', gs.preview_hunk,
+                        { desc = '[;] [G]it [p]review change' })
+                    map('n', '<leader>gA', gs.stage_buffer,
+                        { desc = '[;] [G]it [A]dd all changes in file' })
+                    map('n', '<leader>gR', gs.reset_buffer_index,
+                        { desc = '[;] [G]it [r]eset' })
+                    map('n', '<leader>gb', function() gs.blame_line{ full = true } end,
+                        { desc='[;] [G]it [B]lame in popup window' })
                     -- use fugitive instead
                     --map('n', '<leader>gB', gs.toggle_current_line_blame, {desc='Toggle git blame on current line'})
-                    map('n', '<leader>gd', gs.diffthis)
+                    map('n', '<leader>gd', gs.diffthis, { desc = '[;] [G]it [d]iff', silent = true })
                     -- using telescope git status instead
                     --map('n', '<leader>gs', function() gs.setqflist('all') end, {desc='Git status - Show all changes in repo'})
                     map('n', '<leader>gg', function()
                         gs.toggle_deleted() -- deprecated - use preview_hunk_inline instead? doesn't show deleted lines
                         gs.toggle_linehl()
                         gs.toggle_word_diff()
-                    end, {desc='Toggle all git changes'})
+                    end, { desc = '[;] Toggle all [g]it chan[g]es' })
 
                     -- TODO: custom function to prompt for revision and git diff it
                     --map('n', '<leader>gD', function() gs.diffthis('~') end)
@@ -93,4 +107,12 @@ return {
             }
         end
     },
+
+    -- git-log
+    {
+        'niuiic/git-log.nvim',
+        dependencies = {
+            'niuiic/omega.nvim'
+        },
+    }
 }
