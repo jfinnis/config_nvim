@@ -33,6 +33,12 @@ set_sign_icons { error = '✘', warn = '▲', hint = '⚑', info = '»' }
 
 return {
     {
+        -- java lsp helper
+        'nvim-java/nvim-java',
+        -- config = function() require('java').setup {} end
+    },
+
+    {
         'neovim/nvim-lspconfig',
         dependencies = {
             'saghen/blink.cmp',
@@ -67,6 +73,11 @@ return {
 
             -- biome.js linter/formatter
             lspconfig.biome.setup {}
+
+            -- java
+            lspconfig.jdtls.setup {
+                capabilities = capabilities,
+            }
 
             -- gleam
             lspconfig.gleam.setup {}
