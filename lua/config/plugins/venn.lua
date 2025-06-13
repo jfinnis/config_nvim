@@ -16,6 +16,15 @@ function _G.Toggle_venn()
         vim.api.nvim_buf_set_keymap(0, "n", "K", "<C-v>k:VBox<CR>", { noremap = true, silent = true })
         vim.api.nvim_buf_set_keymap(0, "n", "L", "<C-v>l:VBox<CR>", { noremap = true, silent = true })
         vim.api.nvim_buf_set_keymap(0, "n", "H", "<C-v>h:VBox<CR>", { noremap = true, silent = true })
+        -- move 8 characters in the same directions
+        vim.api.nvim_buf_set_keymap(0, "n", "<c-j>", "8j", { noremap = true, silent = true })
+        vim.api.nvim_buf_set_keymap(0, "n", "<c-k>", "8k", { noremap = true, silent = true })
+        vim.api.nvim_buf_set_keymap(0, "n", "<c-l>", "8l", { noremap = true, silent = true })
+        vim.api.nvim_buf_set_keymap(0, "n", "<c-h>", "8h", { noremap = true, silent = true })
+        vim.api.nvim_buf_set_keymap(0, "v", "<c-j>", "8j", { noremap = true, silent = true })
+        vim.api.nvim_buf_set_keymap(0, "v", "<c-k>", "8k", { noremap = true, silent = true })
+        vim.api.nvim_buf_set_keymap(0, "v", "<c-l>", "8l", { noremap = true, silent = true })
+        vim.api.nvim_buf_set_keymap(0, "v", "<c-h>", "8h", { noremap = true, silent = true })
         -- draw a box by pressing "b" with visual selection
         vim.api.nvim_buf_set_keymap(0, "v", "b", ":VBox<CR>", { noremap = true, silent = true})
         -- draw with overlap
