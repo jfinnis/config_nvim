@@ -9,6 +9,7 @@
 function _G.Toggle_venn()
     local venn_enabled = vim.inspect(vim.b.venn_enabled)
     if venn_enabled == "nil" then
+        vim.notify('Venn mode enabled', vim.log.levels.INFO)
         vim.b.venn_enabled = true
         vim.cmd[[setlocal ve=all]]
         -- draw a line on HJKL keystokes
@@ -40,17 +41,18 @@ function _G.Toggle_venn()
         -- filled box
         vim.api.nvim_buf_set_keymap(0, "v", "f", ":VFill<CR>", { noremap = true, silent = true})
     else
+        vim.notify('Venn mode disabled', vim.log.levels.INFO)
         vim.cmd[[setlocal ve=]]
         vim.api.nvim_buf_del_keymap(0, "n", "J")
         vim.api.nvim_buf_del_keymap(0, "n", "K")
         vim.api.nvim_buf_del_keymap(0, "n", "L")
         vim.api.nvim_buf_del_keymap(0, "n", "H")
-        vim.api.nvim_buf_del_keymap(0, "n", "b")
-        vim.api.nvim_buf_del_keymap(0, "n", "B")
-        vim.api.nvim_buf_del_keymap(0, "n", "d")
-        vim.api.nvim_buf_del_keymap(0, "n", "D")
-        vim.api.nvim_buf_del_keymap(0, "n", "t")
-        vim.api.nvim_buf_del_keymap(0, "n", "T")
+        vim.api.nvim_buf_del_keymap(0, "v", "b")
+        vim.api.nvim_buf_del_keymap(0, "v", "B")
+        vim.api.nvim_buf_del_keymap(0, "v", "d")
+        vim.api.nvim_buf_del_keymap(0, "v", "D")
+        vim.api.nvim_buf_del_keymap(0, "v", "t")
+        vim.api.nvim_buf_del_keymap(0, "v", "T")
         vim.api.nvim_buf_del_keymap(0, "v", "f")
         vim.b.venn_enabled = nil
     end

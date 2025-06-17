@@ -112,7 +112,7 @@ return {
             })
 
             vim.keymap.set('n', '<leader>z', ':ZenMode<cr>',
-                { desc = '[;] [Z]en Mode + Twilight' })
+                { desc = '[;] [Z]en Mode + Twilight', silent = true })
         end
     },
 }
