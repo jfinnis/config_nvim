@@ -220,9 +220,10 @@ return {
                     vim.keymap.set('n', 'gO', ':Neorg toc<cr>',
                         { desc = '[gO] Neorg: Table of Contents', buffer = true, silent = true })
 
+                    -- NOTE: doing auto-metadata for now
                     -- <space>m - inject metadata
-                    vim.keymap.set('n', '<LocalLeader>m', ':Neorg inject-metadata<cr>',
-                        { desc = '[<space>] Add Neorg [M]etadata', buffer = true, silent = true })
+                    -- vim.keymap.set('n', '<LocalLeader>m', ':Neorg inject-metadata<cr>',
+                        -- { desc = '[<space>] Add Neorg [M]etadata', buffer = true, silent = true })
 
                     -- text object mappings
                     vim.keymap.set('n', '<LocalLeader>k', '<Plug>(neorg.text-objects.item-up)',
@@ -237,6 +238,12 @@ return {
                     -- ctrl+enter - run kulala request
                     vim.keymap.set({ 'n', 'v' }, '<c-cr>', ':lua require("kulala").run()<cr>',
                         { desc = '[<ctrl>+<enter] Kulala - Run request in code block', buffer = true, silent = true })
+
+                    -- generate ticket template for index page
+                    vim.keymap.set('n',
+                        '<LocalLeader>mt',
+                        'o- {:$/work/PD-xxxx:}[PD-xxxx: The ticket title]<esc>o-- ( ) done<esc>o-- ( ) merge<esc>',
+                        { desc = '[<space>] Te[m]plate: Generate ticket to index', silent = true })
 
                     -- code block magnify (edit in own tmp buffer)
                     -- TODO: doesn't work?
