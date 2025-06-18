@@ -239,11 +239,21 @@ return {
                     vim.keymap.set({ 'n', 'v' }, '<c-cr>', ':lua require("kulala").run()<cr>',
                         { desc = '[<ctrl>+<enter] Kulala - Run request in code block', buffer = true, silent = true })
 
+                    --
+                    -- te[m]plates
+                    --
                     -- generate ticket template for index page
                     vim.keymap.set('n',
                         '<LocalLeader>mt',
                         'o- {:$/work/PD-xxxx:}[PD-xxxx: The ticket title]<esc>o-- ( ) done<esc>o-- ( ) merge<esc>',
-                        { desc = '[<space>] Te[m]plate: Generate ticket to index', silent = true })
+                        { desc = '[<space>] Te[m]plate: Generate [t]icket to index', silent = true })
+
+                    -- generate detailed ticket template for note
+                    vim.keymap.set('n',
+                        '<LocalLeader>mT',
+                        'gg/categories<cr>A [<esc>owork<esc>otickets<esc>o]<esc>Go<esc>oBack to {:$/index:}[index]<esc>oTicket details {https://bunchball-dev.atlassian.net/browse/PD-xxxx}[link]<esc>o<esc>o* Tasks<esc>o<esc>0C- ( ) <esc>o<esc>o<esc>o* Done<esc>o<esc>0C- ( ) <esc>?title<cr>A: ',
+                        { desc = '[<space>] Te[m]plate: Generate detailed [T]icket', silent = true })
+
 
                     -- code block magnify (edit in own tmp buffer)
                     -- TODO: doesn't work?
