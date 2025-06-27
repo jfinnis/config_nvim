@@ -251,7 +251,7 @@ return {
                     -- generate detailed ticket template for note
                     vim.keymap.set('n',
                         '<LocalLeader>mT',
-                        'gg/categories<cr>A [<esc>owork<esc>otickets<esc>o]<esc>Go<esc>oBack to {:$/index:}[index]<esc>oTicket details {https://bunchball-dev.atlassian.net/browse/PD-xxxx}[link]<esc>o<esc>o* Tasks<esc>o<esc>0C- ( ) <esc>?title<cr>A: ',
+                        'gg/categories<cr>A [<esc>owork<esc>otickets<esc>o]<esc>GoBack to {:$/index:}[index]<esc>oTicket details {https://bunchball-dev.atlassian.net/browse/PD-xxxx}[link]<esc>o<esc>o* Tasks<esc>o<esc>0C- ( ) <esc>?title<cr>A: ',
                         { desc = '[<space>] Te[m]plate: Generate detailed [T]icket', silent = true })
 
 
