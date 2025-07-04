@@ -132,10 +132,10 @@ return {
                         })
                     end, event, '[G]oto LSP Symb[o]ls') -- default gO
 
-                    -- NOTE: hover replaced by pretty_hover plugin
+                    -- NOTE: hover replaced by pretty_hover plugin, called in better-type-hover
                     -- vim.keymap.set('n', 'K', vim.lsp.buf.hover, { buffer = event.buf })
-                    vim.keymap.set('n', 'K', ":lua require('pretty_hover').hover()<cr>",
-                        { desc ='[K] Show Info in Hover', silent = true })
+                    -- vim.keymap.set('n', 'K', ":lua require('pretty_hover').hover()<cr>",
+                    --     { desc ='[K] Show Info in Hover', silent = true })
 
                     nmap('gd', function()
                         vim.diagnostic.open_float({ border = 'rounded' })
@@ -158,6 +158,7 @@ return {
         end,
     },
 
+    -- Mason - just used for checking if there's new versions
     {
         'williamboman/mason.nvim',
         lazy = false,
@@ -172,5 +173,19 @@ return {
         'Fildo7525/pretty_hover',
         event = 'LspAttach',
         opts = {},
+    },
+
+    {
+        -- overridden to customize falling back to pretty_hover K when needed
+        -- dir = '~/Documents/projects/better-type-hover.nvim',
+        'jfinnis/better-type-hover',
+        -- 'Sebastian-Nielsen/better-type-hover',
+
+        ft = { 'typescript', 'typescriptreact', },
+        config = function()
+            require('better-type-hover').setup({
+                openTypeDocKeymap = 'K'
+            })
+        end
     },
 }
