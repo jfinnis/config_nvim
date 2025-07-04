@@ -61,52 +61,34 @@ return {
             -- Set the key K so that Neovim doesn't override it and we can attach later
             vim.keymap.set('n', 'K', '')
 
+            -- TODO: how does this work with new lspconfig update?
             -- configure the language servers
-            local capabilities = require('blink.cmp').get_lsp_capabilities()
-
+            -- local capabilities = require('blink.cmp').get_lsp_capabilities()
             -- lua
-            local lspconfig = require('lspconfig')
-            lspconfig.lua_ls.setup { capabilities = capabilities }
+            -- lspconfig.lua_ls.setup { capabilities = capabilities }
 
-            -- typescript
-            lspconfig.ts_ls.setup {}
+            vim.lsp.enable({ 'ts_ls', 'jsonls', 'yamlls', 'lua_ls', 'jdtls', 'gleam', 'biome' })
 
-            -- biome.js linter/formatter
-            lspconfig.biome.setup {}
-
-            -- java
-            lspconfig.jdtls.setup {
-                capabilities = capabilities,
-            }
-
-            -- gleam
-            lspconfig.gleam.setup {}
-
+            -- extra config for languages
             -- json
-            lspconfig.jsonls.setup {
+            vim.lsp.config('jsonls', {
                 settings = {
                     json = {
                         schemas = require('schemastore').json.schemas(),
                         validate = { enable = true }
                     }
                 }
-            }
+            })
 
             -- yaml
-            lspconfig.yamlls.setup {
+            vim.lsp.config('jsonls', {
                 settings = {
                     yaml = {
-                        schemaStore = {
-                            -- You must disable built-in schemaStore support if you want to use
-                            -- this plugin and its advanced options like `ignore`.
-                            enable = false,
-                            -- Avoid TypeError: Cannot read properties of undefined (reading 'length')
-                            url = "",
-                        },
-                        schemas = require('schemastore').yaml.schemas()
+                        schemas = require('schemastore').yaml.schemas(),
+                        validate = { enable = true }
                     }
                 }
-            }
+            })
 
             -- create LSP mappings
             vim.api.nvim_create_autocmd('LspAttach', {
