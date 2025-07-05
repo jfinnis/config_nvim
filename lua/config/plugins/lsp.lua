@@ -41,7 +41,6 @@ return {
     {
         'neovim/nvim-lspconfig',
         dependencies = {
-            'saghen/blink.cmp',
             {
                 'folke/lazydev.nvim',
                 ft = 'lua', -- only load on lua files
@@ -60,12 +59,6 @@ return {
 
             -- Set the key K so that Neovim doesn't override it and we can attach later
             vim.keymap.set('n', 'K', '')
-
-            -- TODO: how does this work with new lspconfig update?
-            -- configure the language servers
-            -- local capabilities = require('blink.cmp').get_lsp_capabilities()
-            -- lua
-            -- lspconfig.lua_ls.setup { capabilities = capabilities }
 
             vim.lsp.enable({ 'ts_ls', 'jsonls', 'yamlls', 'lua_ls', 'jdtls', 'gleam', 'biome' })
 

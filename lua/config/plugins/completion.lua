@@ -7,17 +7,24 @@ return {
     {
         'saghen/blink.cmp',
         version = '*',
+
+        -- optional: snippets source
+        -- dependencies = {
+            -- 'rafamadriz/friendly-snippets'
+        -- },
+        -- snippets = { preset = 'default' | 'luasnip' | 'mini_snippets' },
+
+        ---@module 'blink.cmp'
+        ---@type blink.cmp.Config
         opts = {
             -- don't show completion menu in notes files
-            enabled = function()
-              -- return not vim.tbl_contains({ 'norg', 'markdown' }, vim.bo.filetype)
-              return not vim.tbl_contains({ 'markdown' }, vim.bo.filetype)
-                and vim.bo.buftype ~= "prompt"
-                and vim.b.completion ~= false
-            end,
+            -- enabled = function()
+            --   return not vim.tbl_contains({ 'markdown' }, vim.bo.filetype)
+            --     and vim.bo.buftype ~= "prompt"
+            --     and vim.b.completion ~= false
+            -- end,
             keymap = {
                 preset = 'default',
-                -- scroll_documentation_up and down - how to do? snippet_forward backward - how to do snippets
             },
             appearance = {
                 nerd_font_variant = 'mono'
@@ -43,7 +50,6 @@ return {
             },
 
             completion = {
-                -- experiment with, will i find this annoying to always popup?
                 documentation = {
                     auto_show = true,
                     auto_show_delay_ms = 500,
