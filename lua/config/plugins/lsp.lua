@@ -98,15 +98,17 @@ return {
                                 vim.diagnostic.severity.WARN,
                                 vim.diagnostic.severity.INFO,
                                 vim.diagnostic.severity.HINT,
+                                vim.diagnostic.severity.ERROR,
                             },
                             -- current_line = false,
                         },
-                        virtual_lines = {
-                            severity = {
-                                vim.diagnostic.severity.ERROR,
-                            },
-                            -- current_line = true
-                        },
+                        -- NOTE: disabled - too busy
+                        -- virtual_lines = {
+                        --     severity = {
+                        --         vim.diagnostic.severity.ERROR,
+                        --     },
+                        --     -- current_line = true
+                        -- },
                     })
 
                     -- mappings
