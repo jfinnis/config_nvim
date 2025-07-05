@@ -63,6 +63,35 @@ return {
             vim.lsp.enable({ 'ts_ls', 'jsonls', 'yamlls', 'lua_ls', 'jdtls', 'gleam', 'biome' })
 
             -- extra config for languages
+            -- lua - inline hints off by default, toggle with grh
+            vim.lsp.config('lua_ls', {
+                settings = {
+                    Lua = {
+                        hint = { enable = true }
+                    }
+                }
+            })
+            -- typescript/javascript - inline hints off by default, toggle with grh
+            local inlay_hints = {
+                includeInlayParameterNameHints = 'all',
+                includeInlayParameterNameHintsWhenArgumentMatchesName = true,
+                includeInlayFunctionParameterTypeHints = true,
+                includeInlayVariableTypeHints = true,
+                includeInlayPropertyDeclarationTypeHints = true,
+                includeInlayFunctionLikeReturnTypeHints = true,
+                includeInlayEnumMemberValueHints = true,
+            }
+            vim.lsp.config('ts_ls', {
+                settings = {
+                    typescript = {
+                        inlayHints = inlay_hints
+                    },
+                    javascript = {
+                        inlayHints = inlay_hints
+                    }
+                }
+            })
+
             -- json
             vim.lsp.config('jsonls', {
                 settings = {
@@ -140,6 +169,11 @@ return {
                         event, '[G]oto [T]ype of Element')
                     vim.keymap.set('i', '<tab><space>', vim.lsp.buf.signature_help,
                         { buffer = event.buf, desc = '[i_<tab><space>] Show function signature' }) -- default <C-S>
+
+                    -- toggle inlay hints
+                    vim.keymap.set('n', 'grh', function()
+                        vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
+                    end, { buffer = event.buf, desc = '[gr] Toggle inlay [h]ints' }) -- default <C-S>
 
                     -- NOTE: set formatting command in ftplugin instead
                     -- nmap('<tab><space>', ':lua vim.lsp.buf.format({ async = true })<cr>',
