@@ -17,7 +17,7 @@ return {
 
         })
 
-        vim.keymap.set('v', '<leader>fw', ':WitSearchVisual<cr>', { desc = '[;] [F]ind on the [W]eb' })
+        vim.keymap.set('v', '<leader>fW', ':WitSearchVisual<cr>', { desc = '[;] [F]ind on the [W]eb' })
         vim.keymap.set('n', '<leader>fW', ':WitSearch ', { desc = '[;] [F]ind on the [W]eb' })
 end
 }
