@@ -1,6 +1,7 @@
 --
 -- all LSP configuration
--- lspconfig + mason + pretty_hover
+-- lspconfig + mason + pretty_hover + better-type-hover
+-- sonarqube + tiny-code-action
 --
 
 local nmap = function(keys, func, event, desc)
@@ -27,7 +28,7 @@ local set_sign_icons = function(opts)
         end
     end
 
-    vim.diagnostic.config({signs = { text = text }})
+    vim.diagnostic.config({ signs = { text = text } })
 end
 set_sign_icons { error = '✘', warn = '▲', hint = '⚑', info = '»' }
 
@@ -112,6 +113,39 @@ return {
                 }
             })
 
+            -- harper
+            require('lspconfig').harper_ls.setup {
+                settings = {
+                    ['harper-ls'] = {
+                        userDictPath = '',
+                        fileDictPath = '',
+                        linters = {
+                            SpellCheck = true,
+                            SpelledNumbers = false,
+                            AnA = true,
+                            SentenceCapitalization = true,
+                            UnclosedQuotes = true,
+                            WrongQuotes = false,
+                            LongSentences = true,
+                            RepeatedWords = true,
+                            Spaces = true,
+                            Matcher = true,
+                            CorrectNumberSuffix = true
+                        },
+                        codeActions = {
+                            ForceStable = false
+                        },
+                        markdown = {
+                            IgnoreLinkTitle = false
+                        },
+                        diagnosticSeverity = 'hint',
+                        isolateEnglish = false,
+                        dialect = 'American',
+                        maxFileLength = 120000
+                    }
+                }
+            }
+
             -- create LSP mappings
             vim.api.nvim_create_autocmd('LspAttach', {
                 desc = 'LSP Actions',
@@ -146,7 +180,7 @@ return {
                     end, event, '[G]oto [K] definition')
 
                     nmap('<leader>fd', function()
-                        telescope.diagnostics(require('telescope.themes').get_ivy{})
+                        telescope.diagnostics(require('telescope.themes').get_ivy {})
                     end, event, '[;] [F]ind [D]iagnostics')
 
                     nmap('gy', function()
@@ -182,6 +216,10 @@ return {
                     -- NOTE: use trouble references instead
                     -- vim.keymap.set('n', 'g/', vim.lsp.buf.references) -- default grr
 
+                    -- override default code action 'gra'
+                    vim.keymap.set({ 'n', 'x' }, 'gra', function()
+                        require('tiny-code-action').code_action()
+                    end, { noremap = true, silent = true })
                 end
             })
         end,
@@ -217,4 +255,26 @@ return {
             })
         end
     },
+
+    {
+        'iamkarasik/sonarqube.nvim',
+        config = function()
+            require('sonarqube').setup({})
+        end
+    },
+
+    {
+        'rachartier/tiny-code-action.nvim',
+        dependencies = {
+            {'nvim-lua/plenary.nvim'},
+            -- optional picker via telescope
+            {'nvim-telescope/telescope.nvim'},
+        },
+        event = 'LspAttach',
+        opts = {
+            backend = 'delta', -- vim, delta, difftastic, diffsofancy
+            picker = 'telescope', -- telescope | snacks | select | buffer
+            telescope = {}
+        }
+    }
 }

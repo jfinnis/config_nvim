@@ -1,7 +1,8 @@
 --
 -- telescope settings
 -- telescope-docker, nvim-neoclip, telescope-fzf-native
--- telescope-hierarchy
+-- telescope-hierarchy, telescope-lazy
+--
 
 return {
     {
@@ -9,7 +10,8 @@ return {
         tag = '0.1.8',
         dependencies = {
             'nvim-lua/plenary.nvim',
-            { 'nvim-telescope/telescope-fzf-native.nvim', build = 'make' }
+            { 'nvim-telescope/telescope-fzf-native.nvim', build = 'make' },
+            'tsakirist/telescope-lazy.nvim',
         },
         config = function()
             local telescope_mappings = {
@@ -30,7 +32,10 @@ return {
 
             require('telescope').setup{
                 extensions = {
-                    fzf = {}
+                    fzf = {},
+                    lazy = {
+                        --theme = 'ivy',
+                    }
                 },
                 defaults = {
                     prompt_prefix = ' 🔎 ',
@@ -46,9 +51,13 @@ return {
             }
 
             require('telescope').load_extension('fzf')
+            require('telescope').load_extension('lazy')
+            vim.keymap.set('n', '<leader>fp', ':Telescope lazy<cr>',
+                { desc = '[;] [F]ind [P]lugins', silent = true })
 
             require('telescope').load_extension('fidget')
-            vim.keymap.set('n', '<leader>fn', ':Telescope fidget<cr>', { desc = '[;] [F]ind [N]otifications' })
+            vim.keymap.set('n', '<leader>fn', ':Telescope fidget<cr>',
+                { desc = '[;] [F]ind [N]otifications', silent = true })
 
             local telescope = require('telescope.builtin')
             local themes = require('telescope.themes')
@@ -74,12 +83,6 @@ return {
                     cwd = vim.fn.expand('~/Documents/neorg')
                 })
             end, {desc='[<space>] [F]ind Neorg Notes'})
-            -- ;fp - file finder - nvim plugins
-            vim.keymap.set('n', '<leader>fp', function()
-                telescope.find_files({
-                    cwd = vim.fs.joinpath(vim.fn.stdpath('data'), 'lazy')
-                })
-            end, {desc='[;] [F]ind inside [P]lugins Directory'})
             -- ;fs - fuzzy find cur buffer
             vim.keymap.set('n', '<leader>fs', function()
                 telescope.current_buffer_fuzzy_find(themes.get_dropdown {
@@ -90,15 +93,13 @@ return {
                 })
             end, {desc='[;] [F]ind [S]earch Term In Current Buffer'})
 
-            --
-            -- lsp extensions
-            -- defined in lsp-zero file
-            --
-
-            -- gd - hover diagnostic in line
-            -- gK - search definition of term
-            -- gt - show type definition of term
-            -- gy - show lsp symbols
+            -- NOTE: replaced with telescope-lazy plugin
+            -- ;fp - file finder - nvim plugins
+            --vim.keymap.set('n', '<leader>fp', function()
+            --    telescope.find_files({
+            --        cwd = vim.fs.joinpath(vim.fn.stdpath('data'), 'lazy')
+            --    })
+            --end, {desc='[;] [F]ind inside [P]lugins Directory'})
 
             --
             -- git extensions
