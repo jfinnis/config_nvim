@@ -113,39 +113,6 @@ return {
                 }
             })
 
-            -- harper
-            require('lspconfig').harper_ls.setup {
-                settings = {
-                    ['harper-ls'] = {
-                        userDictPath = '',
-                        fileDictPath = '',
-                        linters = {
-                            SpellCheck = true,
-                            SpelledNumbers = false,
-                            AnA = true,
-                            SentenceCapitalization = true,
-                            UnclosedQuotes = true,
-                            WrongQuotes = false,
-                            LongSentences = true,
-                            RepeatedWords = true,
-                            Spaces = true,
-                            Matcher = true,
-                            CorrectNumberSuffix = true
-                        },
-                        codeActions = {
-                            ForceStable = false
-                        },
-                        markdown = {
-                            IgnoreLinkTitle = false
-                        },
-                        diagnosticSeverity = 'hint',
-                        isolateEnglish = false,
-                        dialect = 'American',
-                        maxFileLength = 120000
-                    }
-                }
-            }
-
             -- create LSP mappings
             vim.api.nvim_create_autocmd('LspAttach', {
                 desc = 'LSP Actions',
