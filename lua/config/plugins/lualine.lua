@@ -30,7 +30,7 @@ return {
                     {
                         'buffers',
                         symbols = {
-                            modified = ' +'
+                            modified = ' +',
                         }
                     },
                 },

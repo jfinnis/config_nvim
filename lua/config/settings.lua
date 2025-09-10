@@ -91,22 +91,6 @@ vim.api.nvim_create_autocmd('BufWritePost', {
     command = 'redrawstatus',
 })
 
--- set local settings for terminal buffers
-vim.api.nvim_create_autocmd('TermOpen', {
-    pattern = 'term://*',
-    callback = function()
-        if vim.o.buftype:get() == 'terminal' then
-            local set = vim.opt_local
-            set.number = false
-            set.relativenumber = false
-            set.scrolloff = 0
-            vim.o.filetype = 'terminal'
-
-            vim.cmd.startinsert() -- start in insert mode
-        end
-    end,
-})
-
 -- highlight yanked text briefly - replaced with Tiny Glimmer plugin for animated yank
 -- vim.api.nvim_create_augroup('YankHighlight', {clear = true})
 -- vim.api.nvim_create_autocmd('TextYankPost', {
