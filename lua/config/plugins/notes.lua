@@ -132,6 +132,7 @@ return {
                     ['core.summary'] = {},
                     ['core.qol.todo_items'] = {
                         create_todo_parents = false,
+                        update_todo_parents = false,
                     },
                     ['core.keybinds'] = {
                         config = {
