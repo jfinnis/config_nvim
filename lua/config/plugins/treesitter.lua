@@ -13,6 +13,7 @@ return {
                 ensure_installed = {
                     'javascript',
                     'typescript',
+                    'tsx',
                     'bash',
                     'java',
                     'html',
@@ -35,7 +36,10 @@ return {
                     'gitignore',
                     'gitcommit',
                     'git_config',
-                    'http'
+                    'http',
+                    'fennel',
+                    'clojure',
+                    'scheme',
                 },
 
                 -- Install parsers synchronously (only applied to `ensure_installed`)

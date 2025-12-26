@@ -12,6 +12,7 @@ local M = {}
 local live_multigrep = function(opts)
     opts = opts or {}
     opts.cwd = opts.cwd or vim.uv.cwd()
+    opts.max_results = 10000
 
     local finder = finders.new_async_job {
         command_generator = function(prompt)
