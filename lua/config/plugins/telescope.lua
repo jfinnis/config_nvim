@@ -83,15 +83,6 @@ return {
                     cwd = vim.fn.expand('~/Documents/neorg')
                 })
             end, {desc='[<space>] [F]ind Neorg Notes'})
-            -- ;fs - fuzzy find cur buffer
-            vim.keymap.set('n', '<leader>fs', function()
-                telescope.current_buffer_fuzzy_find(themes.get_dropdown {
-                    prompt_title = 'Search Current Buffer',
-                    winblend = 7,
-                    previewer = false,
-                    -- TODO: how to set window options (title) to something else
-                })
-            end, {desc='[;] [F]ind [S]earch Term In Current Buffer'})
 
             -- NOTE: replaced with telescope-lazy plugin
             -- ;fp - file finder - nvim plugins
