@@ -142,9 +142,15 @@ return {
                     })
 
                     -- mappings
-                    nmap('gK', function()
+                    nmap('gk', function()
                         telescope.lsp_definitions({ show_line = true })
                     end, event, '[G]oto [K] definition')
+                    nmap('gK', function()
+                        telescope.lsp_definitions({ show_line = true, jump_type = 'vsplit' })
+                    end, event, '[G]oto [K] definition (vert split)')
+                    nmap('g<m-k>', function()
+                        telescope.lsp_definitions({ show_line = true, jump_type = 'split' })
+                    end, event, '[G]oto [K] definition (vert split)')
 
                     nmap('<leader>fd', function()
                         telescope.diagnostics(require('telescope.themes').get_ivy {})
