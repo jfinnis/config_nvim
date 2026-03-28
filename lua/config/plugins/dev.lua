@@ -22,4 +22,17 @@ return {
         -- dir = '~/Documents/projects/CloudWatch-query.nvim',
         'jfinnis/CloudWatch-query.nvim',
     },
+
+    {
+        -- dir = '~/Documents/projects/ansi.nvim',
+        'jfinnis/ansi.nvim',
+        config = function()
+            require('ansi').setup({
+                auto_enable = false,  -- Auto-enable for configured filetypes
+                filetypes = { 'log', 'ansi' },  -- Filetypes to auto-enable
+                -- Color theme: 'classic', 'modern', 'catppuccin', 'dracula', 'onedark', 'gruvbox', 'terminal'
+                theme = 'terminal',
+            })
+        end,
+    },
 }
