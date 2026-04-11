@@ -4,6 +4,7 @@
 -- fubitive - browse code in bitbucket
 -- gitsigns
 -- git-log - popup window for log
+-- diffs - better highlighting in fugitive window
 --
 
 return {
@@ -125,5 +126,8 @@ return {
             end,
             { desc = '[;] [G]it [l]og' })
         end
-    }
+    },
+
+    -- diffs
+    'barrettruth/diffs.nvim',
 }
