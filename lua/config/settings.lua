@@ -11,6 +11,7 @@ vim.o.gdefault = true -- replace all occurrences in line for :s///
 vim.o.jumpoptions = 'stack' -- not clean, which won't jump to closed buffers
 vim.o.list = true -- show chars for end of line
 --vim.o.listchars:append 'eol:↴'
+vim.o.nrformats = 'blank'
 vim.o.number = true
 vim.o.numberwidth = 2
 vim.o.scrolloff = 4 -- lines above/below cursor while scrolling
