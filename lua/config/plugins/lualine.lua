@@ -18,6 +18,7 @@ return {
                 ignore_focus = {}, -- useful to ignore status line of file tree, etc
                 globalstatus = true, -- don't do one status line per terminal
                 refresh = {
+                    mode = 50,
                     statusline = 1000,
                     tabline = 1000,
                     winbar = 1000,
@@ -72,5 +73,8 @@ return {
             inactive_winbar = {},
             extensions = {}
         }
+
+        local command = require('lualine.themes.terafox').command
+        require('lualine.themes.terafox').normal = command
     end
 }

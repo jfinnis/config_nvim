@@ -3,6 +3,14 @@ vim.keymap.set('n', '<space>tl', ':PlenaryBustedFile %<cr>',
 
 return {
     {
+        -- auto add marks to package.json and react router routes
+        dir = '~/Documents/projects/automarks',
+        -- 'jfinnis/automarks.nvim',
+        config = function()
+            require('automarks').setup()
+        end,
+    },
+    {
         -- local development - advent of code example plugin
         -- dir = '~/Documents/projects/present.nvim',
 

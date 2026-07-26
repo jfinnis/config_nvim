@@ -63,7 +63,15 @@ return {
             local themes = require('telescope.themes')
 
             -- ;a - search
+            -- vim.keymap.set('n', '<leader>a', function()
+            --     telescope.live_grep({
+            --         disable_coordinates = true,
+            --         max_results = 10000,
+            --     })
+            -- end, {desc='[;a] Search for prompted string'})
+            -- NOTE: inaccurate - not finding all refs
             require('config.telescope.multigrep').setup()
+
             -- ;A - search under cursor
             vim.keymap.set('n', '<leader>A', function()
                 telescope.grep_string({

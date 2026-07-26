@@ -3,7 +3,7 @@
 --
 
 -- clear fidget notifications alongside normal <C-L> behavior
-vim.keymap.set('n', '<c-l>', ':Fidget clear<cr><c-l>')
+--vim.keymap.set('n', '<c-l>', ':Fidget clear<cr><c-l>', { remap = true })
 
 return {
     'j-hui/fidget.nvim',

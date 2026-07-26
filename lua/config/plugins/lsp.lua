@@ -61,7 +61,25 @@ return {
             -- Set the key K so that Neovim doesn't override it and we can attach later
             vim.keymap.set('n', 'K', '')
 
-            vim.lsp.enable({ 'ts_ls', 'jsonls', 'yamlls', 'lua_ls', 'jdtls', 'gleam', 'biome' })
+            vim.lsp.enable({
+                'ts_ls',
+                'jsonls',
+                'yamlls',
+                'taplo',
+                'lua_ls',
+                'jdtls',
+                'gleam',
+                'biome',
+                'ruby_lsp',
+                'jedi-language-server',
+                'ruff'
+            })
+
+            vim.lsp.config('ruby_lsp', {
+                cmd = { 'ruby-lsp'  },
+                filetypes = { 'ruby', 'eruby' },
+                root_markers = { '.git', 'Gemfile', '.ruby-lsp' },
+            })
 
             -- extra config for languages
             -- lua - inline hints off by default, toggle with grh
@@ -221,7 +239,7 @@ return {
         'jfinnis/better-type-hover',
         -- 'Sebastian-Nielsen/better-type-hover',
 
-        ft = { 'typescript', 'typescriptreact', },
+        -- ft = { 'typescript', 'typescriptreact', },
         config = function()
             require('better-type-hover').setup({
                 openTypeDocKeymap = 'K'
@@ -229,13 +247,13 @@ return {
         end
     },
 
-    {
-        'iamkarasik/sonarqube.nvim',
-        config = function()
-            require('sonarqube').setup({})
-        end
-    },
-
+    -- {
+    --     'iamkarasik/sonarqube.nvim',
+    --     config = function()
+    --         require('sonarqube').setup({})
+    --     end
+    -- },
+    --
     {
         'rachartier/tiny-code-action.nvim',
         dependencies = {

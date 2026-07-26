@@ -66,7 +66,7 @@
   "pretty_hover": { "branch": "master", "commit": "bcc87e7a58225bed33f0881162f398c40c53049d" },
   "rainbow-delimiters.nvim": { "branch": "master", "commit": "55ad4fb76ab68460f700599b7449385f0c4e858e" },
   "rose-pine": { "branch": "main", "commit": "f93360149e9ed4df8677fbb07c7231ea0fd03b97" },
-  "schemastore.nvim": { "branch": "main", "commit": "1ec3867f463dfe4ca37001348953d810c716d4d9" },
+  "schemastore.nvim": { "branch": "main", "commit": "24eeb97da8d605c480dc68bb6276248702e31d2a" },
   "smart-splits.nvim": { "branch": "master", "commit": "c088d64c6e0e3221d24ef1f9337b5fe15557ddcc" },
   "snacks.nvim": { "branch": "main", "commit": "fe7cfe9800a182274d0f868a74b7263b8c0c020b" },
   "spotify-notification.nvim": { "branch": "main", "commit": "08ef23b7ee3331ac1df6a164477f700b9cee098f" },
