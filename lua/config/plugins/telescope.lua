@@ -147,12 +147,19 @@ return {
             end, {desc='[;f] [F]ind [Q]uickfix Entries'})
             -- ;fr - display registers
             vim.keymap.set('n', '<leader>fr', telescope.registers, {desc='[;] [F]ind [R]egisters'})
-            -- ;fs - display spelling suggestions
-            vim.keymap.set('n', 'z=', function()
-                telescope.spell_suggest(themes.get_dropdown({
-                    winblend = 7
-                }))
-            end, {desc='[;] [F]ind [S]pelling Suggestions'})
+
+            -- z+ - display spelling suggestions for previous mistake
+            vim.keymap.set('n', 'z+', function()
+                -- back to spelling mistake then show prompt
+                vim.cmd.normal('[s')
+                telescope.spell_suggest(themes.get_dropdown({ winblend = 7 }))
+            end, {desc='[z=] Spelling Suggestions Previous Mistake'})
+
+            -- z= - accept first spell suggestion for previous mistake
+            vim.keymap.set('n', 'z=', '[s1z=<c-o>', { noremap = true, desc = '[z+] Fix Previous Spelling Mistake' })
+            -- i_c-l - insert mode accept first spell suggestion for previous mistake
+            vim.keymap.set('i', '<c-l>', '<c-o>:norm z=<cr>', { silent = true, desc = '[i_C-l] Fix Previous Spelling Mistake' })
+
             -- q: - upgraded command history
             vim.keymap.set('n', 'q:', telescope.command_history, {desc='[q:] Upgraded Command History Window'})
             -- q/ - upgraded search history
