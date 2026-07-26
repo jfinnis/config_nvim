@@ -160,14 +160,11 @@ return {
                     })
 
                     -- mappings
-                    nmap('gk', function()
+                    nmap('gK', function()
                         telescope.lsp_definitions({ show_line = true })
                     end, event, '[G]oto [K] definition')
-                    nmap('gK', function()
-                        telescope.lsp_definitions({ show_line = true, jump_type = 'vsplit' })
-                    end, event, '[G]oto [K] definition (vert split)')
                     nmap('g<m-k>', function()
-                        telescope.lsp_definitions({ show_line = true, jump_type = 'split' })
+                        telescope.lsp_definitions({ show_line = true, jump_type = 'vsplit' })
                     end, event, '[G]oto [K] definition (vert split)')
 
                     nmap('<leader>fd', function()

@@ -75,8 +75,15 @@ return {
                 '<cr>',
                 function() require('kulala').run() end,
                 mode = { 'n', 'v' },
-                ft = { 'http', },
+                ft = { 'http', }, -- norg (overrides <enter> to load note)
                 desc = '[Enter] Kulala - Send request' -- optional description, otherwise inferred from the key
+            },
+            ['Send requests (norg)'] = {
+                '<s-cr>',
+                function() require('kulala').run_all() end,
+                mode = { 'n', 'v' },
+                ft = { 'norg', },
+                desc = '[Shift+Enter] Kulala - Send request (norg)'
             },
             ['Send all requests'] = {
                 '<s-cr>',
