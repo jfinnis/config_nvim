@@ -80,11 +80,12 @@ return {
             'nvim-lua/plenary.nvim',
             'nvim-neorg/neorg-telescope',
             'nvim-neorg/tree-sitter-norg',
+            'nvim-neorg/tree-sitter-norg-meta',
             'nvim-neorg/lua-utils.nvim',
             'max397574/neorg-contexts',
             'benlubas/neorg-interim-ls',
-            'juniorsundar/neorg-extras',
-            'benlubas/neorg-se',
+            -- 'juniorsundar/neorg-extras',
+            --'benlubas/neorg-se',
         },
         version = "*",
         config = function()
@@ -166,21 +167,21 @@ return {
                     -- allows renamed headings and filenames (oil) to be updated
                     ['external.interim-ls'] = {},
                     -- folding
-                    ['external.many-mans'] = {
-                        config = {
-                            metadata_fold = true, -- If want @data property ... @end to fold
-                            code_fold = true, -- If want @code ... @end to fold
-                        }
-                    },
-                    -- search categories and full notes texts
-                    ['external.search'] = {
-                        config = {
-                            -- Index the workspace when neovim launches. This process happens on a
-                            -- separate thread, so it doesn't significantly contribute to startup
-                            -- time or block neovim.
-                            index_on_start = true,
-                        }
-                    },
+                    -- ['external.many-mans'] = {
+                    --     config = {
+                    --         metadata_fold = true, -- If want @data property ... @end to fold
+                    --         code_fold = true, -- If want @code ... @end to fold
+                    --     }
+                    -- },
+                    -- search categories and full notes texts - disabled neorg-se
+                    -- ['external.search'] = {
+                    --     config = {
+                    --         -- Index the workspace when neovim launches. This process happens on a
+                    --         -- separate thread, so it doesn't significantly contribute to startup
+                    --         -- time or block neovim.
+                    --         index_on_start = true,
+                    --     }
+                    -- },
                 },
             }
 
@@ -202,10 +203,10 @@ return {
                     -- searching
                     -- <space>f - telescope finder for neorg notes
                     -- located in telescope file
-                    vim.keymap.set('n', '<LocalLeader>C', ':Neorg search query categories<cr>',
-                        { desc = '[<space>] Search [C]ategories', buffer = true, silent = true })
-                    vim.keymap.set('n', '<LocalLeader>F', ':Neorg search query fulltext<cr>',
-                        { desc = '[<space>] Search [F]ulltext Across Notes', buffer = true, silent = true })
+                    -- vim.keymap.set('n', '<LocalLeader>C', ':Neorg search query categories<cr>',
+                    --     { desc = '[<space>] Search [C]ategories', buffer = true, silent = true })
+                    -- vim.keymap.set('n', '<LocalLeader>F', ':Neorg search query fulltext<cr>',
+                    --     { desc = '[<space>] Search [F]ulltext Across Notes', buffer = true, silent = true })
 
                     -- basic navigation
                     vim.keymap.set('n', '<LocalLeader>nr', ':Neorg return<cr>',

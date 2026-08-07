@@ -147,12 +147,15 @@ return {
             end, {desc='[;f] [F]ind [Q]uickfix Entries'})
             -- ;fr - display registers
             vim.keymap.set('n', '<leader>fr', telescope.registers, {desc='[;] [F]ind [R]egisters'})
+
             -- ;fs - display spelling suggestions
-            vim.keymap.set('n', 'z=', function()
-                telescope.spell_suggest(themes.get_dropdown({
-                    winblend = 7
-                }))
-            end, {desc='[;] [F]ind [S]pelling Suggestions'})
+            -- overridden z= elsewhere for spelling auto-fix
+            -- vim.keymap.set('n', 'z=', function()
+            --     telescope.spell_suggest(themes.get_dropdown({
+            --         winblend = 7
+            --     }))
+            -- end, {desc='[;] [F]ind [S]pelling Suggestions'})
+
             -- q: - upgraded command history
             vim.keymap.set('n', 'q:', telescope.command_history, {desc='[q:] Upgraded Command History Window'})
             -- q/ - upgraded search history

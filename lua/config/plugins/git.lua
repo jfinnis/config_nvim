@@ -107,23 +107,4 @@ return {
             }
         end
     },
-
-    -- git-log
-    {
-        'niuiic/git-log.nvim',
-        dependencies = {
-            'niuiic/omega.nvim'
-        },
-        config = function()
-            vim.keymap.set('n', '<leader>gl', function()
-                require('git-log').check_log({
-                    extra_args = {},
-                    window_width_ratio = 0.6,
-                    window_height_ratio = 0.8,
-                    quit_key = 'q',
-                })
-            end,
-            { desc = '[;] [G]it [l]og' })
-        end
-    }
 }

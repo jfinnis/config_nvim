@@ -14,12 +14,6 @@ return {
             view = {
                 stack_upwards = true, -- Display notification items from bottom to top
             },
-            window = {
-                border = 'rounded',
-                winblend = 20,
-                align = 'bottom',
-                x_padding = 0,
-            },
         },
 
         -- lsp subsystem
