@@ -1,5 +1,6 @@
 --
 -- tmux - multiplexer management
+-- smart-splits plugin
 --
 
 return {

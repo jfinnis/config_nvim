@@ -69,13 +69,6 @@ return {
                         or filename == 'mthesaur.txt'
                 end,
             },
-            float = { border = 'double' },
-            confirmation = { border = 'double' },
-            progress = { border = 'double' },
-            keymaps_help = { border = 'double' },
-            win_options = {
-                winbar = '%!v:lua.get_oil_winbar()',
-            },
         })
 
         vim.keymap.set('n', '-', ':Oil<cr>', { desc = '[-] Open parent directory', silent = true })
