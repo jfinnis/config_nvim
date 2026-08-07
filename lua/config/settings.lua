@@ -3,10 +3,6 @@
 --
 vim.g.mapleader = ';'
 
--- testing new autocomplete
-vim.o.autocomplete = true -- tmp - probably use blink
-vim.o.pumborder = 'rounded' -- tmp
-
 vim.o.backupcopy = 'yes' -- will create a backup file instead of renaming the file
                            -- needed for vite dev server which was having issues watching changes
 vim.o.conceallevel = 2 -- use replacement character for concealed text
@@ -17,6 +13,7 @@ vim.o.list = true -- show chars for end of line
 --vim.o.listchars:append 'eol:↴'
 vim.o.number = true
 vim.o.numberwidth = 2
+vim.o.pumborder = 'rounded' -- global border for popup windows
 vim.o.scrolloff = 4 -- lines above/below cursor while scrolling
 vim.o.shortmess = 'filmnxtTIoOF' -- experiment with I above, hides intro (try with alpha-nvim)
 vim.o.signcolumn = 'auto' -- only display when there's a sign to display
