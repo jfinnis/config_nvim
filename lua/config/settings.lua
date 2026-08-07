@@ -3,6 +3,10 @@
 --
 vim.g.mapleader = ';'
 
+-- testing new autocomplete
+vim.o.autocomplete = true -- tmp - probably use blink
+vim.o.pumborder = 'rounded' -- tmp
+
 vim.o.backupcopy = 'yes' -- will create a backup file instead of renaming the file
                            -- needed for vite dev server which was having issues watching changes
 vim.o.conceallevel = 2 -- use replacement character for concealed text
