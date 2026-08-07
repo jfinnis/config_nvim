@@ -7,9 +7,8 @@
 
 return {
     {
-        -- treesitter - syntax parser (install/update parsers + queries only)
+        -- treesitter - syntax parser
         'nvim-treesitter/nvim-treesitter',
-        --branch = 'main',
         lazy = false, -- must not be lazy-loaded
         build = ':TSUpdate',
         config = function()
