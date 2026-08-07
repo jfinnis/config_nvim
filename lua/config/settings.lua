@@ -10,7 +10,7 @@ vim.o.pumborder = 'rounded' -- tmp
 vim.o.backupcopy = 'yes' -- will create a backup file instead of renaming the file
                            -- needed for vite dev server which was having issues watching changes
 vim.o.conceallevel = 2 -- use replacement character for concealed text
-vim.o.diffopt = 'internal,filler,closeoff,linematch:60'
+vim.o.diffopt = 'internal,filler,closeoff,indent-heuristic,inline:char,linematch:60'
 vim.o.gdefault = true -- replace all occurrences in line for :s///
 vim.o.jumpoptions = 'stack' -- not clean, which won't jump to closed buffers
 vim.o.list = true -- show chars for end of line
@@ -31,7 +31,7 @@ vim.o.wildmode = 'longest:full' -- command completion to longest substring, then
 vim.o.colorcolumn = '100' -- highlight these columns in different color
 vim.o.cursorcolumn = false
 vim.o.cursorline = false
--- vim.o.winborder = 'rounded' -- TODO: plugins aren't updated for 0.11 usage yet
+vim.o.winborder = 'rounded'
 
 -- cursor line displays only in active window
 local cursorGroup = vim.api.nvim_create_augroup('CursorLine', {clear = true})
@@ -58,32 +58,7 @@ vim.api.nvim_create_autocmd('BufReadPost', {
 
 -- only show command line when typing a command
 vim.o.cmdheight = 0
--- TODO: messages show in box when cmdheight is 0 - not working yet?
--- require('vim._extui').enable({
---     msg = {
---         pos = 'box',
---         box = {
---             timeout = 3000
---         }
---     }
--- })
-vim.api.nvim_create_autocmd('CmdlineEnter', {
-    group = vim.api.nvim_create_augroup(
-        'gmr_cmdheight_1_on_cmdlineenter',
-        { clear = true }
-    ),
-    desc = 'Don\'t hide the status line when typing a command',
-    command = ':set cmdheight=1',
-})
-
-vim.api.nvim_create_autocmd('CmdlineLeave', {
-    group = vim.api.nvim_create_augroup(
-        'gmr_cmdheight_0_on_cmdlineleave',
-        { clear = true }
-    ),
-    desc = 'Hide cmdline when not typing a command',
-    command = ':set cmdheight=0',
-})
+require('vim._core.ui2').enable()
 
 vim.api.nvim_create_autocmd('BufWritePost', {
     group = vim.api.nvim_create_augroup(
@@ -94,15 +69,6 @@ vim.api.nvim_create_autocmd('BufWritePost', {
     pattern = { '*' },
     command = 'redrawstatus',
 })
-
--- highlight yanked text briefly - replaced with Tiny Glimmer plugin for animated yank
--- vim.api.nvim_create_augroup('YankHighlight', {clear = true})
--- vim.api.nvim_create_autocmd('TextYankPost', {
---     group = 'YankHighlight',
---     callback = function()
---         vim.highlight.on_yank({higroup = 'IncSearch', timeout = '200'})
---     end
--- })
 
 -- search
 vim.o.hlsearch = true -- highlight every match, clear with <C-l>
