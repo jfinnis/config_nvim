@@ -107,4 +107,6 @@ return {
             }
         end
     },
+
+    { 'avm99963/vim-jjdescription' }
 }
