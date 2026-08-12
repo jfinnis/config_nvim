@@ -3,7 +3,6 @@
 -- fugitive
 -- fubitive - browse code in bitbucket
 -- gitsigns
--- git-log - popup window for log
 --
 
 return {
@@ -17,7 +16,7 @@ return {
                 { desc = '[;] [G]it [S]tatus and Staging', silent = true })
             vim.keymap.set({'n', 'v'}, '<leader>gw', ':GBrowse<cr>',
                 { desc = '[;] [G]it [B]rowse', silent = true })
-            -- prefer git-log plugin for popup logs
+            -- using jj instead of git for logs
             -- vim.keymap.set('n', '<leader>gl', ':G log %<cr>', { desc = '[;] [G]it [L]og Current File' })
         end
     },
@@ -108,5 +107,6 @@ return {
         end
     },
 
+    -- syntax highlighting in jj describe vim windows
     { 'avm99963/vim-jjdescription' }
 }

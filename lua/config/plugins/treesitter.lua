@@ -16,6 +16,7 @@ return {
                 'java', 'html', 'lua', 'json', 'c', 'vim', 'vimdoc', 'query', 'make', 'css',
                 'diff', 'dockerfile', 'go', 'graphql', 'python', 'rust', 'ruby', 'sql', 'yaml',
                 'gitignore', 'gitcommit', 'git_config', 'http', 'fennel', 'clojure', 'scheme',
+                'typst',
             })
 
             -- folding
