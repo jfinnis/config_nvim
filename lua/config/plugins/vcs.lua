@@ -3,6 +3,7 @@
 -- fugitive
 -- fubitive - browse code in bitbucket
 -- gitsigns
+-- diffs - highlighting in fugitive window
 --
 
 return {
@@ -106,6 +107,9 @@ return {
             }
         end
     },
+
+    -- diff highlighting in fugitive window
+    { 'barrettruth/diffs.nvim' },
 
     -- syntax highlighting in jj describe vim windows
     { 'avm99963/vim-jjdescription' }
