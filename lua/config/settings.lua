@@ -11,6 +11,7 @@ vim.o.gdefault = true -- replace all occurrences in line for :s///
 vim.o.jumpoptions = 'stack' -- not clean, which won't jump to closed buffers
 vim.o.list = true -- show chars for end of line
 --vim.o.listchars:append 'eol:↴'
+vim.o.nrformats = 'blank' -- <c-a> on test-1 turns into test-2 instead of test0
 vim.o.number = true
 vim.o.numberwidth = 2
 vim.o.pumborder = 'rounded' -- global border for popup windows
