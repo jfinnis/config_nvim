@@ -9,6 +9,7 @@ return {
         config = function()
             local neocodeium = require('neocodeium')
             neocodeium.setup({
+                enabled = true,
                 filetypes = {
                     -- ignore in special filetypes where we don't want suggestions
                     TelescopePrompt = false,
