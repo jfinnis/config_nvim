@@ -4,6 +4,7 @@
 -- fubitive - browse code in bitbucket
 -- gitsigns
 -- diffs - highlighting in fugitive window
+-- vcmarkers - testing out
 --
 
 return {
@@ -112,5 +113,8 @@ return {
     { 'barrettruth/diffs.nvim' },
 
     -- syntax highlighting in jj describe vim windows
-    { 'avm99963/vim-jjdescription' }
+    { 'avm99963/vim-jjdescription' },
+
+    -- jj style diff markers
+    { 'algmyr/vcmarkers.nvim' }
 }

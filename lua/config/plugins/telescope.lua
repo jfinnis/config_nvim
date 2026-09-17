@@ -153,7 +153,7 @@ return {
                 -- back to spelling mistake then show prompt
                 vim.cmd.normal('[s')
                 telescope.spell_suggest(themes.get_dropdown({ winblend = 7 }))
-            end, {desc='[z+] Spelling Suggestions Previous Mistake'}
+            end, {desc='[z+] Spelling Suggestions Previous Mistake'})
 
             -- z= - accept first spell suggestion for previous mistake
             vim.keymap.set('n', 'z=', '[s1z=<c-o>', { noremap = true, desc = '[z=] Fix Previous Spelling Mistake' })

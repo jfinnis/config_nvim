@@ -7,6 +7,7 @@ vim.o.backupcopy = 'yes' -- will create a backup file instead of renaming the fi
                            -- needed for vite dev server which was having issues watching changes
 vim.o.conceallevel = 2 -- use replacement character for concealed text
 vim.o.diffopt = 'internal,filler,closeoff,indent-heuristic,inline:char,linematch:60'
+vim.o.exrc = true -- search local directory for nvimrc
 vim.o.gdefault = true -- replace all occurrences in line for :s///
 vim.o.jumpoptions = 'stack' -- not clean, which won't jump to closed buffers
 vim.o.list = true -- show chars for end of line
@@ -32,7 +33,7 @@ vim.o.cursorline = false
 vim.o.winborder = 'rounded'
 
 -- cursor line displays only in active window
-local cursorGroup = vim.api.nvim_create_augroup('CursorLine', {clear = true})
+local cursorGroup = vim.api.nvim_create_augroup('CursorLine', { clear = true })
 vim.api.nvim_create_autocmd(
     { 'InsertEnter', 'WinLeave' },
     { pattern = '*', command = 'set nocursorline nocursorcolumn', group = cursorGroup }
