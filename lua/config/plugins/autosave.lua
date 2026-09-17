@@ -6,6 +6,7 @@ return {
     'pocco81/auto-save.nvim',
     config = function()
         -- toggle autosave
-        vim.api.nvim_set_keymap('n', '<leader>S', ':ASToggle<CR>', { desc = '[;] Toggle Auto[S]ave' })
+        vim.api.nvim_set_keymap('n', '<leader>S', ':ASToggle<CR>',
+            { desc = '[;] Toggle Auto[S]ave', silent = true })
     end
 }

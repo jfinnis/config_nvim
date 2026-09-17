@@ -108,7 +108,7 @@ return {
         end
     },
 
-    -- diff highlighting in fugitive window
+    -- diff highlighting: fugitive window, diff filetype
     { 'barrettruth/diffs.nvim' },
 
     -- syntax highlighting in jj describe vim windows
