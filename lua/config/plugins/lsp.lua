@@ -24,9 +24,9 @@ return {
                 'jsonls',
                 'lua_ls',
                 'taplo',
+                'trivy',
                 'ts_ls',
                 'yamlls',
-                --'trivy',
             })
 
             -- typescript/javascript - inline hints off by default, toggle with grh
