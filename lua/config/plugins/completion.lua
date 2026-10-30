@@ -59,6 +59,9 @@ return {
 
             sources = {
                 default = { 'conventional_commits', 'lsp', 'path', 'snippets', 'buffer' },
+                per_filetype = {
+                    sql = { 'snippets', 'dadbod', 'buffer' },
+                },
                 providers = {
                     conventional_commits = {
                         name = 'Conventional Commits',
@@ -72,6 +75,7 @@ return {
                             -- See Configuration section below for available options
                         },
                     },
+                    dadbod = { name = 'Dadbod', module = 'vim_dadbod_completion.blink' },
                 },
             },
 
