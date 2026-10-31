@@ -118,9 +118,6 @@ return {
                     --end, event, '[G]oto [K] definition (vert split)')
 
                     local telescope = require('telescope.builtin')
-                    nmap('gt', telescope.lsp_type_definitions,
-                        event, '[G]oto [T]ype of Element')
-
                     nmap('<leader>fd', function()
                         telescope.diagnostics(require('telescope.themes').get_ivy {})
                     end, event, '[;] [F]ind [D]iagnostics')

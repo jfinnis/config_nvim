@@ -131,6 +131,14 @@ vim.cmd[[
   :for m in map(map(range(26), 'nr2char(97+v:val)'), '"nnoremap ''".v:val." ''".v:val."zz"') | exe m | endfor
 ]]
 
+
+-----------------------
+--      plugins      --
+-----------------------
+-- undotree is built-in now
+vim.cmd('packadd nvim.undotree')
+vim.keymap.set('n', 'gu', require('undotree').open)
+
 -----------------------
 --       utils       --
 -----------------------
