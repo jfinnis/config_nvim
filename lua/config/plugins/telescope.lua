@@ -109,8 +109,6 @@ return {
             -- vim extensions
             --
 
-            -- ;fb - display open buffers
-            vim.keymap.set('n', '<leader>fb', telescope.buffers, {desc='[F]ind Open [B]uffers'})
             -- ;fc - display vim commands
             vim.keymap.set('n', '<leader>fc', telescope.commands, {desc='[;] [F]ind Vim [C]ommands'})
             -- ;fC - display and preview colorschemes
