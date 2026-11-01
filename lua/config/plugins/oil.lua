@@ -72,5 +72,51 @@ return {
         })
 
         vim.keymap.set('n', '-', ':Oil<cr>', { desc = '[-] Open parent directory', silent = true })
+
+        -- mac quicklook option for oil buffers
+        local qpreview = function()
+            local oil = require('oil')
+            local entry = oil.get_cursor_entry()
+            if not entry then
+                return vim.notify('Could not find entry under cursor', vim.log.levels.WARN)
+            end
+            local url = vim.api.nvim_buf_get_name(0) .. entry.name
+            local path = string.gsub(url, "oil://", "")
+            if path == nil then
+                return vim.notify('Cursor is not on valid entry')
+            end
+            vim.system({ 'qlmanage', '-p', path }, {}, function(result)
+                if result.code ~= 0 then
+                    vim.notify("'qlmanage -p' failed with code: " .. result.code, vim.log.levels.ERROR)
+                    vim.notify('Stderr:\n' .. result.stderr, vim.log.levels.ERROR)
+                end
+            end)
+
+            -- `qlmanage -p` never activates itself, so the preview opens behind
+            -- the terminal and ends up last in the Cmd-Tab order. Activate it
+            -- once the app has registered with LaunchServices (~100ms in).
+            vim.defer_fn(function()
+                vim.system({
+                    'osascript',
+                    '-e',
+                    'tell application id "com.apple.quicklook.qlmanage" to activate',
+                }, { timeout = 5000 }, function(result)
+                    if result.code ~= 0 then
+                        vim.notify(
+                            'Quick Look stayed in the background (Automation permission?)',
+                            vim.log.levels.WARN
+                        )
+                    end
+                end)
+            end, 100)
+        end
+
+        vim.api.nvim_create_autocmd('User', {
+            pattern = 'OilEnter',
+            callback = function(args)
+                local b = args.data.buf_id
+                vim.keymap.set('n', 'g<leader>', qpreview, { buffer = b, desc = 'Quick Preview' })
+            end,
+        })
     end,
 }
