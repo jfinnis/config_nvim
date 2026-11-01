@@ -41,7 +41,6 @@ return {
 
             vim.lsp.enable({
                 'biome',
-                'jdtls',
                 'jsonls',
                 'lua_ls',
                 'taplo',
@@ -154,7 +153,10 @@ return {
     -- java lsp helper
     {
         'nvim-java/nvim-java',
-        -- config = function() require('java').setup {} end
+        config = function()
+            require('java').setup()
+            vim.lsp.enable('jdtls')
+        end
     },
 
     -- manages lsp install/updates
